@@ -58,10 +58,6 @@ while True:
         
         if cm>2 and cm<100:         #ここから
             print("hellow")
-            import RPi.GPIO as GPIO
-            import time
-
-            GPIO.setmode(GPIO.BCM)
 
             GPIO.setup(PIN, GPIO.OUT)
             servo = GPIO.PWM(PIN, FREQ)
