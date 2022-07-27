@@ -51,26 +51,27 @@ while True:
         GPIO.cleanup()              #GPIOをクリーンアップ
         sys.exit()                  #プログラム終了
 while cm>2 and cm<100:
-  import RPi.GPIO as GPIO
-  import time
+    print("hellow")
+    import RPi.GPIO as GPIO
+    import time
 
-  INTERVAL = 0.6
-  PIN = 14
-  FREQ = 50
+    INTERVAL = 0.6
+    PIN = 14
+    FREQ = 50
 
-  GPIO.setmode(GPIO.BCM)
+    GPIO.setmode(GPIO.BCM)
 
-  GPIO.setup(PIN, GPIO.OUT)
-  servo = GPIO.PWM(PIN, FREQ)
+    GPIO.setup(PIN, GPIO.OUT)
+    servo = GPIO.PWM(PIN, FREQ)
 
-  #init
-  servo.start(0.0)
+    #init
+    servo.start(0.0)
 
-  for i in range(2):
-    servo.ChangeDutyCycle(2.5)
-    time.sleep(INTERVAL)
+    for i in range(2):
+      servo.ChangeDutyCycle(2.5)
+      time.sleep(INTERVAL)
 
-    servo.ChangeDutyCycle(12.0)
-    time.sleep(INTERVAL)
+      servo.ChangeDutyCycle(12.0)
+      time.sleep(INTERVAL)
 
-  GPIO.cleanup()
+    GPIO.cleanup()
