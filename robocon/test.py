@@ -21,6 +21,9 @@ GPIO.setup(Trig, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo, GPIO.IN)           #GPIO18を入力モードに設定
 servo = GPIO.PWM(PIN, FREQ)         #サーボの設定
 
+GPIO.setup(PIN, GPIO.OUT)
+servo = GPIO.PWM(PIN, FREQ)
+
 #HC-SR04で距離を測定する関数
 def read_distance():
 
@@ -44,11 +47,7 @@ def read_distance():
 #連続して値を超音波センサの状態を読み取る
 while True:
     try:
-        #GPIOの設定
-        GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
-        GPIO.setup(Trig, GPIO.OUT)          #GPIO27を出力モードに設定
-        GPIO.setup(Echo, GPIO.IN)           #GPIO18を入力モードに設定
-
+        
         cm = -read_distance()
         print(cm)                   #HC-SR04で距離を測定する
         if cm > 2 and cm < 400:                #距離が2～400cmの場合
@@ -60,8 +59,8 @@ while True:
         if cm>2 and cm<100:         #ここから
             print("hellow")
 
-            GPIO.setup(PIN, GPIO.OUT)
 
+           
             #init
             servo.start(0.0)
 
@@ -72,7 +71,7 @@ while True:
               servo.ChangeDutyCycle(12.0)
               time.sleep(INTERVAL)
 
-            GPIO.cleanup()              #ここまでサーボ
+            
 
 
     except KeyboardInterrupt:       #Ctrl+Cキーが押された
