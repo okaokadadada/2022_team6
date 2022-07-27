@@ -11,14 +11,15 @@ Echo = 18                           #変数"Echo"に18を代入
 sig_on = 0
 sig_off = 0
 
-INTERVAL = 0.6
-PIN = 14
-FREQ = 50
+INTERVAL = 0.6          #サーボの設定
+PIN = 14                #サーボの設定
+FREQ = 50               #サーボの設定
 
 #GPIOの設定
 GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
 GPIO.setup(Trig, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo, GPIO.IN)           #GPIO18を入力モードに設定
+servo = GPIO.PWM(PIN, FREQ)         #サーボの設定
 
 GPIO.setup(PIN, GPIO.OUT)
 servo = GPIO.PWM(PIN, FREQ)
@@ -58,8 +59,6 @@ while True:
         if cm>2 and cm<100:         #ここから
             print("hellow")
 
-
-           
 
            
             #init
