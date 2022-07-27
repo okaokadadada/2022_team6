@@ -57,26 +57,26 @@ while True:
         time.sleep(1)                          #1秒間待つ
         
         if cm>2 and cm<100:         #ここから
-        print("hellow")
-        import RPi.GPIO as GPIO
-        import time
+            print("hellow")
+            import RPi.GPIO as GPIO
+            import time
 
-        GPIO.setmode(GPIO.BCM)
+            GPIO.setmode(GPIO.BCM)
 
-        GPIO.setup(PIN, GPIO.OUT)
-        servo = GPIO.PWM(PIN, FREQ)
+            GPIO.setup(PIN, GPIO.OUT)
+            servo = GPIO.PWM(PIN, FREQ)
 
-        #init
-        servo.start(0.0)
+            #init
+            servo.start(0.0)
 
-        for i in range(2):
-          servo.ChangeDutyCycle(2.5)
-          time.sleep(INTERVAL)
+            for i in range(2):
+              servo.ChangeDutyCycle(2.5)
+              time.sleep(INTERVAL)
 
-          servo.ChangeDutyCycle(12.0)
-          time.sleep(INTERVAL)
+              servo.ChangeDutyCycle(12.0)
+              time.sleep(INTERVAL)
 
-        GPIO.cleanup()              #ここまでサーボ
+            GPIO.cleanup()              #ここまでサーボ
 
 
     except KeyboardInterrupt:       #Ctrl+Cキーが押された
