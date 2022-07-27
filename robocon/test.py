@@ -19,6 +19,7 @@ FREQ = 50
 GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
 GPIO.setup(Trig, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo, GPIO.IN)           #GPIO18を入力モードに設定
+servo = GPIO.PWM(PIN, FREQ)
 
 #HC-SR04で距離を測定する関数
 def read_distance():
@@ -60,7 +61,6 @@ while True:
             print("hellow")
 
             GPIO.setup(PIN, GPIO.OUT)
-            servo = GPIO.PWM(PIN, FREQ)
 
             #init
             servo.start(0.0)
