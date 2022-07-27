@@ -72,7 +72,7 @@ while True:
               servo.ChangeDutyCycle(12.0)
               time.sleep(INTERVAL)
 
-            GPIO.cleanup()              #ここまでサーボ
+            
 
 
     except KeyboardInterrupt:       #Ctrl+Cキーが押された
