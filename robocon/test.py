@@ -21,7 +21,7 @@ GPIO.setup(Trig, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo, GPIO.IN)           #GPIO18を入力モードに設定
 
 GPIO.setup(PIN, GPIO.OUT)
-            servo = GPIO.PWM(PIN, FREQ)
+servo = GPIO.PWM(PIN, FREQ)
 
 #HC-SR04で距離を測定する関数
 def read_distance():
