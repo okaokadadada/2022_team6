@@ -11,6 +11,11 @@ Echo = 18                           #変数"Echo"に18を代入
 sig_on = 0
 sig_off = 0
 
+
+INTERVAL = 0.6
+PIN = 14
+FREQ = 50
+
 #GPIOの設定
 GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
 GPIO.setup(Trig, GPIO.OUT)          #GPIO27を出力モードに設定
@@ -46,18 +51,11 @@ while True:
         # else:
         #     print("over")
         time.sleep(1)                          #1秒間待つ
-
-    except KeyboardInterrupt:       #Ctrl+Cキーが押された
-        GPIO.cleanup()              #GPIOをクリーンアップ
-        sys.exit()                  #プログラム終了
-    if cm>2 and cm<100:
+        
+        if cm>2 and cm<100:
         print("hellow")
         import RPi.GPIO as GPIO
         import time
-
-        INTERVAL = 0.6
-        PIN = 14
-        FREQ = 50
 
         GPIO.setmode(GPIO.BCM)
 
@@ -75,3 +73,9 @@ while True:
           time.sleep(INTERVAL)
 
         GPIO.cleanup()
+
+
+    except KeyboardInterrupt:       #Ctrl+Cキーが押された
+        GPIO.cleanup()              #GPIOをクリーンアップ
+        sys.exit()                  #プログラム終了
+    
