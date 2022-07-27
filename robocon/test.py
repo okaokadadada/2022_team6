@@ -11,7 +11,6 @@ Echo = 18                           #変数"Echo"に18を代入
 sig_on = 0
 sig_off = 0
 
-
 INTERVAL = 0.6
 PIN = 14
 FREQ = 50
@@ -44,6 +43,11 @@ def read_distance():
 #連続して値を超音波センサの状態を読み取る
 while True:
     try:
+        #GPIOの設定
+        GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
+        GPIO.setup(Trig, GPIO.OUT)          #GPIO27を出力モードに設定
+        GPIO.setup(Echo, GPIO.IN)           #GPIO18を入力モードに設定
+
         cm = -read_distance()
         print(cm)                   #HC-SR04で距離を測定する
         if cm > 2 and cm < 400:                #距離が2～400cmの場合
@@ -52,7 +56,7 @@ while True:
         #     print("over")
         time.sleep(1)                          #1秒間待つ
         
-        if cm>2 and cm<100:
+        if cm>2 and cm<100:         #ここから
         print("hellow")
         import RPi.GPIO as GPIO
         import time
@@ -72,7 +76,7 @@ while True:
           servo.ChangeDutyCycle(12.0)
           time.sleep(INTERVAL)
 
-        GPIO.cleanup()
+        GPIO.cleanup()              #ここまでサーボ
 
 
     except KeyboardInterrupt:       #Ctrl+Cキーが押された
