@@ -50,7 +50,7 @@ while True:
     except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
         sys.exit()                  #プログラム終了
-while cm>2 and am<100:
+while cm>2 and cm<100:
   import RPi.GPIO as GPIO
   import time
 
