@@ -11,7 +11,7 @@ Echo = 18                           #変数"Echo"に18を代入
 sig_on = 0
 sig_off = 0
 
-INTERVAL = 0.6          #サーボの設定
+INTERVAL = 0.3          #サーボの設定
 PIN = 14                #サーボの設定
 FREQ = 50               #サーボの設定
 
@@ -55,7 +55,7 @@ while True:
         #     print("over")
         time.sleep(1)                          #1秒間待つ
         
-        if cm>2 and cm<5:         #ここから
+        if cm>10 and cm<20:         #ここから
             print("hellow")
 
 
