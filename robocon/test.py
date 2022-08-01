@@ -11,7 +11,7 @@ Echo = 18                           #変数"Echo"に18を代入
 sig_on = 0
 sig_off = 0
 
-INTERVAL = 0.3          #サーボの設定
+INTERVAL = 0.6          #サーボの設定
 PIN = 14                #サーボの設定
 FREQ = 50               #サーボの設定
 
