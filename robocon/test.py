@@ -55,7 +55,7 @@ while True:
         #     print("over")
         time.sleep(1)                          #1秒間待つ
         
-        if cm>5 and cm<20:         #ここから
+        if cm>2 and cm<20:         #ここから
             print("hellow")
 
 
