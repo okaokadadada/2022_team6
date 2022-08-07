@@ -6,7 +6,7 @@ IN1 = 17
 IN2 = 22
 IN3 = 23
 IN4 = 24
-WAITTIME = 0.1
+WAITTIME = 0.002
 
 def initialize():
   print( "initialize" )
@@ -48,11 +48,12 @@ initialize()
 count = 0
 try:
   while count<3:
-    right( 90 )
+    right( 3600 )
     time.sleep( 0.5 )
-    left( 90 )
+    left( 3600 )
     time.sleep( 0.5 )
     count = count + 1
     print( count )
 except KeyboardInterrupt:
   GPIO.cleanup()
+  print("cleanup")
