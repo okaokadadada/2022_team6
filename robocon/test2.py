@@ -66,8 +66,8 @@ def setStep( w1, w2, w3, w4 ):
   GPIO.output( IN4, w4 )
   time.sleep( WAITTIME )
 
-def right:
-  Wile True:
+def right():
+  while True:
     setStep( 1, 0, 0, 0 )
     setStep( 0, 1, 0, 0 )
     setStep( 0, 0, 1, 0 )
@@ -75,8 +75,8 @@ def right:
     if cm>100:
       break
 
-def left:
-  While True:
+def left():
+  while True:
     setStep( 0, 0, 0, 1 )
     setStep( 0, 0, 1, 0 )
     setStep( 0, 1, 0, 0 )
@@ -89,9 +89,9 @@ initialize()
 count = 0
 try:
   while True:
-    right
+    right()
     time.sleep( 0.5 )
-    left
+    left()
     time.sleep( 0.5 )
 #ステッピングモータ
 
