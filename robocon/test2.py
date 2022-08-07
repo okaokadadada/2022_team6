@@ -16,6 +16,12 @@ GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
 GPIO.setup(Trig, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo, GPIO.IN)           #GPIO18を入力モードに設定
 
+IN1 = 17
+IN2 = 22
+IN3 = 23
+IN4 = 24
+WAITTIME = 0.002
+
 #HC-SR04で距離を測定する関数
 def read_distance():
 
@@ -35,15 +41,8 @@ def read_distance():
     duration = sig_off - sig_on             #GPIO18がHighしている時間を算術
     distance = duration * 34000 / 2         #距離を求める(cm)
     return distance
-    cm = -read_distance()
     
 # sample program for 28BYJ-48 and ULN2003　　　#ステッピングモータ
-
-IN1 = 17
-IN2 = 22
-IN3 = 23
-IN4 = 24
-WAITTIME = 0.002
 
 def initialize():
   print( "initialize" )
@@ -85,6 +84,7 @@ def left():
 
 # main
 initialize()
+cm = -read_distance()
 try:
   while True:
     right()
