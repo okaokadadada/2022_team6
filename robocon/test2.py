@@ -66,6 +66,7 @@ def setStep( w1, w2, w3, w4 ):
 
 def right():
   while True:
+    read_distance()
     setStep( 1, 0, 0, 0 )
     setStep( 0, 1, 0, 0 )
     setStep( 0, 0, 1, 0 )
@@ -76,6 +77,7 @@ def right():
 
 def left():
   while True:
+    read_distance()
     setStep( 0, 0, 0, 1 )
     setStep( 0, 0, 1, 0 )
     setStep( 0, 1, 0, 0 )
