@@ -48,7 +48,6 @@ WAITTIME = 0.002
 def initialize():
   print( "initialize" )
   GPIO.setmode( GPIO.BCM )
-  GPIO.cleanup()
   GPIO.setup( IN1, GPIO.OUT )
   GPIO.setup( IN2, GPIO.OUT )
   GPIO.setup( IN3, GPIO.OUT )
@@ -86,7 +85,6 @@ def left():
 
 # main
 initialize()
-count = 0
 try:
   while True:
     right()
