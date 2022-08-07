@@ -70,7 +70,8 @@ def right():
     setStep( 0, 1, 0, 0 )
     setStep( 0, 0, 1, 0 )
     setStep( 0, 0, 0, 1 )
-    if cm>100:
+    print(cm)
+    if cm>10:
       break
 
 def left():
@@ -79,7 +80,8 @@ def left():
     setStep( 0, 0, 1, 0 )
     setStep( 0, 1, 0, 0 )
     setStep( 1, 0, 0, 0 )
-    if cm<100:
+    print(cm)
+    if cm<10:
       break
 
 # main
