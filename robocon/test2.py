@@ -91,9 +91,7 @@ initialize()
 try:
   while True:
     right()
-    time.sleep( 0.5 )
     left()
-    time.sleep( 0.5 )
 #ステッピングモータ
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
