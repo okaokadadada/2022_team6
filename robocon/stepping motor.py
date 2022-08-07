@@ -46,11 +46,11 @@ def left( angle ):
 # main
 initialize()
 count = 0
-while True:
+while count<3:
   right( 90 )
   time.sleep( 0.5 )
   left( 90 )
   time.sleep( 0.5 )
   count = count + 1
-  #print( count )
+  print( count )
 GPIO.cleanup()
