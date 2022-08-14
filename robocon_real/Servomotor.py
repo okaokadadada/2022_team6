@@ -13,11 +13,10 @@ servo = GPIO.PWM(PIN, FREQ)
 #init
 servo.start(0.0)
 
-for i in range(2):
-  servo.ChangeDutyCycle(2.5)
-  time.sleep(INTERVAL)
+servo.ChangeDutyCycle(2.5)
+time.sleep(INTERVAL)
 
-  servo.ChangeDutyCycle(16.75)
-  time.sleep(INTERVAL)
+servo.ChangeDutyCycle(16.75)
+time.sleep(INTERVAL)
   
 GPIO.cleanup()
