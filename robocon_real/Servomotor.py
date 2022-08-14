@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-INTERVAL = 0.6
+INTERVAL = 1
 PIN = 14
 FREQ = 50
 
@@ -13,10 +13,10 @@ servo = GPIO.PWM(PIN, FREQ)
 #init
 servo.start(0.0)
 
-servo.ChangeDutyCycle(-2.25)
+servo.ChangeDutyCycle(2.5)
 time.sleep(INTERVAL)
 
-servo.ChangeDutyCycle(16.75)
+servo.ChangeDutyCycle(9.1)
 time.sleep(INTERVAL)
   
 GPIO.cleanup()
