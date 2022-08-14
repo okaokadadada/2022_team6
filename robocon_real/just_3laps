@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO             #GPIO用のモジュールをインポート
 import time                         #時間制御用のモジュールをインポート
 import sys                          #sysモジュールをインポート
 
-#ポート番号の定義
+  #ポート番号の定義
 Trig = 27                           #変数"Trig"に27を代入
 Echo = 18                           #変数"Echo"に18を代入
 
@@ -41,6 +41,9 @@ def read_distance():
 
 #ステッピングモータに関するもろもろの設定
 
+#旋回回数
+number_of_turns = 0
+
 while True:
   try:
         cm = -read_distance()
@@ -51,7 +54,12 @@ while True:
             print("over")
         
         if cm<15:
-            #距離が15cm未満になったら右旋回
+            if number_of_turns = 10:
+                #旋回回数が10なら停止
+                
+            number_of_turns = number_of_turns + 1　　#距離が15cm未満になったら，旋回回数の値を＋１して右旋回
+            print("number_of_turns=", int(number_of_turns), "number_of_turns")　#旋回回数をint型で表示
+            
         if cm>15:
             #距離が15cmより大きくなったら直進
         
