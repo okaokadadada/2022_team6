@@ -27,13 +27,13 @@ GPIO.setup( left_IN3, GPIO.OUT )
 GPIO.setup( left_IN4, GPIO.OUT )
 
 #右，左ステッピングモータを停止させる関数
-def right_stop:
+def right_stop():
   GPIO.output( right_IN1, GPIO.LOW )
   GPIO.output( right_IN2, GPIO.LOW )
   GPIO.output( right_IN3, GPIO.LOW )
   GPIO.output( right_IN4, GPIO.LOW )
 
-def left_stop:
+def left_stop():
   GPIO.output( left_IN1, GPIO.LOW )
   GPIO.output( left_IN2, GPIO.LOW )
   GPIO.output( left_IN3, GPIO.LOW )
