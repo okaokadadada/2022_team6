@@ -21,5 +21,5 @@ while true:
     
     
  except KeyboardInterrupt:
-    GPIo.cleanup()
+    GPIO.cleanup()
     sys.exit()
