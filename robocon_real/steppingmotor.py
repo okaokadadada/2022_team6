@@ -11,7 +11,7 @@ GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
 GPIO.setup(CW, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(CCW, GPIO.IN)           #GPIO18を入力モードに設定
 
-while true:
+while True:
   try:
     
     GPIO.output(CW, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
