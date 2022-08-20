@@ -16,7 +16,8 @@ for i in range(100):
   GPIO.output(CW, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
   time.sleep(0.00001)                     #10μ秒間待つ
   GPIO.output(CW, GPIO.LOW)               #GPIO27の出力をLow(0V)にする
-
+  time.sleep(0.00001) 
+  
 print("finish")
 
 GPIO.cleanup()
