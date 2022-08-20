@@ -1,6 +1,8 @@
+
 # sample program for 28BYJ-48 and ULN2003
 import RPi.GPIO as GPIO
 import time
+GPIO.cleanup()
 
 IN1 = 17
 IN2 = 22
