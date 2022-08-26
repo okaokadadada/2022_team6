@@ -1,0 +1,9 @@
+#$ sudo raspi-configでI2Cの設定
+#P5 I2C Enable/disable・・・を＜Select＞してI2CをON
+#rebootで再起動
+#$ lsmodでI2Cが利用できるか確認．「i2c_bcm（4桁）」と表示されていることを確認．
+#$ sudo i2cdetect -y 1でセンサのアドレスを確認．13,19,69になっているか確認
+#$ sudo apt-get update
+#↓
+#$ sudo apt-get install i2c-tools python-smbus libi2c-devを入力し
+#続行しますか？ [Y/n] でyを入力
