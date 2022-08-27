@@ -102,8 +102,6 @@ if __name__ == "__main__":
         acc = acc_value()
         gyro= gyro_value()
         mag = mag_value()
-        print("Accl -> x:{}, y:{}, z: {}".format(acc[0], acc[1], acc[2]))
-        print("Gyro -> x:{}, y:{}, z: {}".format(gyro[0], gyro[1], gyro[2]))
         print("Mag -> x:{}, y:{}, z: {}".format(mag[0], mag[1], mag[2]))
         print("\n")
         time.sleep(0.1)
