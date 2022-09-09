@@ -8,9 +8,11 @@ AWO=2
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(AWO,GPIO.OUT)
 
-try:
-  GPIO.output(AWO,GPIO.HIGH)
+while True:
 
-except KeyboadInterrupt:
-  GPIO.cleanup()
-  sys.exit()
+  try:
+    GPIO.output(AWO,GPIO.HIGH)
+
+  except KeyboadInterrupt:
+    GPIO.cleanup()
+    sys.exit()
