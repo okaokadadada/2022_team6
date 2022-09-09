@@ -14,10 +14,10 @@ GPIO.setup(CCW, GPIO.OUT)           #GPIO18を入力モードに設定
 while True:
   try:
     
-    GPIO.output(CCW,GPIO.LOW)
-    GPIO.output(CW, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
+    GPIO.output(CCW,False)
+    GPIO.output(CW, True)            #GPIO27の出力をHigh(3.3V)にする
     time.sleep(0.00001)                     #10μ秒間待つ
-    GPIO.output(CW, GPIO.LOW)               #GPIO27の出力をLow(0V)にする
+    GPIO.output(CW, False)               #GPIO27の出力をLow(0V)にする
     time.sleep(0.00001) 
     
   except KeyboardInterrupt:
