@@ -6,7 +6,7 @@ import sys                          #sysモジュールをインポート
 AWO=2
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(AWO,OUT)
+GPIO.setup(AWO,GPIO.OUT)
 
 try:
   GPIO.output(AWO,GPIO.HIGH)
