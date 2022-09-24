@@ -20,14 +20,14 @@ time.sleep(0.15)
 
 while True:
   try:
-    for i in range(1000):
+    for i in range(200):
       GPIO.output(CWp, GPIO.HIGH)
       GPIO.output(CWm, GPIO.LOW)             #CWをONに
       time.sleep(a)
       GPIO.output(CWp, GPIO.LOW)
       GPIO.output(CWm, GPIO.HIGH)            #CWをOFFに
       time.sleep(a)
-    for i in range(1000):
+    for i in range(200):
       GPIO.output(CCWp, GPIO.HIGH)
       GPIO.output(CCWm, GPIO.LOW)            #CCWをONに
       time.sleep(a)
@@ -36,7 +36,7 @@ while True:
       time.sleep(a)
     
     print(a)
-    a=a-0.001
+    a=a-0.005
     
   except KeyboardInterrupt:
     GPIO.cleanup()
