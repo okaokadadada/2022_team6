@@ -19,9 +19,15 @@ while True:
       GPIO.output(CWp,HIGH)
       GPIO.output(CWm, LOW)            #GPIO27の出力をHigh(3.3V)にする
       time.sleep(0.005)
+      GPIO.output(CWp,LOW)
+      GPIO.output(CWm, HIGH)            #GPIO27の出力をHigh(3.3V)にする
+      time.sleep(0.005)
     for i in range(1000):
       GPIO.output(CCWp,HIGH)
       GPIO.output(CCWm, LOW)            #GPIO27の出力をHigh(3.3V)にする
+      time.sleep(0.005)
+      GPIO.output(CCWp,LOW)
+      GPIO.output(CCWm, HIGH)            #GPIO27の出力をHigh(3.3V)にする
       time.sleep(0.005)
     
   except KeyboardInterrupt:
