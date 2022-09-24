@@ -15,7 +15,7 @@ GPIO.setup(CWm, GPIO.OUT)            #GPIO3を出力モードに設定
 GPIO.setup(CCWp, GPIO.OUT)           #GPIO23を出力モードに設定
 GPIO.setup(CCWm, GPIO.OUT)           #GPIO4を出力モードに設定
 
-time.sleep(0.05)
+time.sleep(0.15)
 
 while True:
   try:
