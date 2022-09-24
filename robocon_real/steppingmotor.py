@@ -7,6 +7,7 @@ CWp=17
 CWm=3
 CCWp=23
 CCWm=4
+a=0.05
 
 #GPIOの設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
@@ -22,17 +23,17 @@ while True:
     for i in range(1000):
       GPIO.output(CWp, GPIO.HIGH)
       GPIO.output(CWm, GPIO.LOW)             #CWをONに
-      time.sleep(0.1)
+      time.sleep(a)
       GPIO.output(CWp, GPIO.LOW)
       GPIO.output(CWm, GPIO.HIGH)            #CWをOFFに
-      time.sleep(0.1)
+      time.sleep(a)
     for i in range(1000):
       GPIO.output(CCWp, GPIO.HIGH)
       GPIO.output(CCWm, GPIO.LOW)            #CCWをONに
-      time.sleep(0.1)
+      time.sleep(a)
       GPIO.output(CCWp, GPIO.LOW)
       GPIO.output(CCWm, GPIO.HIGH)           #CCWをOFFに
-      time.sleep(0.1)
+      time.sleep(a)
     
   except KeyboardInterrupt:
     GPIO.cleanup()
