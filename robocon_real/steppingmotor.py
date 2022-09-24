@@ -10,8 +10,10 @@ CCWm=4
 
 #GPIOの設定
 GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
-GPIO.setup(CW, GPIO.OUT)          #GPIO27を出力モードに設定
-GPIO.setup(CCW, GPIO.OUT)           #GPIO18を入力モードに設定
+GPIO.setup(CWp, GPIO.OUT)          #GPIO27を出力モードに設定
+GPIO.setup(CWm, GPIO.OUT)          #GPIO27を出力モードに設定
+GPIO.setup(CCWp, GPIO.OUT)           #GPIO18を入力モードに設定
+GPIO.setup(CCWm, GPIO.OUT)
 
 while True:
   try:
