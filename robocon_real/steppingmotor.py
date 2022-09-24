@@ -35,6 +35,9 @@ while True:
       GPIO.output(CCWm, GPIO.HIGH)           #CCWをOFFに
       time.sleep(a)
     
+    print(a)
+    a=a-0.001
+    
   except KeyboardInterrupt:
     GPIO.cleanup()
     sys.exit()
