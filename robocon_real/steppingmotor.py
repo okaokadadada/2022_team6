@@ -22,17 +22,17 @@ while True:
     for i in range(1000):
       GPIO.output(CWp, GPIO.HIGH)
       GPIO.output(CWm, GPIO.LOW)             #CWをONに
-      time.sleep(0.03)
+      time.sleep(0.05)
       GPIO.output(CWp, GPIO.LOW)
       GPIO.output(CWm, GPIO.HIGH)            #CWをOFFに
-      time.sleep(0.04)
+      time.sleep(0.05)
     for i in range(1000):
       GPIO.output(CCWp, GPIO.HIGH)
       GPIO.output(CCWm, GPIO.LOW)            #CCWをONに
-      time.sleep(0.04)
+      time.sleep(0.05)
       GPIO.output(CCWp, GPIO.LOW)
       GPIO.output(CCWm, GPIO.HIGH)           #CCWをOFFに
-      time.sleep(0.04)
+      time.sleep(0.05)
     
   except KeyboardInterrupt:
     GPIO.cleanup()
