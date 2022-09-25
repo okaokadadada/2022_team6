@@ -16,17 +16,17 @@ GPIO.setup(CWm, GPIO.OUT)            #GPIO3を出力モードに設定
 GPIO.setup(CCWp, GPIO.OUT)           #GPIO23を出力モードに設定
 GPIO.setup(CCWm, GPIO.OUT)           #GPIO4を出力モードに設定
 
-a=0.01
+a=0.005
 
 while True:
   try:
-    #for i in range(200):
-      #GPIO.output(CWp, GPIO.HIGH)
-      #GPIO.output(CWm, GPIO.LOW)             #CWをONに
-      #time.sleep(a)
-      #GPIO.output(CWp, GPIO.LOW)
-      #GPIO.output(CWm, GPIO.HIGH)            #CWをOFFに
-      #time.sleep(a)
+    for i in range(200):
+      GPIO.output(CWp, GPIO.HIGH)
+      GPIO.output(CWm, GPIO.LOW)             #CWをONに
+      time.sleep(a)
+      GPIO.output(CWp, GPIO.LOW)
+      GPIO.output(CWm, GPIO.HIGH)            #CWをOFFに
+      time.sleep(a)
     for i in range(20):
       GPIO.output(CCWp, GPIO.HIGH)
       GPIO.output(CCWm, GPIO.LOW)            #CCWをONに
