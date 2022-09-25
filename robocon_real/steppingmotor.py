@@ -32,7 +32,7 @@ while True:
       GPIO.output(CCWp, GPIO.HIGH)
       GPIO.output(CCWm, GPIO.LOW)            #CCWをONに
       #time.sleep(a)
-     # GPIO.output(CCWp, GPIO.LOW)
+      GPIO.output(CCWp, GPIO.LOW)
       #GPIO.output(CCWm, GPIO.HIGH)           #CCWをOFFに
       time.sleep(a)
     #time.sleep(1)
