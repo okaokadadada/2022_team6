@@ -20,22 +20,22 @@ a=1
 
 while True:
   try:
-    for i in range(200):
-      GPIO.output(CWp, GPIO.HIGH)
-      GPIO.output(CWm, GPIO.LOW)             #CWをONに
-      time.sleep(a)
-      GPIO.output(CWp, GPIO.LOW)
-      GPIO.output(CWm, GPIO.HIGH)            #CWをOFFに
-      time.sleep(a)
-    time.sleep(1)
+    #for i in range(200):
+     # GPIO.output(CWp, GPIO.HIGH)
+      #GPIO.output(CWm, GPIO.LOW)             #CWをONに
+      #time.sleep(a)
+      #GPIO.output(CWp, GPIO.LOW)
+      #GPIO.output(CWm, GPIO.HIGH)            #CWをOFFに
+      #time.sleep(a)
+    #time.sleep(1)
     for j in range(200):
       GPIO.output(CCWp, GPIO.HIGH)
       GPIO.output(CCWm, GPIO.LOW)            #CCWをONに
+      #time.sleep(a)
+     # GPIO.output(CCWp, GPIO.LOW)
+      #GPIO.output(CCWm, GPIO.HIGH)           #CCWをOFFに
       time.sleep(a)
-      GPIO.output(CCWp, GPIO.LOW)
-      GPIO.output(CCWm, GPIO.HIGH)           #CCWをOFFに
-      time.sleep(a)
-    time.sleep(1)
+    #time.sleep(1)
     
   except KeyboardInterrupt:
     GPIO.cleanup()
