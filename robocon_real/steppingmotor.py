@@ -5,8 +5,8 @@ import sys                          #sysモジュールをインポート
 
 CWp=17
 CWm=3
-CCWp=23
-CCWm=4
+CCWp=5
+CCWm=6
 a=0.05
 
 #GPIOの設定
