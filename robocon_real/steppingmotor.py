@@ -20,13 +20,13 @@ a=0.01
 
 while True:
   try:
-    for i in range(200):
-      GPIO.output(CWp, GPIO.HIGH)
-      GPIO.output(CWm, GPIO.LOW)             #CWをONに
-      time.sleep(a)
-      GPIO.output(CWp, GPIO.LOW)
-      GPIO.output(CWm, GPIO.HIGH)            #CWをOFFに
-      time.sleep(a)
+    #for i in range(200):
+      #GPIO.output(CWp, GPIO.HIGH)
+      #GPIO.output(CWm, GPIO.LOW)             #CWをONに
+      #time.sleep(a)
+      #GPIO.output(CWp, GPIO.LOW)
+      #GPIO.output(CWm, GPIO.HIGH)            #CWをOFFに
+      #time.sleep(a)
     for i in range(20):
       GPIO.output(CCWp, GPIO.HIGH)
       GPIO.output(CCWm, GPIO.LOW)            #CCWをONに
@@ -34,9 +34,6 @@ while True:
       GPIO.output(CCWp, GPIO.LOW)
       GPIO.output(CCWm, GPIO.HIGH)           #CCWをOFFに
       time.sleep(a)
-    
-    print(a)
-    a=a-0.005
     
   except KeyboardInterrupt:
     GPIO.cleanup()
