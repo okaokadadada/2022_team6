@@ -31,11 +31,9 @@ while True:
     for j in range(200):
       GPIO.output(CCWp, GPIO.HIGH)
       GPIO.output(CCWm, GPIO.LOW)            #CCWをONに
-      #print("ON")
       time.sleep(a)
       GPIO.output(CCWp, GPIO.LOW)
       GPIO.output(CCWm, GPIO.HIGH)           #CCWをOFFに
-      #print("OFF")
       time.sleep(a)
 
     
