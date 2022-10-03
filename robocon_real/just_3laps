@@ -2,44 +2,28 @@ from signal import SIG_UNBLOCK
 import RPi.GPIO as GPIO             #GPIO用のモジュールをインポート
 import time                         #時間制御用のモジュールをインポート
 import sys                          #sysモジュールをインポート
-GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
 
-#ポート番号の定義
-　超音波センサ
-Trig = 27                           #変数"Trig"に27を代入
-Echo = 18                           #変数"Echo"に18を代入
 
-sig_on = 0
-sig_off = 0
-
-  #ステッピングモータ
-right_IN1 = 17
-right_IN2 = 22
-right_IN3 = 23
-right_IN4 = 24
-
-left_IN1 = 
-left_IN2 = 
-left_IN3 = 
-left_IN4 = 
-
-WAITTIME = 0.002
+CWpR=17
+CWmR=3
+CCWpR=5
+CCWmR=6
+CWpL=
+CWmL=
+CCWpL=
+CCWmL=
 
 #GPIOの設定
+ #モータ
+GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
+GPIO.setup(CWp, GPIO.OUT)            #GPIO17を出力モードに設定
+GPIO.setup(CWm, GPIO.OUT)            #GPIO3を出力モードに設定
+GPIO.setup(CCWp, GPIO.OUT)           #GPIO23を出力モードに設定
+GPIO.setup(CCWm, GPIO.OUT)           #GPIO4を出力モードに設定
+
 　#超音波センサ
 GPIO.setup(Trig, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo, GPIO.IN)           #GPIO18を入力モードに設定
-
-　#ステッピングモータ
-GPIO.setup( right_IN1, GPIO.OUT )  #右ステッピングモータを出力に設定
-GPIO.setup( right_IN2, GPIO.OUT )
-GPIO.setup( right_IN3, GPIO.OUT )
-GPIO.setup( right_IN4, GPIO.OUT )
-
-GPIO.setup( left_IN1, GPIO.OUT )　#左ステッピングモータを出力に設定
-GPIO.setup( left_IN2, GPIO.OUT )
-GPIO.setup( left_IN3, GPIO.OUT )
-GPIO.setup( left_IN4, GPIO.OUT )
 
 #HC-SR04で距離を測定する関数
 def read_distance():
@@ -62,51 +46,41 @@ def read_distance():
     return distance
 
 #ステッピングモータを制御する関数
-def right_stop():　#右ステッピングモータを停止させる関数
-  GPIO.output( right_IN1, GPIO.LOW )
-  GPIO.output( right_IN2, GPIO.LOW )
-  GPIO.output( right_IN3, GPIO.LOW )
-  GPIO.output( right_IN4, GPIO.LOW )
+def right_go(waittime):　#右ステッピングモータを正転させる関数
+  GPIO.output(CWpR, GPIO.HIGH)
+  GPIO.output(CWmR, GPIO.LOW)             #CWをONに
+  time.sleep(waittime)
+  GPIO.output(CWpR, GPIO.LOW)
+  GPIO.output(CWmR, GPIO.HIGH)            #CWをOFFに
+  time.sleep(waittime)
   
-def setStep( w1, w2, w3, w4 ):  #右ステッピングモータの回転方向を決定する関数
-  GPIO.output( right_IN1, w1 )
-  GPIO.output( right_IN2, w2 )
-  GPIO.output( right_IN3, w3 )
-  GPIO.output( right_IN4, w4 )
-  time.sleep( WAITTIME )
-
-def right_advance( angle ):　#右ステッピングモータを正回転させる関数
-  for i in range(0,int(angle * 1.422222222)):
-    setStep( 1, 0, 0, 0 )
-    setStep( 0, 1, 0, 0 )
-    setStep( 0, 0, 1, 0 )
-    setStep( 0, 0, 0, 1 )
- 
-def left_stop():　#左ステッピングモータを停止させる関数
-  GPIO.output( left_IN1, GPIO.LOW )
-  GPIO.output( left_IN2, GPIO.LOW )
-  GPIO.output( left_IN3, GPIO.LOW )
-  GPIO.output( left_IN4, GPIO.LOW )
-
-def setStep( w1, w2, w3, w4 ):  #左ステッピングモータの回転方向を決定する関数
-  GPIO.output( left_IN1, w1 )
-  GPIO.output( left_IN2, w2 )
-  GPIO.output( left_IN3, w3 )
-  GPIO.output( left_IN4, w4 )
-  time.sleep( WAITTIME )
-
-def left_advance( angle ):　#左ステッピングモータを正回転させる関数
-  for i in range(0,int(angle * 1.422222222)):
-    setStep( 1, 0, 0, 0 )
-    setStep( 0, 1, 0, 0 )
-    setStep( 0, 0, 1, 0 )
-    setStep( 0, 0, 0, 1 )
-
+def right_back(waittime):　#右ステッピングモータを逆転させる関数
+  GPIO.output(CCWpR, GPIO.HIGH)
+  GPIO.output(CCWmR, GPIO.LOW)             #CCWをONに
+  time.sleep(waittime)
+  GPIO.output(CCWpR, GPIO.LOW)
+  GPIO.output(CCWmR, GPIO.HIGH)            #CCWをOFFに
+  time.sleep(waittime)
+    
+def left_go(waittime):　#左ステッピングモータを正転させる関数
+  GPIO.output(CWpL, GPIO.HIGH)
+  GPIO.output(CWmL, GPIO.LOW)             #CWをONに
+  time.sleep(waittime)
+  GPIO.output(CWpL, GPIO.LOW)
+  GPIO.output(CWmL, GPIO.HIGH)            #CWをOFFに
+  time.sleep(waittime)
+  
+def left_back(waittime):　#左ステッピングモータを逆転させる関数
+  GPIO.output(CCWpL, GPIO.HIGH)
+  GPIO.output(CCWmL, GPIO.LOW)             #CCWをONに
+  time.sleep(waittime)
+  GPIO.output(CCWpL, GPIO.LOW)
+  GPIO.output(CCWmL, GPIO.HIGH)            #CCWをOFFに
+  time.sleep(waittime)
+    
 #旋回回数
-number_of_turns = 0
+turn = 0
 
-right_stop()
-left_stop()
 
 while True:
   try:
@@ -119,20 +93,17 @@ while True:
         
         if cm<15:  #距離が15cm未満になったら，旋回回数の値を＋１して右旋回
             if number_of_turns = 10:  　#旋回回数が10なら停止
-              right_stop()
-              left_stop()
-              
-            number_of_turns = number_of_turns + 1
-            print("number_of_turns=", int(number_of_turns), "number_of_turns")　#旋回回数をint型で表示
             
-            right_stop()
-            left_advance( 3600 )
+            right_go()
+            left_go()
+              
+            turn = turn + 1
+            print("turn=", int(turn))　#旋回回数をint型で表示
             
         if cm>15:  #距離が15cmより大きくなったら直進
-            right_advance( 3600 )
-            left_advance( 3600 )
+            right_go()
+            left_go()
         
-        time.sleep(0.01)                          #0.01秒間待つ（正確に0.01秒とは限らないらしい）
 
     except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
