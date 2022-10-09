@@ -8,17 +8,11 @@ def func1():
     while True:
         a=a+1
         time.sleep(1)
-        if a>=10:
-            print("1ラップA")
-            a=0
 
 
 def func2():
-    a=0
     while True:
-        a=a+1
-        time.sleep(1)
-        if a>=10:
+        if a%10==0:
             print("1ラップB")
             a=0
 
