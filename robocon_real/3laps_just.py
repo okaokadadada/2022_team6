@@ -117,6 +117,29 @@ distance_F = 70
 #左の壁との距離
 distance_L = 15
 
+def mortor_R():
+    a=0
+    while True:
+        a=a+1
+        time.sleep(0.001)
+        a=a+1
+        time.sleep(0.001)
+        if a>=400:
+            print("1ラップA")
+            a=0
+
+
+def mortor_L():
+    b=0
+    while True:
+        b=b+1
+        time.sleep(0.001)
+        b=b+1
+        time.sleep(0.001)
+        if b>=400:
+            print("1ラップB")
+            b=0
+            
 while turn<11:
   try:
         cm_F = -read_distance_F()
