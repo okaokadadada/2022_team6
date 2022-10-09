@@ -110,7 +110,7 @@ if __name__ == "__main__":
         mag = mag_value()
         X[i]=mag[0]
         Y[i]=mag[1]
-        Z[i]=mag[3] 
+        Z[i]=mag[2] 
         i+=1
         if i==9:
             avX=0
