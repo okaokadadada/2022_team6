@@ -1,7 +1,7 @@
 import time
 import threading
 
-global a
+a=0
 
 def func1():
     global a
