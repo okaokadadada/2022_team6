@@ -29,32 +29,32 @@ while True:
   try:
     a=0
     b=0
-    for i in range(2000):
-      GPIO.output(CWp_R, GPIO.HIGH)
-      GPIO.output(CWm_R, GPIO.LOW)            #CCWをONに
-      GPIO.output(CWp_L, GPIO.HIGH)
-      GPIO.output(CWm_L, GPIO.LOW)
+    #for i in range(2000):
+    #  GPIO.output(CWp_R, GPIO.HIGH)
+    #  GPIO.output(CWm_R, GPIO.LOW)            #CCWをONに
+    #  GPIO.output(CWp_L, GPIO.HIGH)
+    #  GPIO.output(CWm_L, GPIO.LOW)
+    #  time.sleep(0.0005)
+    #  GPIO.output(CWp_R, GPIO.LOW)
+    #  GPIO.output(CWm_R, GPIO.HIGH)           #CCWをOFFに
+    #  GPIO.output(CWp_L, GPIO.LOW)
+    #  GPIO.output(CWm_L, GPIO.HIGH)
+    #  time.sleep(0.0005)
+    #  a=a+1
+    #  print("a=",a)
+    for j in range(2000):
+      GPIO.output(CCWp_R, GPIO.HIGH)
+      GPIO.output(CCWm_R, GPIO.LOW)            #CCWをONに
+      GPIO.output(CCWp_L, GPIO.HIGH)
+      GPIO.output(CCWm_L, GPIO.LOW)
       time.sleep(0.0005)
-      GPIO.output(CWp_R, GPIO.LOW)
-      GPIO.output(CWm_R, GPIO.HIGH)           #CCWをOFFに
-      GPIO.output(CWp_L, GPIO.LOW)
-      GPIO.output(CWm_L, GPIO.HIGH)
+      GPIO.output(CCWp_R, GPIO.HIGH)
+      GPIO.output(CCWm_R, GPIO.LOW)           #CCWをOFFに
+      GPIO.output(CCWp_L, GPIO.HIGH)
+      GPIO.output(CCWm_L, GPIO.LOW)
       time.sleep(0.0005)
-      a=a+1
-      print("a=",a)
-    #for j in range(2000):
-     # GPIO.output(CCWp_R, GPIO.HIGH)
-     # GPIO.output(CCWm_R, GPIO.LOW)            #CCWをONに
-     # GPIO.output(CCWp_L, GPIO.HIGH)
-     # GPIO.output(CCWm_L, GPIO.LOW)
-     # time.sleep(0.0005)
-     # GPIO.output(CCWp_R, GPIO.HIGH)
-     # GPIO.output(CCWm_R, GPIO.LOW)           #CCWをOFFに
-     # GPIO.output(CCWp_L, GPIO.HIGH)
-     # GPIO.output(CCWm_L, GPIO.LOW)
-     # time.sleep(0.0005)
-     # b=b+1
-     # print("b=",b)
+      b=b+1
+      print("b=",b)
     
   except KeyboardInterrupt:
     GPIO.cleanup()
