@@ -12,6 +12,7 @@ def func1():
         time.sleep(0.001)
         if a>=400:
             print("1ラップA")
+            a=0
 
 
 def func2():
@@ -22,7 +23,7 @@ def func2():
         time.sleep(0.001)
         if b>=400:
             print("1ラップB")
-
+            b=0
 
 if __name__ == "__main__":
     thread_1 = threading.Thread(target=func1)
