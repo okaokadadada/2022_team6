@@ -7,10 +7,8 @@ def func1():
     a=0
     while True:
         a=a+1
-        time.sleep(0.001)
-        a=a+1
-        time.sleep(0.001)
-        if a>=400:
+        time.sleep(1)
+        if a>=10:
             print("1ラップA")
             a=0
 
@@ -18,13 +16,11 @@ def func1():
 def func2():
     b=0
     while True:
-        b=b+1
-        time.sleep(0.001)
-        b=b+1
-        time.sleep(0.001)
-        if b>=400:
+        a=a+1
+        time.sleep(1)
+        if a>=10:
             print("1ラップB")
-            b=0
+            a=0
 
 if __name__ == "__main__":
     thread_1 = threading.Thread(target=func1)
