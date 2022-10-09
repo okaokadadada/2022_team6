@@ -141,13 +141,13 @@ def mortor_R():
                     turn_R()
 
             if cm_F>=distance_F:            #前壁との距離が規定値以上になったら直進
-                if cm_L<distance_L          #左壁との距離が規定値未満になったら右に方向修正
+                if cm_L<distance_L:          #左壁との距離が規定値未満になったら右に方向修正
                     right_G(0.0065)
 
-                elif cm_L>=distance_L+10    #左壁との距離が規定値以上になったら左に方向修正
+                elif cm_L>=distance_L+10:    #左壁との距離が規定値以上になったら左に方向修正
                     right_G(0.0035)
 
-                else
+                else:
                     right_G(0.005)
 
 
@@ -161,13 +161,13 @@ def mortor_L():
                     turn_L()
 
             if cm_F>=distance_F:            #前壁との距離が規定値以上になったら直進
-                if cm_L<distance_L          #左壁との距離が規定値未満になったら右に方向修正
+                if cm_L<distance_L:          #左壁との距離が規定値未満になったら右に方向修正
                     left_G(0.0065)
 
-                elif cm_L>=distance_L+10    #左壁との距離が規定値以上になったら左に方向修正
+                elif cm_L>=distance_L+10:    #左壁との距離が規定値以上になったら左に方向修正
                     left_G(0.0035)
 
-                else
+                else:
                     left_G(0.005)
 
 if __name__ == "__main__":
