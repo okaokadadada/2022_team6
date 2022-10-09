@@ -4,20 +4,20 @@ import time                         #時間制御用のモジュールをイン�
 import sys                          #sysモジュールをインポート
 
 #超音波センサのピン設定
-Trig_F = 27                           
-Echo_F = 18                           
-Trig_L =                            
-Echo_L =                            
+Trig_F = 22                           
+Echo_F = 23                           
+Trig_L = 10                           
+Echo_L = 24                           
 
 #モータのGPIO設定
-CWp_R=17
+CWp_R=2
 CWm_R=3
-CCWp_R=5
-CCWm_R=6
-CWp_L=
-CWm_L=
-CCWp_L=
-CCWm_L=
+CCWp_R=4
+CCWm_R=14
+CWp_L=15
+CWm_L=18
+CCWp_L=17
+CCWm_L=27
 
 #モータのGPIO設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
