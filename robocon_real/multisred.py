@@ -6,7 +6,7 @@ global a = 0
 def func1():
     global a
     while True:
-        global a = a + 1
+        a = a + 1
         print(a)
         time.sleep(1)
 
