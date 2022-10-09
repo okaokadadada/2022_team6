@@ -41,10 +41,10 @@ GPIO.setup(Echo_F, GPIO.IN)           #GPIO18を入力モードに設定
 GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
 
-sig_on_F
-sig_off_F
-sig_on_L
-sig_off_L
+sig_on_F = 0
+sig_off_F = 0
+sig_on_L = 0
+sig_off_L = 0
 
 #旋回回数
 turn = 0
