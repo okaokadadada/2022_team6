@@ -14,7 +14,7 @@ def func1():
 
 
 def func2():
-    b=0
+    a=0
     while True:
         a=a+1
         time.sleep(1)
