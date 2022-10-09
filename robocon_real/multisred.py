@@ -1,17 +1,27 @@
 import time
 import threading
 
+a=0
+b=0
 
 def func1():
     while True:
-        print("func1")
-        time.sleep(1)
+        a=a+1
+        time.sleep(0.001)
+        a=a+1
+        time.sleep(0.001)
+        if a>=400:
+            print("1ラップA")
 
 
 def func2():
     while True:
-        print("func2")
-        time.sleep(2)
+        b=b+1
+        time.sleep(0.001)
+        b=b+1
+        time.sleep(0.001)
+        if b>=400:
+            print("1ラップB")
 
 
 if __name__ == "__main__":
