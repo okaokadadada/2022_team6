@@ -8,7 +8,7 @@ CWm_R=3
 CCWp_R=4
 CCWm_R=14
 CWp_L=15
-CWm_L=28
+CWm_L=18
 CCWp_L=17
 CCWm_L=27
 
