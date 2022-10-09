@@ -5,8 +5,8 @@ import time                         #時間制御用のモジュールをイン�
 import sys                          #sysモジュールをインポート
 
 #ポート番号の定義
-Trig = 22                           #変数"Trig"に27を代入
-Echo = 23                           #変数"Echo"に18を代入
+Trig = 10                           #変数"Trig"に27を代入
+Echo = 24                           #変数"Echo"に18を代入
 
 sig_on = 0
 sig_off = 0
