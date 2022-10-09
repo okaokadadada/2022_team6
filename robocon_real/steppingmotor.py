@@ -32,23 +32,23 @@ while True:
       GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
       GPIO.output(CWp_L, GPIO.HIGH)
       GPIO.output(CWm_L, GPIO.LOW)
-      time.sleep(0.005)
+      time.sleep(0.0025)
       GPIO.output(CWp_R, GPIO.LOW)
       GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
       GPIO.output(CWp_L, GPIO.LOW)
       GPIO.output(CWm_L, GPIO.HIGH)
-      time.sleep(0.005)
-    for j in range(500):
+      time.sleep(0.0025)
+    for j in range(1000):
       GPIO.output(CCWp_R, GPIO.LOW)
       GPIO.output(CCWm_R, GPIO.HIGH)            #CCWをONに
       GPIO.output(CCWp_L, GPIO.LOW)
       GPIO.output(CCWm_L, GPIO.HIGH)
-      time.sleep(0.03)
+      time.sleep(0.0075)
       GPIO.output(CCWp_R, GPIO.HIGH)
       GPIO.output(CCWm_R, GPIO.LOW)           #CCWをOFFに
       GPIO.output(CCWp_L, GPIO.HIGH)
       GPIO.output(CCWm_L, GPIO.LOW)
-      time.sleep(0.03)
+      time.sleep(0.0075)
     
   except KeyboardInterrupt:
     GPIO.cleanup()
