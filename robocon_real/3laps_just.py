@@ -169,7 +169,7 @@ def mortor_R():
                     right_G(0.0035)
 
                 else:
-                    right_G(0.005)
+                    right_G(0.001)
 
 
 def mortor_L():
@@ -191,7 +191,7 @@ def mortor_L():
                     left_G(0.0065)
 
                 else:
-                    left_G(0.005)
+                    left_G(0.001)
 
 if __name__ == "__main__":
     thread_1 = threading.Thread(target=read_distance)
