@@ -1,20 +1,22 @@
 import time
 import threading
 
-
+global a = 0
 
 def func1():
-    a=0
+    global a
     while True:
-        a=a+1
+        global a = a + 1
+        print(a)
         time.sleep(1)
 
 
 def func2():
+    global a
     while True:
         if a%10==0:
             print("1ラップB")
-            a=0
+            global a = 0
 
 if __name__ == "__main__":
     thread_1 = threading.Thread(target=func1)
