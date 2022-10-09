@@ -1,3 +1,5 @@
+GPIO.cleanup()              #GPIOをクリーンアップ
+
 from signal import SIG_UNBLOCK
 import RPi.GPIO as GPIO             #GPIO用のモジュールをインポート
 import time                         #時間制御用のモジュールをインポート
