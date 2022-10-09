@@ -4,6 +4,8 @@ import time                         #時間制御用のモジュールをイン�
 import sys                          #sysモジュールをインポート
 import threading
 
+GPIO.cleanup()              #GPIOをクリーンアップ
+
 #超音波センサのピン設定
 Trig_F = 22
 Echo_F = 23
