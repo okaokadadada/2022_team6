@@ -47,37 +47,36 @@ distance_L = 15
 
 #HC-SR04で距離を測定する関数
 def read_distance():
-    #前方
     global sig_on_F
     global sig_off_F
-
-    GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
-    time.sleep(0.00001)                     #10μ秒間待つ
-    GPIO.output(Trig_F, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
-
-    while GPIO.input(Echo_F) == GPIO.LOW:     #GPIO18がLowの時間
-        sig_off_F = time.time()
-    while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
-        sig_on_F = time.time()
-
-    duration = sig_off_F - sig_on_F             #GPIO18がHighしている時間を算術
-    distance_F = duration_F * 34000 / 2         #距離を求める(cm)
-
-    #左方
     global sig_on_L
     global sig_off_L
+    while True:
+        #前方
+        GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
+        time.sleep(0.00001)                     #10μ秒間待つ
+        GPIO.output(Trig_F, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
 
-    GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
-    time.sleep(0.00001)                     #10μ秒間待つ
-    GPIO.output(Trig_L, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
+        while GPIO.input(Echo_F) == GPIO.LOW:     #GPIO18がLowの時間
+            sig_off_F = time.time()
+        while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
+            sig_on_F = time.time()
 
-    while GPIO.input(Echo_L) == GPIO.LOW:     #GPIO18がLowの時間
-        sig_off_L = time.time()
-    while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
-        sig_on_L = time.time()
+        duration = sig_off_F - sig_on_F             #GPIO18がHighしている時間を算術
+        distance_F = duration_F * 34000 / 2         #距離を求める(cm)
 
-    duration = sig_off_L - sig_on_L             #GPIO18がHighしている時間を算術
-    distance_L = duration_L * 34000 / 2         #距離を求める(cm)
+        #左方
+        GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
+        time.sleep(0.00001)                     #10μ秒間待つ
+        GPIO.output(Trig_L, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
+
+        while GPIO.input(Echo_L) == GPIO.LOW:     #GPIO18がLowの時間
+            sig_off_L = time.time()
+        while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
+            sig_on_L = time.time()
+
+        duration = sig_off_L - sig_on_L             #GPIO18がHighしている時間を算術
+        distance_L = duration_L * 34000 / 2         #距離を求める(cm)
 
 #ステッピングモータを制御する関数
 def right_G(waittime):　#右ステッピングモータを正転させる関数
