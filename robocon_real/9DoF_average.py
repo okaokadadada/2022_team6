@@ -21,6 +21,9 @@ GYRO_R_ADDR = 0x02
 MAG_ADDR = 0x13
 MAG_R_ADDR = 0x42
 i2c = SMBus(1)
+
+i=0
+
 def bmx_setup():
     # acc_data_setup : 加速度の値をセットアップ
     i2c.write_byte_data(ACCL_ADDR, 0x0F, 0x03)
@@ -89,6 +92,7 @@ def mag_value():
     except IOError as e:
         print("I/O error({0}): {1}".format(e.errno, e.strerror))
     return mag_data
+
 if __name__ == "__main__":
     bmx_setup()
     time.sleep(0.1)
@@ -102,7 +106,15 @@ if __name__ == "__main__":
         acc = acc_value()
         gyro= gyro_value()
         mag = mag_value()
-        print("Mag -> x:{}, y:{}, z: {}".format(mag[0], mag[1], mag[2]))
+        X[i]=mag[0]
+        i+=1
+        if i==9:
+            avX=0
+            for k in range(10):
+                avX+=X[k]
+            print(avX)
+            i=0
+       # print("Mag -> x:{}, y:{}, z: {}".format(mag[0], mag[1], mag[2]))
         print("\n")
         time.sleep(0.1)
         with open(filename, 'a', newline="") as f:
