@@ -4,7 +4,7 @@ import time                         #時間制御用のモジュールをイン�
 import sys                          #sysモジュールをインポート
 import threading
 
-GPIO.cleanup()              #GPIOをクリーンアップ
+
 
 #超音波センサのピン設定
 Trig_F = 22
@@ -38,6 +38,8 @@ GPIO.setup(Trig_F, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_F, GPIO.IN)           #GPIO18を入力モードに設定
 GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
+
+GPIO.cleanup()              #GPIOをクリーンアップ
 
 #旋回回数
 turn = 0
