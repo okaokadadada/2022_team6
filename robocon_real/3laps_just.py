@@ -69,7 +69,7 @@ def read_distance():
         while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
             sig_on_F = time.time()
 
-        duration = sig_off_F - sig_on_F             #GPIO18がHighしている時間を算術
+        duration_F = sig_off_F - sig_on_F             #GPIO18がHighしている時間を算術
         distance_F = duration_F * 34000 / 2         #距離を求める(cm)
 
         #左方
@@ -82,7 +82,7 @@ def read_distance():
         while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
             sig_on_L = time.time()
 
-        duration = sig_off_L - sig_on_L             #GPIO18がHighしている時間を算術
+        duration_L = sig_off_L - sig_on_L             #GPIO18がHighしている時間を算術
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
 
 #ステッピングモータを制御する関数
