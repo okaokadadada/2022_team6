@@ -3,10 +3,10 @@ import threading
 
 a=0
 
-def func1():
+def func1(b):
     global a
     while True:
-        a = a + 1
+        a = a + b
         print(a)
         time.sleep(1)
 
@@ -14,8 +14,9 @@ def func1():
 def func2():
     global a
     while True:
-        if a%10==0:
+        if a%5==0:
             print("1ラップB")
+            time.sleep(1)
 
 if __name__ == "__main__":
     thread_1 = threading.Thread(target=func1)
