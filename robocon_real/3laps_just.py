@@ -40,11 +40,17 @@ GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
 #旋回回数
 turn = 0
 
+#前壁との距離を格納する変数
+distance_F
+
+#左壁との距離を格納する変数
+distance_L
+
 #旋回を始める距離
-distance_F = 70
+distanceborder_F = 70
 
 #左の壁との最短距離
-distance_L = 15
+distanceborder_L = 15
 
 #HC-SR04で距離を測定する関数
 def read_distance():
@@ -136,16 +142,18 @@ def mortor_R():
     global turn
     global distance_F
     global distance_L
+    global distanceborder_F
+    global distanceborder_L
     while True:
         if turn<11:
-            if cm_F<distance_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+            if distance_F<distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
                     turn_R()
 
-            if cm_F>=distance_F:            #前壁との距離が規定値以上になったら直進
-                if cm_L<distance_L:          #左壁との距離が規定値未満になったら右に方向修正
+            if distance_F>=distanceborder_F:            #前壁との距離が規定値以上になったら直進
+                if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                     right_G(0.0065)
 
-                elif cm_L>=distance_L+10:    #左壁との距離が規定値以上になったら左に方向修正
+                elif distance_L>=distanceborder_L+10:    #左壁との距離が規定値以上になったら左に方向修正
                     right_G(0.0035)
 
                 else:
@@ -156,17 +164,19 @@ def mortor_L():
     global turn
     global distance_F
     global distance_L
+    global distanceborder_F
+    global distanceborder_L
     while True:
         if turn<11:
-            if cm_F<distance_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+            if distance_F<distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
                     turn_L()
 
             if cm_F>=distance_F:            #前壁との距離が規定値以上になったら直進
-                if cm_L<distance_L:          #左壁との距離が規定値未満になったら右に方向修正
-                    left_G(0.0065)
-
-                elif cm_L>=distance_L+10:    #左壁との距離が規定値以上になったら左に方向修正
+                if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                     left_G(0.0035)
+
+                elif distance_L>=distanceborder_L+10:    #左壁との距離が規定値以上になったら左に方向修正
+                    left_G(0.0065)
 
                 else:
                     left_G(0.005)
