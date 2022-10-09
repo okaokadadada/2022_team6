@@ -79,7 +79,7 @@ def read_distance():
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
 
 #ステッピングモータを制御する関数
-def right_G(waittime):　#右ステッピングモータを正転させる関数
+def right_G(waittime):  #右ステッピングモータを正転させる関数
   GPIO.output(CWp_R, GPIO.HIGH)
   GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
   time.sleep(waittime)
@@ -87,7 +87,7 @@ def right_G(waittime):　#右ステッピングモータを正転させる関数
   GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
   time.sleep(waittime)
   
-def right_B(waittime):　#右ステッピングモータを逆転させる関数
+def right_B(waittime):  #右ステッピングモータを逆転させる関数
   GPIO.output(CCWp_R, GPIO.HIGH)
   GPIO.output(CCWm_R, GPIO.LOW)             #CCWをONに
   time.sleep(waittime)
@@ -95,7 +95,7 @@ def right_B(waittime):　#右ステッピングモータを逆転させる関数
   GPIO.output(CCWm_R, GPIO.HIGH)            #CCWをOFFに
   time.sleep(waittime)
     
-def left_G(waittime):　#左ステッピングモータを正転させる関数
+def left_G(waittime):   #左ステッピングモータを正転させる関数
   GPIO.output(CWp_L, GPIO.HIGH)
   GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
   time.sleep(waittime)
@@ -103,7 +103,7 @@ def left_G(waittime):　#左ステッピングモータを正転させる関数
   GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
   time.sleep(waittime)
   
-def left_B(waittime):　#左ステッピングモータを逆転させる関数
+def left_B(waittime):   #左ステッピングモータを逆転させる関数
   GPIO.output(CCWp_L, GPIO.HIGH)
   GPIO.output(CCWm_L, GPIO.LOW)             #CCWをONに
   time.sleep(waittime)
@@ -120,7 +120,7 @@ def turn_R():
         GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
         time.sleep(0.03)
      turn = turn + 1
-     print("turn=", int(turn))　#旋回回数をint型で表示
+     print("turn=", int(turn))  #旋回回数をint型で表示
 
 def turn_L():
     for i in range(3000):
