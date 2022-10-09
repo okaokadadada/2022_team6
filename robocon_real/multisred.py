@@ -11,7 +11,7 @@ def func1():
 def func2():
     while True:
         print("func2")
-        time.sleep(1)
+        time.sleep(2)
 
 
 if __name__ == "__main__":
