@@ -41,6 +41,11 @@ GPIO.setup(Echo_F, GPIO.IN)           #GPIO18を入力モードに設定
 GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
 
+sig_on_F
+sig_off_F
+sig_on_L
+sig_off_L
+
 #旋回回数
 turn = 0
 
@@ -75,6 +80,7 @@ def read_distance():
 
         duration_F = sig_off_F - sig_on_F             #GPIO18がHighしている時間を算術
         distance_F = duration_F * 34000 / 2         #距離を求める(cm)
+        print("distance_F=", distance_F)
 
         #左方
         GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
@@ -88,6 +94,7 @@ def read_distance():
 
         duration_L = sig_off_L - sig_on_L             #GPIO18がHighしている時間を算術
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
+        print("distance_L=", distance_L)
 
 #ステッピングモータを制御する関数
 def right_G(waittime):  #右ステッピングモータを正転させる関数
@@ -123,6 +130,7 @@ def left_B(waittime):   #左ステッピングモータを逆転させる関数
   time.sleep(waittime)
 
 def turn_R():
+    global turn
     for i in range(500):
         GPIO.output(CWp_R, GPIO.HIGH)
         GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
@@ -175,7 +183,7 @@ def mortor_L():
             if distance_F<distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
                     turn_L()
 
-            if cm_F>=distance_F:            #前壁との距離が規定値以上になったら直進
+            if _F>=distance_F:            #前壁との距離が規定値以上になったら直進
                 if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                     left_G(0.0035)
 
