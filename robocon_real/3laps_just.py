@@ -41,10 +41,10 @@ GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
 turn = 0
 
 #前壁との距離を格納する変数
-distance_F
+distance_F = 0
 
 #左壁との距離を格納する変数
-distance_L
+distance_L = 0
 
 #旋回を始める距離
 distanceborder_F = 70
