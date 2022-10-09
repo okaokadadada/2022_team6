@@ -48,10 +48,10 @@ while True:
       GPIO.output(CCWp_L, GPIO.HIGH)
       GPIO.output(CCWm_L, GPIO.LOW)
       time.sleep(0.0005)
-      GPIO.output(CCWp_R, GPIO.HIGH)
-      GPIO.output(CCWm_R, GPIO.LOW)           #CCWをOFFに
-      GPIO.output(CCWp_L, GPIO.HIGH)
-      GPIO.output(CCWm_L, GPIO.LOW)
+      GPIO.output(CCWp_R, GPIO.LOW)
+      GPIO.output(CCWm_R, GPIO.HIGH)           #CCWをOFFに
+      GPIO.output(CCWp_L, GPIO.LOW)
+      GPIO.output(CCWm_L, GPIO.HIGH)
       time.sleep(0.0005)
       b=b+1
       print("b=",b)
