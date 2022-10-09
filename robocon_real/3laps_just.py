@@ -36,10 +36,18 @@ GPIO.setup(Echo_F, GPIO.IN)           #GPIO18を入力モードに設定
 GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
 
-#HC-SR04で距離を測定する関数
-#前方
-def read_distance_F():
+#旋回回数
+turn = 0
 
+#旋回を始める距離
+distance_F = 70
+
+#左の壁との最短距離
+distance_L = 15
+
+#HC-SR04で距離を測定する関数
+def read_distance():
+    #前方
     global sig_on_F
     global sig_off_F
 
@@ -54,11 +62,8 @@ def read_distance_F():
 
     duration = sig_off_F - sig_on_F             #GPIO18がHighしている時間を算術
     distance_F = duration_F * 34000 / 2         #距離を求める(cm)
-    return distance_F
 
-#左方
-def read_distance_L():
-
+    #左方
     global sig_on_L
     global sig_off_L
 
@@ -73,7 +78,6 @@ def read_distance_L():
 
     duration = sig_off_L - sig_on_L             #GPIO18がHighしている時間を算術
     distance_L = duration_L * 34000 / 2         #距離を求める(cm)
-    return distance_L
 
 #ステッピングモータを制御する関数
 def right_G(waittime):　#右ステッピングモータを正転させる関数
@@ -107,71 +111,75 @@ def left_B(waittime):　#左ステッピングモータを逆転させる関数
   GPIO.output(CCWp_L, GPIO.LOW)
   GPIO.output(CCWm_L, GPIO.HIGH)            #CCWをOFFに
   time.sleep(waittime)
+
+def turn_R():
+    for i in range(500):
+        GPIO.output(CWp_R, GPIO.HIGH)
+        GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
+        time.sleep(0.03)
+        GPIO.output(CWp_R, GPIO.LOW)
+        GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
+        time.sleep(0.03)
+     turn = turn + 1
+     print("turn=", int(turn))　#旋回回数をint型で表示
+
+def turn_L():
+    for i in range(3000):
+        GPIO.output(CWp_L, GPIO.HIGH)
+        GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
+        time.sleep(0.005)
+        GPIO.output(CWp_L, GPIO.LOW)
+        GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
+        time.sleep(0.005)
     
-#旋回回数
-turn = 0
-
-#旋回を始める距離
-distance_F = 70
-
-#左の壁との距離
-distance_L = 15
-
 def mortor_R():
-    a=0
+    global turn
+    global distance_F
+    global distance_L
     while True:
-        a=a+1
-        time.sleep(0.001)
-        a=a+1
-        time.sleep(0.001)
-        if a>=400:
-            print("1ラップA")
-            a=0
+        if cm_F<distance_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+                turn_R()
+
+        if cm_F>=distance_F:            #前壁との距離が規定値以上になったら直進
+            if cm_L<distance_L          #左壁との距離が規定値未満になったら右に方向修正
+                right_G(0.0065)
+
+            elif cm_L>=distance_L+10    #左壁との距離が規定値以上になったら左に方向修正
+                right_G(0.0035)
+
+            else
+                right_G(0.005)
 
 
 def mortor_L():
-    b=0
+    global turn
+    global distance_F
+    global distance_L
     while True:
-        b=b+1
-        time.sleep(0.001)
-        b=b+1
-        time.sleep(0.001)
-        if b>=400:
-            print("1ラップB")
-            b=0
-            
-while turn<11:
-  try:
-        cm_F = -read_distance_F()
-        print(cm_F)                   #HC-SR04で距離を測定する
-        if cm > 2 and cm < 400:                #距離が2～400cmの場合
-            print("distanceF=", int(cm_F), "cm")  #距離をint型で表示
-        else:
-            print("over")
-        
-        cm_L = -read_distance_L()
-        print(cm_L)                   #HC-SR04で距離を測定する
-        if cm > 2 and cm < 400:                #距離が2～400cmの場合
-            print("distance_L=", int(cm_L), "cm")  #距離をint型で表示
-        else:
-            print("over")
-        
-        if cm_F<distance_F:           #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
-            right_G(0.003)
-            left_G(0.001)
+        if cm_F<distance_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+                turn_L()
 
-            turn = turn + 1
-            print("turn=", int(turn))　#旋回回数をint型で表示
-            
-        if cm_F>=distance_F:          #前壁との距離が規定値以上になったら直進
-            if cm_L<distance_L        #左壁との距離が規定値未満になったら右に方向修正
-                right_G(0.002)
-                left_G(0.001)
-        　　　
-            elif cm_L>=distance_L       #左壁との距離が規定値以上になったら左に方向修正
-                right_G(0.001)
-                left_G(0.002)
+        if cm_F>=distance_F:            #前壁との距離が規定値以上になったら直進
+            if cm_L<distance_L          #左壁との距離が規定値未満になったら右に方向修正
+                left_G(0.0065)
 
-    except KeyboardInterrupt:       #Ctrl+Cキーが押された
-        GPIO.cleanup()              #GPIOをクリーンアップ
-        sys.exit()                  #プログラム終了
+            elif cm_L>=distance_L+10    #左壁との距離が規定値以上になったら左に方向修正
+                left_G(0.0035)
+
+            else
+                left_G(0.005)
+
+if __name__ == "__main__":
+    thread_1 = threading.Thread(target=read_distance)
+    thread_2 = threading.Thread(target=mortor_R)
+    thread_3 = threading.Thread(target=mortor_L)
+    while turn<11:
+      try:
+            thread_1.start()
+            thread_2.start()
+            thread_3.start()
+
+
+        except KeyboardInterrupt:       #Ctrl+Cキーが押された
+            GPIO.cleanup()              #GPIOをクリーンアップ
+            sys.exit()                  #プログラム終了
