@@ -4,6 +4,7 @@ import threading
 
 
 def func1():
+    a=0
     while True:
         a=a+1
         time.sleep(0.001)
@@ -15,6 +16,7 @@ def func1():
 
 
 def func2():
+    b=0
     while True:
         b=b+1
         time.sleep(0.001)
@@ -25,8 +27,6 @@ def func2():
             b=0
 
 if __name__ == "__main__":
-    a=0
-    b=0
     thread_1 = threading.Thread(target=func1)
     thread_2 = threading.Thread(target=func2)
 
