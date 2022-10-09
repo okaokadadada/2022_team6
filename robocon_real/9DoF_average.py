@@ -107,12 +107,18 @@ if __name__ == "__main__":
         gyro= gyro_value()
         mag = mag_value()
         X[i]=mag[0]
+        Y[i]=mag[1]
+        Z[i]=mag[3] 
         i+=1
         if i==9:
             avX=0
+            avY=0
+            avZ=0
             for k in range(10):
                 avX+=X[k]
-            print(avX)
+                avY+=Y[k]
+                avZ+=Z[k]
+            print("Mag -> x:{}, y:{}, z: {}".format(avX/10, avY/10, avZ/10))
             i=0
        # print("Mag -> x:{}, y:{}, z: {}".format(mag[0], mag[1], mag[2]))
         print("\n")
