@@ -16,7 +16,6 @@ def func2():
     while True:
         if a%10==0:
             print("1ラップB")
-            a = 0
 
 if __name__ == "__main__":
     thread_1 = threading.Thread(target=func1)
