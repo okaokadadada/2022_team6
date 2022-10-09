@@ -136,18 +136,19 @@ def mortor_R():
     global distance_F
     global distance_L
     while True:
-        if cm_F<distance_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
-                turn_R()
+        if turn<11:
+            if cm_F<distance_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+                    turn_R()
 
-        if cm_F>=distance_F:            #前壁との距離が規定値以上になったら直進
-            if cm_L<distance_L          #左壁との距離が規定値未満になったら右に方向修正
-                right_G(0.0065)
+            if cm_F>=distance_F:            #前壁との距離が規定値以上になったら直進
+                if cm_L<distance_L          #左壁との距離が規定値未満になったら右に方向修正
+                    right_G(0.0065)
 
-            elif cm_L>=distance_L+10    #左壁との距離が規定値以上になったら左に方向修正
-                right_G(0.0035)
+                elif cm_L>=distance_L+10    #左壁との距離が規定値以上になったら左に方向修正
+                    right_G(0.0035)
 
-            else
-                right_G(0.005)
+                else
+                    right_G(0.005)
 
 
 def mortor_L():
@@ -155,30 +156,25 @@ def mortor_L():
     global distance_F
     global distance_L
     while True:
-        if cm_F<distance_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
-                turn_L()
+        if turn<11:
+            if cm_F<distance_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+                    turn_L()
 
-        if cm_F>=distance_F:            #前壁との距離が規定値以上になったら直進
-            if cm_L<distance_L          #左壁との距離が規定値未満になったら右に方向修正
-                left_G(0.0065)
+            if cm_F>=distance_F:            #前壁との距離が規定値以上になったら直進
+                if cm_L<distance_L          #左壁との距離が規定値未満になったら右に方向修正
+                    left_G(0.0065)
 
-            elif cm_L>=distance_L+10    #左壁との距離が規定値以上になったら左に方向修正
-                left_G(0.0035)
+                elif cm_L>=distance_L+10    #左壁との距離が規定値以上になったら左に方向修正
+                    left_G(0.0035)
 
-            else
-                left_G(0.005)
+                else
+                    left_G(0.005)
 
 if __name__ == "__main__":
     thread_1 = threading.Thread(target=read_distance)
     thread_2 = threading.Thread(target=mortor_R)
     thread_3 = threading.Thread(target=mortor_L)
-    while turn<11:
-      try:
-            thread_1.start()
-            thread_2.start()
-            thread_3.start()
-
-
-        except KeyboardInterrupt:       #Ctrl+Cキーが押された
-            GPIO.cleanup()              #GPIOをクリーンアップ
-            sys.exit()                  #プログラム終了
+    
+    thread_1.start()
+    thread_2.start()
+    thread_3.start()
