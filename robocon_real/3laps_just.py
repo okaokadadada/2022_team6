@@ -4,8 +4,6 @@ import time                         #時間制御用のモジュールをイン�
 import sys                          #sysモジュールをインポート
 import threading
 
-
-
 #超音波センサのピン設定
 Trig_F = 22
 Echo_F = 23
@@ -21,8 +19,6 @@ CWp_L=15
 CWm_L=18
 CCWp_L=17
 CCWm_L=27
-
-GPIO.cleanup()              #GPIOをクリーンアップ
 
 #モータのGPIO設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
@@ -41,10 +37,8 @@ GPIO.setup(Echo_F, GPIO.IN)           #GPIO18を入力モードに設定
 GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
 
-sig_on_F = 0
-sig_off_F = 0
-sig_on_L = 0
-sig_off_L = 0
+duration_F = 0
+duration_L = 0
 
 #旋回回数
 turn = 0
@@ -56,7 +50,7 @@ distance_F = 0
 distance_L = 0
 
 #旋回を始める距離
-distanceborder_F = 5
+distanceborder_F = 70
 
 #左の壁との最短距離
 distanceborder_L = 15
@@ -78,9 +72,8 @@ def read_distance():
         while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
             sig_on_F = time.time()
 
-        duration_F = sig_off_F - sig_on_F             #GPIO18がHighしている時間を算術
-        distance_F = (duration_F * 34000 / 2)*(-1)         #距離を求める(cm)
-        print("distance_F=", distance_F)
+        duration = sig_off_F - sig_on_F             #GPIO18がHighしている時間を算術
+        distance_F = duration_F * 34000 / 2         #距離を求める(cm)
 
         #左方
         GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
@@ -92,9 +85,8 @@ def read_distance():
         while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
             sig_on_L = time.time()
 
-        duration_L = sig_off_L - sig_on_L             #GPIO18がHighしている時間を算術
-        distance_L = (duration_L * 34000 / 2)*(-1)         #距離を求める(cm)
-        print("distance_L=", distance_L)
+        duration = sig_off_L - sig_on_L             #GPIO18がHighしている時間を算術
+        distance_L = duration_L * 34000 / 2         #距離を求める(cm)
 
 #ステッピングモータを制御する関数
 def right_G(waittime):  #右ステッピングモータを正転させる関数
@@ -130,7 +122,6 @@ def left_B(waittime):   #左ステッピングモータを逆転させる関数
   time.sleep(waittime)
 
 def turn_R():
-    global turn
     for i in range(500):
         GPIO.output(CWp_R, GPIO.HIGH)
         GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
@@ -169,7 +160,7 @@ def mortor_R():
                     right_G(0.0035)
 
                 else:
-                    right_G(0.001)
+                    right_G(0.005)
 
 
 def mortor_L():
@@ -183,7 +174,7 @@ def mortor_L():
             if distance_F<distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
                     turn_L()
 
-            if distance_F>=distance_F:            #前壁との距離が規定値以上になったら直進
+            if cm_F>=distance_F:            #前壁との距離が規定値以上になったら直進
                 if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                     left_G(0.0035)
 
@@ -191,7 +182,7 @@ def mortor_L():
                     left_G(0.0065)
 
                 else:
-                    left_G(0.001)
+                    left_G(0.005)
 
 if __name__ == "__main__":
     thread_1 = threading.Thread(target=read_distance)
