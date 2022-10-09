@@ -3,9 +3,9 @@ import threading
 
 a=0
 
-def func1(b):
+def func1():
     global a
-    a = a + b
+    a = a + 1
     print(a)
     time.sleep(1)
 
