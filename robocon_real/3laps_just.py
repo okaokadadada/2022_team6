@@ -22,6 +22,8 @@ CWm_L=18
 CCWp_L=17
 CCWm_L=27
 
+GPIO.cleanup()              #GPIOをクリーンアップ
+
 #モータのGPIO設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
 GPIO.setup(CWp_R, GPIO.OUT)            #GPIO17を出力モードに設定
@@ -38,8 +40,6 @@ GPIO.setup(Trig_F, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_F, GPIO.IN)           #GPIO18を入力モードに設定
 GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
-
-GPIO.cleanup()              #GPIOをクリーンアップ
 
 #旋回回数
 turn = 0
