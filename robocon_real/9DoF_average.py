@@ -26,6 +26,11 @@ Y=[0,0,0,0,0,0,0,0,0,0]
 Z=[0,0,0,0,0,0,0,0,0,0]
 i=0
 
+avX=0
+avY=0
+avZ=0
+
+
 def bmx_setup():
     # acc_data_setup : 加速度の値をセットアップ
     i2c.write_byte_data(ACCL_ADDR, 0x0F, 0x03)
