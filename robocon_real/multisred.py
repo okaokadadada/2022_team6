@@ -17,7 +17,7 @@ def func2():
         time.sleep(1)
 
 if __name__ == "__main__":
-    thread_1 = threading.Thread(target=func1,b=1)
+    thread_1 = threading.Thread(target=func1)
     thread_2 = threading.Thread(target=func2)
     while True:
         thread_1.start()
