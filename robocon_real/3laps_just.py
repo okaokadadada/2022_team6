@@ -119,8 +119,8 @@ def turn_R():
         GPIO.output(CWp_R, GPIO.LOW)
         GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
         time.sleep(0.03)
-     turn = turn + 1
-     print("turn=", int(turn))  #旋回回数をint型で表示
+    turn = turn + 1
+    print("turn=", int(turn))  #旋回回数をint型で表示
 
 def turn_L():
     for i in range(3000):
