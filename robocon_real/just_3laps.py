@@ -9,7 +9,7 @@ Echo_F = 18
 Trig_L =                            
 Echo_L =                            
 
-#モータのピン設定
+#モータのGPIO設定
 CWp_R=17
 CWm_R=3
 CCWp_R=5
@@ -19,18 +19,18 @@ CWm_L=
 CCWp_L=
 CCWm_L=
 
-#モータのピン設定
+#モータのGPIO設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
 GPIO.setup(CWp_R, GPIO.OUT)            #GPIO17を出力モードに設定
 GPIO.setup(CWm_R, GPIO.OUT)            #GPIO3を出力モードに設定
 GPIO.setup(CCWp_R, GPIO.OUT)           #GPIO23を出力モードに設定
 GPIO.setup(CCWm_R, GPIO.OUT)           #GPIO4を出力モードに設定
-GPIO.setup(CWp_L, GPIO.OUT)            #GPIO17を出力モードに設定
-GPIO.setup(CWm_L, GPIO.OUT)            #GPIO3を出力モードに設定
-GPIO.setup(CCWp_L, GPIO.OUT)           #GPIO23を出力モードに設定
-GPIO.setup(CCWm_L, GPIO.OUT)           #GPIO4を出力モードに設定
+GPIO.setup(CWp_L, GPIO.OUT)            #GPIO　を出力モードに設定
+GPIO.setup(CWm_L, GPIO.OUT)            #GPIO　を出力モードに設定
+GPIO.setup(CCWp_L, GPIO.OUT)           #GPIO　を出力モードに設定
+GPIO.setup(CCWm_L, GPIO.OUT)           #GPIO　を出力モードに設定
 
-　#超音波センサ
+#超音波センサのピン設定
 GPIO.setup(Trig_F, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_F, GPIO.IN)           #GPIO18を入力モードに設定
 GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
@@ -112,10 +112,10 @@ def left_B(waittime):　#左ステッピングモータを逆転させる関数
 turn = 0
 
 #旋回を始める距離
-distance_F = 
+distance_F = 70
 
 #左の壁との距離
-distance_L = 
+distance_L = 15
 
 while turn<11:
   try:
@@ -145,7 +145,7 @@ while turn<11:
                 right_G(0.002)
                 left_G(0.001)
         　　　
-            if cm_L>=distance_L       #左壁との距離が規定値以上になったら左に方向修正
+            elif cm_L>=distance_L       #左壁との距離が規定値以上になったら左に方向修正
                 right_G(0.001)
                 left_G(0.002)
 
