@@ -21,7 +21,7 @@ GYRO_R_ADDR = 0x02
 MAG_ADDR = 0x13
 MAG_R_ADDR = 0x42
 i2c = SMBus(1)
-
+X=[0,0,0,0,0,0,0,0,0,0]
 i=0
 
 def bmx_setup():
