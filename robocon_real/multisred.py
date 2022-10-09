@@ -22,5 +22,5 @@ if __name__ == "__main__":
     thread_1 = threading.Thread(target=func1)
     thread_2 = threading.Thread(target=func2)
 
-    thread_1.start()
+    thread_1.start(1)
     thread_2.start()
