@@ -27,28 +27,28 @@ a=0.0004
 
 while True:
   try:
-    for i in range(2000):
+    for i in range(3000):
       GPIO.output(CWp_R, GPIO.HIGH)
       GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
       GPIO.output(CWp_L, GPIO.HIGH)
       GPIO.output(CWm_L, GPIO.LOW)
-      time.sleep(a)
+      time.sleep(0.005)
       GPIO.output(CWp_R, GPIO.LOW)
       GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
       GPIO.output(CWp_L, GPIO.LOW)
       GPIO.output(CWm_L, GPIO.HIGH)
-      time.sleep(a)
-    for j in range(2000):
+      time.sleep(0.005)
+    for j in range(500):
       GPIO.output(CCWp_R, GPIO.HIGH)
       GPIO.output(CCWm_R, GPIO.LOW)            #CCWをONに
       GPIO.output(CCWp_L, GPIO.HIGH)
       GPIO.output(CCWm_L, GPIO.LOW)
-      time.sleep(a)
+      time.sleep(0.03)
       GPIO.output(CCWp_R, GPIO.LOW)
       GPIO.output(CCWm_R, GPIO.HIGH)           #CCWをOFFに
       GPIO.output(CCWp_L, GPIO.LOW)
       GPIO.output(CCWm_L, GPIO.HIGH)
-      time.sleep(a)
+      time.sleep(0.03)
     
   except KeyboardInterrupt:
     GPIO.cleanup()
