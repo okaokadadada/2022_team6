@@ -3,36 +3,51 @@ import RPi.GPIO as GPIO             #GPIO用のモジュールをインポート
 import time                         #時間制御用のモジュールをインポート
 import sys                          #sysモジュールをインポート
 
-CWp=17
-CWm=3
-CCWp=5
-CCWm=6
-a=0.05
+CWp_R=2
+CWm_R=3
+CCWp_R=4
+CCWm_R=14
+CWp_L=15
+CWm_L=28
+CCWp_L=17
+CCWm_L=27
 
 #GPIOの設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
-GPIO.setup(CWp, GPIO.OUT)            #GPIO17を出力モードに設定
-GPIO.setup(CWm, GPIO.OUT)            #GPIO3を出力モードに設定
-GPIO.setup(CCWp, GPIO.OUT)           #GPIO23を出力モードに設定
-GPIO.setup(CCWm, GPIO.OUT)           #GPIO4を出力モードに設定
+GPIO.setup(CWp_R, GPIO.OUT)            #GPIO17を出力モードに設定
+GPIO.setup(CWm_R, GPIO.OUT)            #GPIO3を出力モードに設定
+GPIO.setup(CCWp_R, GPIO.OUT)           #GPIO23を出力モードに設定
+GPIO.setup(CCWm_R, GPIO.OUT)           #GPIO4を出力モードに設定
+GPIO.setup(CWp_L, GPIO.OUT)            #GPIO17を出力モードに設定
+GPIO.setup(CWm_L, GPIO.OUT)            #GPIO3を出力モードに設定
+GPIO.setup(CCWp_L, GPIO.OUT)           #GPIO23を出力モードに設定
+GPIO.setup(CCWm_L, GPIO.OUT)           #GPIO4を出力モードに設定
 
 a=0.0004
 
 while True:
   try:
     for i in range(2000):
-      GPIO.output(CWp, GPIO.HIGH)
-      GPIO.output(CWm, GPIO.LOW)             #CWをONに
+      GPIO.output(CWp_R, GPIO.HIGH)
+      GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
+      GPIO.output(CWp_L, GPIO.HIGH)
+      GPIO.output(CWm_L, GPIO.LOW)
       time.sleep(a)
-      GPIO.output(CWp, GPIO.LOW)
-      GPIO.output(CWm, GPIO.HIGH)            #CWをOFFに
+      GPIO.output(CWp_R, GPIO.LOW)
+      GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
+      GPIO.output(CWp_L, GPIO.LOW)
+      GPIO.output(CWm_L, GPIO.HIGH)
       time.sleep(a)
     for j in range(2000):
-      GPIO.output(CCWp, GPIO.HIGH)
-      GPIO.output(CCWm, GPIO.LOW)            #CCWをONに
+      GPIO.output(CCWp_R, GPIO.HIGH)
+      GPIO.output(CCWm_R, GPIO.LOW)            #CCWをONに
+      GPIO.output(CCWp_L, GPIO.HIGH)
+      GPIO.output(CCWm_L, GPIO.LOW)
       time.sleep(a)
-      GPIO.output(CCWp, GPIO.LOW)
-      GPIO.output(CCWm, GPIO.HIGH)           #CCWをOFFに
+      GPIO.output(CCWp_R, GPIO.LOW)
+      GPIO.output(CCWm_R, GPIO.HIGH)           #CCWをOFFに
+      GPIO.output(CCWp_L, GPIO.LOW)
+      GPIO.output(CCWm_L, GPIO.HIGH)
       time.sleep(a)
     
   except KeyboardInterrupt:
