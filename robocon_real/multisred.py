@@ -13,7 +13,7 @@ def func1():
 
 def func2():
     global a
-    While True:
+    while True:
         if a%5==0:
             print("1ラップB")
             time.sleep(1)
