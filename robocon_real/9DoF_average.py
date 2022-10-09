@@ -120,8 +120,9 @@ if __name__ == "__main__":
                 avX+=X[k]
                 avY+=Y[k]
                 avZ+=Z[k]
-            print("Mag -> x:{}, y:{}, z: {}".format(avX/10, avY/10, avZ/10))
+            
             i=0
+        print("Mag -> x:{}, y:{}, z: {}".format(avX/10, avY/10, avZ/10))
        # print("Mag -> x:{}, y:{}, z: {}".format(mag[0], mag[1], mag[2]))
         print("\n")
         time.sleep(0.1)
