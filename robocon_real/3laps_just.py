@@ -171,10 +171,10 @@ def turn_R():
         GPIO.output(CWp_R, GPIO.LOW)
         GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
         time.sleep(0.03)
-    turn = turn + 1
-    print("turn=", int(turn))  #旋回回数をint型で表示
+    
 
 def turn_L():
+    turn = turn + 1
     for i in range(3000):
         GPIO.output(CWp_L, GPIO.HIGH)
         GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
@@ -182,6 +182,8 @@ def turn_L():
         GPIO.output(CWp_L, GPIO.LOW)
         GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
         time.sleep(0.005)
+        print("                                     turn=", int(turn))  #旋回回数をint型で表示
+    
     
 def mortor_R():
     global turn
@@ -218,23 +220,23 @@ def mortor_L():
 
             if distance_F>=distance_F:            #前壁との距離が規定値以上になったら直進
                 if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-                    left_G(0.0025)
+                    left_G(0.0005)
 
-                elif distance_L>=distanceborder_L+10:    #左壁との距離が規定値以上になったら左に方向修正
+                elif distance_L>=distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
                     left_G(0.01)
 
                 else:
-                    left_G(0.005)
+                    left_G(0.001)
 
 try:
     if __name__ == "__main__":
         thread_1 = threading.Thread(target=read_distance)
         #thread_2 = threading.Thread(target=mortor_R)
-        #thread_3 = threading.Thread(target=mortor_L)
+        thread_3 = threading.Thread(target=mortor_L)
 
         thread_1.start()
         #thread_2.start()
-        #thread_3.start()
+        thread_3.start()
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
