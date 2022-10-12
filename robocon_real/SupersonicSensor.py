@@ -84,7 +84,7 @@ def read_distance():
 
     duration_F = sig_on_F - sig_off_F             #GPIO18がHighしている時間を算術
     distance_F = duration_F * 34000 / 2         #距離を求める(cm)
-    #time.sleep(sleeps)                          #1秒間待つ
+    time.sleep(sleeps)                          #1秒間待つ
     
     
     GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
@@ -114,7 +114,7 @@ def read_distance():
 
     duration_L = sig_on_L - sig_off_L             #GPIO18がHighしている時間を算術
     distance_L = duration_L * 34000 / 2         #距離を求める(cm)
-    #time.sleep(sleeps)                          #1秒間待つ
+    time.sleep(sleeps)                          #1秒間待つ
 
 #連続して値を超音波センサの状態を読み取る
 while True:
