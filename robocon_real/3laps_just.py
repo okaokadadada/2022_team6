@@ -191,6 +191,8 @@ def mortor_L():
                 else:
                     left_G(0.005)
 
+print("World")
+
 try:
     if __name__ == "__main__":
         print("Hello")
