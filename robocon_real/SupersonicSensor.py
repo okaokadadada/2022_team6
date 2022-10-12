@@ -5,6 +5,8 @@ import time                         #時間制御用のモジュールをイン�
 import sys                          #sysモジュールをインポート
 import threading
 
+GPIO.cleanup()
+
 #ポート番号の定義
 Trig = 10                           #変数"Trig"に27を代入
 Echo = 24                           #変数"Echo"に18を代入
