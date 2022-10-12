@@ -67,6 +67,10 @@ def read_distance():
             c=0
             d=0
             print("reset")
+        a=0
+        b=0
+        c=0
+        d=0
         GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
         time.sleep(times)                     #10μ秒間待つ
         test_F1 = time.time()
@@ -82,9 +86,6 @@ def read_distance():
                 #test_finish = time.time() 
         if a>300:
             continue
-        b=0
-        c=0
-        d=0
         test_F2 = time.time()
         while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
             sig_on_F = time.time()
@@ -94,9 +95,6 @@ def read_distance():
                 #test_finish = time.time() 
         if b>300:
             continue
-        a=0
-        c=0
-        d=0
 
         duration_F = sig_on_F - sig_off_F             #GPIO18がHighしている時間を算術
         distance_F = duration_F * 34000 / 2         #距離を求める(cm)
@@ -116,9 +114,6 @@ def read_distance():
                 #test_finish = time.time() 
         if c>300:
             continue
-        a=0
-        b=0
-        d=0
         test_L2 = time.time()
         while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
             sig_on_L = time.time()
@@ -128,9 +123,6 @@ def read_distance():
                 #test_finish = time.time() 
         if d>300:
             continue
-        a=0
-        b=0
-        c=0
 
         duration_L = sig_on_L - sig_off_L             #GPIO18がHighしている時間を算術
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
