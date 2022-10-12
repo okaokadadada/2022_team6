@@ -248,14 +248,14 @@ def mortor_L():
         if turn<11:
             if distance_F<distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
                 e=e+1
-                if last_move = slow_L:
-                    while update = 0:
+                if last_move == slow_L:
+                    while update == 0:
                         left_G(slow)
-                if last_move = normal_L:
-                    while update = 0:
+                if last_move == normal_L:
+                    while update == 0:
                         left_G(normal)
-                if last_move = fast_L:
-                    while update = 0:
+                if last_move == fast_L:
+                    while update == 0:
                         left_G(fast)
                 if e>3:
                     turn_L()
@@ -263,17 +263,17 @@ def mortor_L():
             if distance_F>=distanceborder_F:            #前壁との距離が規定値以上になったら直進
                 e=0
                 if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-                    while update = 0:
+                    while update == 0:
                         left_G(fast)
                     last_move = fast_L
 
                 elif distance_L>=distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
-                    while update = 0:
+                    while update == 0:
                         left_G(slow)
                         last_move = slow_L
 
                 else:
-                    while update = 0:
+                    while update == 0:
                         left_G(normal)
                         last_move = normal_L
 
