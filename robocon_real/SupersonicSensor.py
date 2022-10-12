@@ -60,90 +60,92 @@ def read_distance():
     global c
     global d
 
-    GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
-    time.sleep(times)                     #10μ秒間待つ
-    test_F1 = time.time()
-    GPIO.output(Trig_F, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
+    while True:
+        GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
+        time.sleep(times)                     #10μ秒間待つ
+        test_F1 = time.time()
+        GPIO.output(Trig_F, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
 
-    #test_start = time.time()
+        #test_start = time.time()
 
-    while GPIO.input(Echo_F) == GPIO.LOW:     #GPIO18がLowの時間
-        sig_off_F = time.time()
-        a=a+1
+        while GPIO.input(Echo_F) == GPIO.LOW:     #GPIO18がLowの時間
+            sig_off_F = time.time()
+            a=a+1
+            if a>500:
+                print("A")
+                time.sleep(10)
+                break
+                #test_finish = time.time() 
         if a>500:
-            print("A")
-            time.sleep(10)
-            break
-            #test_finish = time.time() 
-    if a>500:
-        continue
-    b=0
-    c=0
-    d=0
-    test_F2 = time.time()
-    while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
-        sig_on_F = time.time()
-        b=b+1
+            continue
+        b=0
+        c=0
+        d=0
+        test_F2 = time.time()
+        while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
+            sig_on_F = time.time()
+            b=b+1
+            if b>500:
+                print("B")
+                time.sleep(10)
+                break
+                #test_finish = time.time() 
         if b>500:
-            print("B")
-            time.sleep(10)
-            break
-            #test_finish = time.time() 
-    if b>500:
-        continue
-    a=0
-    c=0
-    d=0
+            continue
+        a=0
+        c=0
+        d=0
 
-    duration_F = sig_on_F - sig_off_F             #GPIO18がHighしている時間を算術
-    distance_F = duration_F * 34000 / 2         #距離を求める(cm)
-    time.sleep(sleeps)                          #1秒間待つ
-    
-    
-    GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
-    time.sleep(times)                     #10μ秒間待つ
-    test_L1 = time.time()
-    GPIO.output(Trig_L, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
+        duration_F = sig_on_F - sig_off_F             #GPIO18がHighしている時間を算術
+        distance_F = duration_F * 34000 / 2         #距離を求める(cm)
+        time.sleep(sleeps)                          #1秒間待つ
 
-    while GPIO.input(Echo_L) == GPIO.LOW:     #GPIO18がLowの時間
-        sig_off_L = time.time()
-        c=c+1
+
+        GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
+        time.sleep(times)                     #10μ秒間待つ
+        test_L1 = time.time()
+        GPIO.output(Trig_L, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
+
+        while GPIO.input(Echo_L) == GPIO.LOW:     #GPIO18がLowの時間
+            sig_off_L = time.time()
+            c=c+1
+            if c>500:
+                print("C")
+                time.sleep(10)
+                break
+                #test_finish = time.time() 
         if c>500:
-            print("C")
-            time.sleep(10)
-            break
-            #test_finish = time.time() 
-    if c>500:
-        continue
-    a=0
-    b=0
-    d=0
-    test_L2 = time.time()
-    while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
-        sig_on_L = time.time()
-        d=d+1
-        if d>300:
-            print("D")
-            time.sleep(10)
-            break
-            #test_finish = time.time() 
-    if d>500:
-        continue
-    a=0
-    b=0
-    c=0
+            continue
+        a=0
+        b=0
+        d=0
+        test_L2 = time.time()
+        while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
+            sig_on_L = time.time()
+            d=d+1
+            if d>300:
+                print("D")
+                time.sleep(10)
+                break
+                #test_finish = time.time() 
+        if d>500:
+            continue
+        a=0
+        b=0
+        c=0
 
-    duration_L = sig_on_L - sig_off_L             #GPIO18がHighしている時間を算術
-    distance_L = duration_L * 34000 / 2         #距離を求める(cm)
-    time.sleep(sleeps)                          #1秒間待つ
+        duration_L = sig_on_L - sig_off_L             #GPIO18がHighしている時間を算術
+        distance_L = duration_L * 34000 / 2         #距離を求める(cm)
+        time.sleep(sleeps)                          #1秒間待つ
 
-#連続して値を超音波センサの状態を読み取る
-while True:
-    try:
-        read_distance()
         print("duration_F=", f"{(test_F2 - test_F1):.5f}", "duration_L=", f"{(test_L2 - test_L1):.5f}")                   #HC-SR04で距離を測定する      
         print("前", f"{distance_F:.2f}", "cm", "左=", f"{distance_L:.2f}", "cm")  #距離をint型で表示
 
-    except KeyboardInterrupt:       #Ctrl+Cキーが押された
-        GPIO.cleanup()              #GPIOをクリーンアップ
-        sys.exit()                  #プログラム終了
+#連続して値を超音波センサの状態を読み取る
+
+try:
+    read_distance()    
+
+except KeyboardInterrupt:       #Ctrl+Cキーが押された
+    GPIO.cleanup()              #GPIOをクリーンアップ
+    sys.exit()                  #プログラム終了
