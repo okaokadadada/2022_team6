@@ -66,6 +66,7 @@ fast = 0.0005
 
 e=0
 update = 0
+rimit = 600
 last_move = 0
 slow_L = 1
 normal_L = 2
@@ -78,6 +79,7 @@ def read_distance():
     global c
     global d
     global update
+    global rimit
     global sig_on_F
     global sig_off_F
     global sig_on_L
@@ -105,16 +107,16 @@ def read_distance():
         while GPIO.input(Echo_F) == GPIO.LOW:     #GPIO18がLowの時間
             sig_off_F = time.time()
             a=a+1
-            if a>300:
+            if a>rimit:
                 break
-        if a>300:
+        if a>rimit:
             continue
         while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
             sig_on_F = time.time()
             b=b+1
-            if b>300:
+            if b>rimit:
                 break
-        if b>300:
+        if b>rimit:
             continue
         duration_F = sig_on_F -sig_off_F            #GPIO18がHighしている時間を算術
         distance_F = duration_F * 34000 / 2         #距離を求める(cm)
@@ -128,16 +130,16 @@ def read_distance():
         while GPIO.input(Echo_L) == GPIO.LOW:     #GPIO18がLowの時間
             sig_off_L = time.time()
             c=c+1
-            if c>300:
+            if c>rimit:
                 break
-        if c>300:
+        if c>rimit:
             continue
         while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
             sig_on_L = time.time()
             d=d+1
             if d>300:
                 break
-        if d>300:
+        if d>rimit:
             continue
         duration_L = sig_on_L - sig_off_L           #GPIO18がHighしている時間を算術
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
