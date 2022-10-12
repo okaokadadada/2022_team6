@@ -12,7 +12,7 @@ Trig_L = 10
 Echo_L = 24
 
 
-times = 0.00004
+times = 0.00001
 sleeps = 0.075
 
 sig_on_F = 0
