@@ -11,6 +11,7 @@ Echo = 24                           #変数"Echo"に18を代入
 
 sig_on = 0
 sig_off = 0
+duration = 0
 
 #GPIOの設定
 GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
@@ -22,6 +23,7 @@ def read_distance():
 
     global sig_on
     global sig_off
+    global duration
 
     GPIO.output(Trig, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
     time.sleep(0.00001)                     #10μ秒間待つ
@@ -41,7 +43,7 @@ def read_distance():
 while True:
     try:
         cm = -read_distance()
-        print(cm, duration)                   #HC-SR04で距離を測定する
+        print("duration=", duration)                   #HC-SR04で距離を測定する
         if cm > 2 and cm < 400:                #距離が2～400cmの場合
             print("distance=", int(cm), "cm")  #距離をint型で表示
         else:
