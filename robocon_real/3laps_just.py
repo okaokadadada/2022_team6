@@ -74,17 +74,10 @@ def read_distance():
         time.sleep(0.000015)                     #10μ秒間待つ
         GPIO.output(Trig_F, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
 
-        print("0=", a)
         while GPIO.input(Echo_F) == GPIO.LOW:     #GPIO18がLowの時間
             sig_off_F = time.time()
-            #print("sig_off_F")
-            a=a+1
-            print("1=", a)
-        #while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
-        sig_on_F = time.time()
-        #print("sig_on_F")
-        a=a+1
-        print("2=", a)
+        while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
+            sig_on_F = time.time()
         duration_F = sig_on_F -sig_off_F            #GPIO18がHighしている時間を算術
         distance_F = duration_F * 34000 / 2         #距離を求める(cm)
         time.sleep(0.01)
@@ -96,14 +89,8 @@ def read_distance():
 
         while GPIO.input(Echo_L) == GPIO.LOW:     #GPIO18がLowの時間
             sig_off_L = time.time()
-            a=a+1
-            #print("sig_off_L")
-            print("3=", a)
         #while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
         sig_on_L = time.time()
-        #print("sig_on_L")
-        a=a+1
-        print("4=", a)
         duration_L = sig_on_L - sig_off_L           #GPIO18がHighしている時間を算術
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
         time.sleep(0.01)
