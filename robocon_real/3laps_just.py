@@ -50,10 +50,10 @@ distance_F = 0
 distance_L = 0
 
 #旋回を始める距離
-distanceborder_F = 70
+distanceborder_F = 20
 
 #左の壁との最短距離
-distanceborder_L = 15
+distanceborder_L = 20
 
 #HC-SR04で距離を測定する関数
 def read_distance():
