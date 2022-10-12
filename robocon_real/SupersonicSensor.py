@@ -41,7 +41,7 @@ def read_distance():
 while True:
     try:
         cm = -read_distance()
-        print(cm)                   #HC-SR04で距離を測定する
+        print(cm, duration)                   #HC-SR04で距離を測定する
         if cm > 2 and cm < 400:                #距離が2～400cmの場合
             print("distance=", int(cm), "cm")  #距離をint型で表示
         else:
