@@ -191,11 +191,8 @@ def mortor_L():
                 else:
                     left_G(0.005)
 
-print("World")
-
 try:
     if __name__ == "__main__":
-        print("Hello")
         thread_1 = threading.Thread(target=read_distance)
         #thread_2 = threading.Thread(target=mortor_R)
         #thread_3 = threading.Thread(target=mortor_L)
