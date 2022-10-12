@@ -92,7 +92,8 @@ def read_distance():
         duration_L = sig_off_L - sig_on_L             #GPIO18がHighしている時間を算術
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
         
-        print(duration_F, duration_L, sig_on_F, sig_on_L, sig_off_F, sig_off_L, "前=", distance_F, "  左=", distance_L)
+        #duration_F, duration_L, sig_on_F, sig_on_L, sig_off_F, sig_off_L, 
+        print("前=", distance_F, "  左=", distance_L)
 
 #ステッピングモータを制御する関数
 def right_G(waittime):  #右ステッピングモータを正転させる関数
