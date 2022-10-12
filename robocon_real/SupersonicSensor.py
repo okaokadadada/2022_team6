@@ -67,11 +67,8 @@ def read_distance():
 while True:
     try:
         read_distance()
-        print("duration_F=", duration_F, "duration_L=", duration_L)                   #HC-SR04で距離を測定する
-        if cm > 2 and cm < 400:                #距離が2～400cmの場合
-            print("distance_F=", distance_F, "cm", "distance_L=", distance_F, "cm")  #距離をint型で表示
-        else:
-            print("over")
+        print("duration_F=", duration_F, "duration_L=", duration_L)                   #HC-SR04で距離を測定する      
+        print("distance_F=", distance_F, "cm", "distance_L=", distance_F, "cm")  #距離をint型で表示
         time.sleep(1)                          #1秒間待つ
 
     except KeyboardInterrupt:       #Ctrl+Cキーが押された
