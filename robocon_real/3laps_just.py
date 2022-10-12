@@ -49,7 +49,7 @@ sig_off_L = 0
 duration_F = 0
 duration_L = 0
 distance_F = 30
-distance_L = 30
+distance_L = 50
 distanceborder_F = 20
 distanceborder_L = 20
 
