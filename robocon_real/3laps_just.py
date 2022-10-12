@@ -56,6 +56,8 @@ distanceborder_L = 20
 #旋回回数
 turn = 0
 
+e=0
+
 #HC-SR04で距離を測定する関数
 def read_distance():
     global a
@@ -176,14 +178,14 @@ def turn_R():
 def turn_L():
     global turn
     turn = turn + 1
-    for i in range(3000):
+    for i in range(300):
         GPIO.output(CWp_L, GPIO.HIGH)
         GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
         time.sleep(0.005)
         GPIO.output(CWp_L, GPIO.LOW)
         GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
         time.sleep(0.005)
-        print("                                     turn=", int(turn))  #旋回回数をint型で表示
+        print("turn=", int(turn))  #旋回回数をint型で表示
     
     
 def mortor_R():
@@ -210,6 +212,7 @@ def mortor_R():
 
 def mortor_L():
     global turn
+    global e
     global distance_F
     global distance_L
     global distanceborder_F
@@ -217,9 +220,12 @@ def mortor_L():
     while True:
         if turn<11:
             if distance_F<distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+                e=e+1
+                if e>10:
                     turn_L()
 
             if distance_F>=distanceborder_F:            #前壁との距離が規定値以上になったら直進
+                e=0
                 if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                     left_G(0.0005)
 
