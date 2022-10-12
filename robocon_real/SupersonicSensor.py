@@ -26,6 +26,10 @@ test_F1 = 0
 test_F2 = 0
 test_L1 = 0
 test_L2 = 0
+a=0
+b=0
+c=0
+d=0
 
 #GPIOの設定
 GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
@@ -48,6 +52,10 @@ def read_distance():
     global test_F2
     global test_L1
     global test_L2
+    global a
+    global b
+    global c
+    global d
 
     GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
     time.sleep(times)                     #10μ秒間待つ
@@ -56,11 +64,21 @@ def read_distance():
 
     while GPIO.input(Echo_F) == GPIO.LOW:     #GPIO18がLowの時間
         sig_off_F = time.time()
-        #print("A")
+        a=a+1
+        if a==100:
+            print("A")
+            b=0
+            c=0
+            d=0
     test_F2 = time.time()
     while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
         sig_on_F = time.time()
-        #print("B")
+        b=b+1
+        if b==100:
+            print("B")
+            a=0
+            c=0
+            d=0
 
     duration_F = sig_on_F - sig_off_F             #GPIO18がHighしている時間を算術
     distance_F = duration_F * 34000 / 2         #距離を求める(cm)
@@ -74,11 +92,21 @@ def read_distance():
 
     while GPIO.input(Echo_L) == GPIO.LOW:     #GPIO18がLowの時間
         sig_off_L = time.time()
-        #print("C")
+        c=c+1
+        if c==100:
+            print("C")
+            a=0
+            b=0
+            d=0
     test_L2 = time.time()
     while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
         sig_on_L = time.time()
-        #print("D")
+        d=d+1
+        if d==100:
+            print("A")
+            a=0
+            b=0
+            c=0
 
     duration_L = sig_on_L - sig_off_L             #GPIO18がHighしている時間を算術
     distance_L = duration_L * 34000 / 2         #距離を求める(cm)
