@@ -37,11 +37,12 @@ GPIO.setup(Echo_F, GPIO.IN)           #GPIO18を入力モードに設定
 GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
 
-#距離測定に使用する変数
+#距離測定に使用する変数，定数
 a=0
 b=0
 c=0
 d=0
+rimit = 600
 sig_on_F = 0
 sig_off_F = 0
 sig_on_L = 0
@@ -64,10 +65,15 @@ normal = 0.001
   #速い
 fast = 0.0005
 
-e=0
+#モータの制御に用いる変数，定数
+eR = 0
+eL = 0
 update = 0
-rimit = 600
-last_move = 0
+last_move_R = 0
+last_move_L = 0
+slow_R = 1
+normal_R = 2
+fast_R = 3
 slow_L = 1
 normal_L = 2
 fast_L = 3
@@ -207,21 +213,43 @@ def turn_L():
     
 def mortor_R():
     global turn
+    global eR
+    global update
     global distance_F
     global distance_L
     global distanceborder_F
     global distanceborder_L
+    global slow
+    global normal
+    global fast
+    global slow_R
+    global normal_R
+    global fast_R
+    global last_move_R
+    
     while True:
+      update = 0
         if turn<11:
-            if distance_F<distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+            if distance_F < distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+              eR = eR + 1 
+              if last_move_R == slow_R:
+                    while update == 0:
+                        right_G(slow)
+                if last_move_R == normal_R:
+                    while update == 0:
+                        right_G(normal)
+                if last_move_R == fast_R:
+                    while update == 0:
+                        right_G(fast)
+                if eR > 3:
                     turn_R()
 
-            if distance_F>=distanceborder_F:            #前壁との距離が規定値以上になったら直進
-                if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
+            if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
+                if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                     for i in range(15):
                         right_G(0.0065)
 
-                elif distance_L>=distanceborder_L+10:    #左壁との距離が規定値以上になったら左に方向修正
+                elif distance_L >= distanceborder_L+10:    #左壁との距離が規定値以上になったら左に方向修正
                     for i in range(28):
                         right_G(0.0035)
 
@@ -232,7 +260,7 @@ def mortor_R():
 
 def mortor_L():
     global turn
-    global e
+    global eL
     global update
     global distance_F
     global distance_L
@@ -244,40 +272,41 @@ def mortor_L():
     global slow_L
     global normal_L
     global fast_L
+    global last_move_L
     
     while True:
         update = 0
         if turn<11:
-            if distance_F<distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
-                e=e+1
-                if last_move == slow_L:
+            if distance_F < distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+                eL = eL + 1
+                if last_move_L == slow_L:
                     while update == 0:
                         left_G(slow)
-                if last_move == normal_L:
+                if last_move_L == normal_L:
                     while update == 0:
                         left_G(normal)
-                if last_move == fast_L:
+                if last_move_L == fast_L:
                     while update == 0:
                         left_G(fast)
-                if e>3:
+                if eL > 3:
                     turn_L()
             print("A")
-            if distance_F>=distanceborder_F:            #前壁との距離が規定値以上になったら直進
-                e=0
-                if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
+            if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
+                eL=0
+                if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                     while update == 0:
                         left_G(fast)
-                    last_move = fast_L
+                    last_move_L = fast_L
 
-                elif distance_L>=distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
+                elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
                     while update == 0:
                         left_G(slow)
-                        last_move = slow_L
+                        last_move_L = slow_L
 
                 else:
                     while update == 0:
                         left_G(normal)
-                        last_move = normal_L
+                        last_move_L = normal_L
 
 try:
     if __name__ == "__main__":
