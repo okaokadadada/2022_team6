@@ -236,16 +236,16 @@ def mortor_L():
             if distance_F>=distanceborder_F:            #前壁との距離が規定値以上になったら直進
                 e=0
                 if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-                    for i in range(15):
-                        left_G(0.0005)
+                    #for i in range(15):
+                    left_G(0.0005)
 
                 elif distance_L>=distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
-                    for i in range(28):
-                        left_G(0.01)
+                    #for i in range(28):
+                    left_G(0.01)
 
                 else:
-                    for i in range(20):
-                        left_G(0.001)
+                    #for i in range(20):
+                    left_G(0.001)
 
 try:
     if __name__ == "__main__":
