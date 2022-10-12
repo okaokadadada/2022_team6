@@ -37,17 +37,17 @@ GPIO.setup(Echo_F, GPIO.IN)           #GPIO18を入力モードに設定
 GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
 
-duration_F
-duration_L
+duration_F = 0
+duration_L = 0
 
 #旋回回数
 turn = 0
 
 #前壁との距離を格納する変数
-distance_F
+distance_F = 0
 
 #左壁との距離を格納する変数
-distance_L
+distance_L = 0
 
 #旋回を始める距離
 distanceborder_F = 20
