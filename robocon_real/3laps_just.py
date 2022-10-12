@@ -227,12 +227,12 @@ def mortor_L():
     while True:
         #from_start = time.time() - start_time
         if turn<11:
-            if distance_F<distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
-                e=e+1
-                print(e)
-                if e>30:
-                    turn_L()
-
+            #if distance_F<distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+            #    e=e+1
+            #    print(e)
+            #    if e>30:
+            #        turn_L()
+            print("A")
             if distance_F>=distanceborder_F:            #前壁との距離が規定値以上になったら直進
                 e=0
                 if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
