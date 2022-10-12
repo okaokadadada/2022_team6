@@ -11,14 +11,14 @@ Echo_F = 23
 Trig_L = 10
 Echo_L = 24
 
-sig_on_F
-sig_off_F
-sig_on_L
-sig_off_L
-duration_F
-duration_L
-distance_F
-distance_L
+sig_on_F = 0
+sig_off_F = 0
+sig_on_L = 0
+sig_off_L = 0
+duration_F = 0
+duration_L = 0
+distance_F = 0
+distance_L = 0
 
 #GPIOの設定
 GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
