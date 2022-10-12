@@ -120,8 +120,8 @@ def read_distance():
 while True:
     try:
         read_distance()
-        print("duration_F=", test_F2 - test_F1, "duration_L=", test_L2 - test_L1)                   #HC-SR04で距離を測定する      
-        print("前", distance_F, "cm", "左=", distance_L, "cm")  #距離をint型で表示
+        print("duration_F=", f"{(test_F2 - test_F1):.5f}", "duration_L=", f"{(test_L2 - test_L1):.5f}")                   #HC-SR04で距離を測定する      
+        print("前", f"{distance_F:.2f}", "cm", "左=", f"{distance_L}", "cm")  #距離をint型で表示
 
     except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
