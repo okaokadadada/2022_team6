@@ -201,13 +201,16 @@ def mortor_R():
 
             if distance_F>=distanceborder_F:            #前壁との距離が規定値以上になったら直進
                 if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-                    right_G(0.0065)
+                    for i in range(15)
+                        right_G(0.0065)
 
                 elif distance_L>=distanceborder_L+10:    #左壁との距離が規定値以上になったら左に方向修正
-                    right_G(0.0035)
+                    for i in range(28)
+                        right_G(0.0035)
 
                 else:
-                    right_G(0.005)
+                    for in range(20)
+                        right_G(0.005)
 
 
 def mortor_L():
@@ -217,9 +220,14 @@ def mortor_L():
     global distance_L
     global distanceborder_F
     global distanceborder_L
+    global start_time
+    global from_start
+    
+    start_time = time.timea()
     while True:
+        from_start = time.time() - start_time
         if turn<11:
-            if distance_F<distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+            if distance_F<distanceborder_F and from_start > 10:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
                 e=e+1
                 print(e)
                 if e>10:
@@ -228,13 +236,16 @@ def mortor_L():
             if distance_F>=distanceborder_F:            #前壁との距離が規定値以上になったら直進
                 e=0
                 if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-                    left_G(0.0005)
+                    for i in range(15)
+                        left_G(0.0005)
 
                 elif distance_L>=distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
-                    left_G(0.01)
+                    for i in range(28)
+                        left_G(0.01)
 
                 else:
-                    left_G(0.001)
+                    for i in range(20)
+                        left_G(0.001)
 
 try:
     if __name__ == "__main__":
