@@ -11,6 +11,7 @@ Echo_F = 23
 Trig_L = 10
 Echo_L = 24
 
+
 times = 0.00004
 sleeps = 0.075
 
@@ -26,6 +27,8 @@ test_F1 = 0
 test_F2 = 0
 test_L1 = 0
 test_L2 = 0
+test_start = 0
+test_finish = 0
 a=0
 b=0
 c=0
@@ -62,12 +65,16 @@ def read_distance():
     test_F1 = time.time()
     GPIO.output(Trig_F, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
 
+    #test_start = time.time()
+
     while GPIO.input(Echo_F) == GPIO.LOW:     #GPIO18がLowの時間
         sig_off_F = time.time()
         a=a+1
         if a>500:
             print("A")
             time.sleep(10)
+            #test_finish = time.time() 
+            continue
     b=0
     c=0
     d=0
@@ -78,6 +85,8 @@ def read_distance():
         if b>500:
             print("B")
             time.sleep(10)
+            #test_finish = time.time() 
+            continue
     a=0
     c=0
     d=0
@@ -98,6 +107,8 @@ def read_distance():
         if c>500:
             print("C")
             time.sleep(10)
+            #test_finish = time.time() 
+            continue
     a=0
     b=0
     d=0
@@ -105,9 +116,11 @@ def read_distance():
     while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
         sig_on_L = time.time()
         d=d+1
-        if d>500:
-            print("A")
+        if d>300:
+            print("D")
             time.sleep(10)
+            #test_finish = time.time() 
+            continue
     a=0
     b=0
     c=0
