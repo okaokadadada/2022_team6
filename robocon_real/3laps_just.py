@@ -37,17 +37,17 @@ GPIO.setup(Echo_F, GPIO.IN)           #GPIO18を入力モードに設定
 GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
 
-#duration_F = 0
-#duration_L = 0
+duration_F = 0
+duration_L = 0
 
 #旋回回数
 turn = 0
 
 #前壁との距離を格納する変数
-#distance_F = 0
+distance_F = 0
 
 #左壁との距離を格納する変数
-#distance_L = 0
+distance_L = 0
 
 #旋回を始める距離
 distanceborder_F = 20
@@ -61,6 +61,10 @@ def read_distance():
     global sig_off_F
     global sig_on_L
     global sig_off_L
+    global duration_F
+    global duration_L
+    global distance_F
+    global distance_L
     while True:
         #前方
         GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
