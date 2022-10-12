@@ -61,6 +61,12 @@ def read_distance():
     global d
 
     while True:
+        if a>300 or b>300 or c>300 or d>300:
+            a=0
+            b=0
+            c=0
+            d=0
+            print("reset")
         GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
         time.sleep(times)                     #10μ秒間待つ
         test_F1 = time.time()
@@ -73,11 +79,8 @@ def read_distance():
             a=a+1
             if a>300:
                 break
-                print("A")
-                time.sleep(10)
                 #test_finish = time.time() 
         if a>300:
-            print("continue")
             continue
         b=0
         c=0
@@ -88,11 +91,8 @@ def read_distance():
             b=b+1
             if b>300:
                 break
-                print("B")
-                time.sleep(10)
                 #test_finish = time.time() 
         if b>300:
-            print("continue")
             continue
         a=0
         c=0
@@ -113,11 +113,8 @@ def read_distance():
             c=c+1
             if c>300:
                 break
-                print("C")
-                time.sleep(10)
                 #test_finish = time.time() 
         if c>300:
-            print("continue")
             continue
         a=0
         b=0
@@ -128,11 +125,8 @@ def read_distance():
             d=d+1
             if d>300:
                 break
-                print("D")
-                time.sleep(10)
                 #test_finish = time.time() 
-        if d>500:
-            print("continue")
+        if d>300:
             continue
         a=0
         b=0
