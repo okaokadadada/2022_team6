@@ -174,6 +174,7 @@ def turn_R():
     
 
 def turn_L():
+    global turn
     turn = turn + 1
     for i in range(3000):
         GPIO.output(CWp_L, GPIO.HIGH)
