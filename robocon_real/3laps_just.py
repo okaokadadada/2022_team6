@@ -102,7 +102,7 @@ def read_distance():
             continue
         duration_F = sig_on_F -sig_off_F            #GPIO18がHighしている時間を算術
         distance_F = duration_F * 34000 / 2         #距離を求める(cm)
-        time.sleep(0.075)
+        time.sleep(0.05)
 
         #左方
         GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
@@ -125,7 +125,7 @@ def read_distance():
             continue
         duration_L = sig_on_L - sig_off_L           #GPIO18がHighしている時間を算術
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
-        time.sleep(0.1)
+        time.sleep(0.05)
         
         #duration_F, duration_L, sig_on_F, sig_on_L, sig_off_F, sig_off_L, 
         print("前=", distance_F, "  左=", distance_L)
