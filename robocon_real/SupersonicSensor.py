@@ -77,6 +77,7 @@ def read_distance():
                 break
                 #test_finish = time.time() 
         if a>500:
+            print("continue")
             continue
         b=0
         c=0
@@ -91,6 +92,7 @@ def read_distance():
                 break
                 #test_finish = time.time() 
         if b>500:
+            print("continue")
             continue
         a=0
         c=0
@@ -115,6 +117,7 @@ def read_distance():
                 break
                 #test_finish = time.time() 
         if c>500:
+            print("continue")
             continue
         a=0
         b=0
@@ -129,6 +132,7 @@ def read_distance():
                 break
                 #test_finish = time.time() 
         if d>500:
+            print("continue")
             continue
         a=0
         b=0
