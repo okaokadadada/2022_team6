@@ -3,6 +3,7 @@ from signal import SIG_UNBLOCK
 import RPi.GPIO as GPIO             #GPIO用のモジュールをインポート
 import time                         #時間制御用のモジュールをインポート
 import sys                          #sysモジュールをインポート
+import threading
 
 #ポート番号の定義
 Trig = 10                           #変数"Trig"に27を代入
