@@ -13,7 +13,7 @@ GPIO.setup(24, GPIO.IN)
 while True:
     
     #トリガ信号出力
-    GPIO.output(17, GPIO.HIGH)
+    GPIO.output(10, GPIO.HIGH)
     time.sleep(0.00001)
     GPIO.output(10, GPIO.LOW)
     
