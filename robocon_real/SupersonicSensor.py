@@ -73,8 +73,10 @@ def read_distance():
         if a>500:
             print("A")
             time.sleep(10)
+            break
             #test_finish = time.time() 
-            continue
+    if a>500
+        continue
     b=0
     c=0
     d=0
@@ -85,8 +87,10 @@ def read_distance():
         if b>500:
             print("B")
             time.sleep(10)
+            break
             #test_finish = time.time() 
-            continue
+    if b>500
+        continue
     a=0
     c=0
     d=0
@@ -107,8 +111,10 @@ def read_distance():
         if c>500:
             print("C")
             time.sleep(10)
+            break
             #test_finish = time.time() 
-            continue
+    if c>500
+        continue
     a=0
     b=0
     d=0
@@ -119,8 +125,10 @@ def read_distance():
         if d>300:
             print("D")
             time.sleep(10)
+            break
             #test_finish = time.time() 
-            continue
+    if d>500
+        continue
     a=0
     b=0
     c=0
