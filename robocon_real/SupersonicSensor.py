@@ -22,8 +22,10 @@ distance_L = 0
 
 #GPIOの設定
 GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
-GPIO.setup(Trig, GPIO.OUT)          #GPIO27を出力モードに設定
-GPIO.setup(Echo, GPIO.IN)           #GPIO18を入力モードに設定
+GPIO.setup(Trig_F, GPIO.OUT)          #GPIO27を出力モードに設定
+GPIO.setup(Echo_F, GPIO.IN)           #GPIO18を入力モードに設定
+GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
+GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
 
 #HC-SR04で距離を測定する関数
 def read_distance():
