@@ -67,7 +67,7 @@ def read_distance():
         a=a+1
         if a>500:
             print("A")
-            delay(2)
+            time.sleep(10)
     b=0
     c=0
     d=0
@@ -77,14 +77,14 @@ def read_distance():
         b=b+1
         if b>500:
             print("B")
-            delay(2)
+            time.sleep(10)
     a=0
     c=0
     d=0
 
     duration_F = sig_on_F - sig_off_F             #GPIO18がHighしている時間を算術
     distance_F = duration_F * 34000 / 2         #距離を求める(cm)
-    time.sleep(sleeps)                          #1秒間待つ
+    #time.sleep(sleeps)                          #1秒間待つ
     
     
     GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
@@ -97,7 +97,7 @@ def read_distance():
         c=c+1
         if c>500:
             print("C")
-            delay(2)
+            time.sleep(10)
     a=0
     b=0
     d=0
@@ -107,21 +107,21 @@ def read_distance():
         d=d+1
         if d>500:
             print("A")
-            delay(2)
+            time.sleep(10)
     a=0
     b=0
     c=0
 
     duration_L = sig_on_L - sig_off_L             #GPIO18がHighしている時間を算術
     distance_L = duration_L * 34000 / 2         #距離を求める(cm)
-    time.sleep(sleeps)                          #1秒間待つ
+    #time.sleep(sleeps)                          #1秒間待つ
 
 #連続して値を超音波センサの状態を読み取る
 while True:
     try:
         read_distance()
         print("duration_F=", f"{(test_F2 - test_F1):.5f}", "duration_L=", f"{(test_L2 - test_L1):.5f}")                   #HC-SR04で距離を測定する      
-        print("前", f"{distance_F:.2f}", "cm", "左=", f"{distance_L}", "cm")  #距離をint型で表示
+        print("前", f"{distance_F:.2f}", "cm", "左=", f"{distance_L:.2f}", "cm")  #距離をint型で表示
 
     except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
