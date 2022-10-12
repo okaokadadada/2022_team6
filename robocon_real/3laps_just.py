@@ -48,8 +48,8 @@ sig_on_L = 0
 sig_off_L = 0
 duration_F = 0
 duration_L = 0
-distance_F = 0
-distance_L = 0
+distance_F = 30
+distance_L = 
 distanceborder_F = 20
 distanceborder_L = 20
 
@@ -219,7 +219,7 @@ def mortor_L():
             if distance_F<distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
                     turn_L()
 
-            if distance_F>=distance_F:            #前壁との距離が規定値以上になったら直進
+            if distance_F>=distanceborder_F:            #前壁との距離が規定値以上になったら直進
                 if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                     left_G(0.0005)
 
