@@ -12,6 +12,8 @@ Echo = 24                           #変数"Echo"に18を代入
 sig_on = 0
 sig_off = 0
 
+GPIO.cleanup()
+
 #GPIOの設定
 GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
 GPIO.setup(Trig, GPIO.OUT)          #GPIO27を出力モードに設定
@@ -36,10 +38,6 @@ def read_distance():
     duration = sig_off - sig_on             #GPIO18がHighしている時間を算術
     distance = duration * 34000 / 2         #距離を求める(cm)
     return distance
-
-
-GPIO.cleanup()
-
 
 #連続して値を超音波センサの状態を読み取る
 if __name__ == "__main__":
