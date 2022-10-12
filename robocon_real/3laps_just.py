@@ -223,9 +223,9 @@ def mortor_L():
     global start_time
     global from_start
     
-    start_time = time.timea()
+    #start_time = time.timea()
     while True:
-        from_start = time.time() - start_time
+        #from_start = time.time() - start_time
         if turn<11:
             if distance_F<distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
                 e=e+1
