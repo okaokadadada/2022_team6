@@ -87,6 +87,8 @@ def read_distance():
 
         duration = sig_off_L - sig_on_L             #GPIO18がHighしている時間を算術
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
+        
+        print("前=", distance_F, "  左=", distance_L)
 
 #ステッピングモータを制御する関数
 def right_G(waittime):  #右ステッピングモータを正転させる関数
@@ -176,19 +178,19 @@ def mortor_L():
 
             if cm_F>=distance_F:            #前壁との距離が規定値以上になったら直進
                 if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-                    left_G(0.0035)
+                    left_G(0.0025)
 
                 elif distance_L>=distanceborder_L+10:    #左壁との距離が規定値以上になったら左に方向修正
-                    left_G(0.0065)
+                    left_G(0.01)
 
                 else:
                     left_G(0.005)
 
 if __name__ == "__main__":
     thread_1 = threading.Thread(target=read_distance)
-    thread_2 = threading.Thread(target=mortor_R)
+    #thread_2 = threading.Thread(target=mortor_R)
     thread_3 = threading.Thread(target=mortor_L)
     
     thread_1.start()
-    thread_2.start()
+    #thread_2.start()
     thread_3.start()
