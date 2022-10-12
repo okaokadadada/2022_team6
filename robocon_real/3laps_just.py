@@ -209,7 +209,7 @@ def mortor_R():
                         right_G(0.0035)
 
                 else:
-                    for in range(20):
+                    for i in range(20):
                         right_G(0.005)
 
 
