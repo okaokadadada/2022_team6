@@ -71,7 +71,7 @@ def read_distance():
     while True:
         #前方
         GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
-        time.sleep(0.00002)                     #10μ秒間待つ
+        time.sleep(0.000015)                     #10μ秒間待つ
         GPIO.output(Trig_F, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
 
         print("0=", a)
@@ -90,7 +90,7 @@ def read_distance():
 
         #左方
         GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
-        time.sleep(0.00002)                     #10μ秒間待つ
+        time.sleep(0.000015)                     #10μ秒間待つ
         GPIO.output(Trig_L, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
 
         while GPIO.input(Echo_L) == GPIO.LOW:     #GPIO18がLowの時間
