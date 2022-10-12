@@ -56,7 +56,20 @@ distanceborder_L = 20
 #旋回回数
 turn = 0
 
+#モータの速度
+  #遅い
+slow = 0.01
+  #普通
+normal = 0.001
+  #速い
+fast = 0.0005
+
 e=0
+update = 0
+last_move = 0
+slow_L = 1
+normal_L = 2
+fast_L = 3
 
 #HC-SR04で距離を測定する関数
 def read_distance():
@@ -64,6 +77,7 @@ def read_distance():
     global b
     global c
     global d
+    global update
     global sig_on_F
     global sig_off_F
     global sig_on_L
@@ -130,6 +144,7 @@ def read_distance():
         time.sleep(0.05)
         
         #duration_F, duration_L, sig_on_F, sig_on_L, sig_off_F, sig_off_L, 
+        update = 1
         print("前=", distance_F, "  左=", distance_L)
 
 #ステッピングモータを制御する関数
@@ -216,36 +231,51 @@ def mortor_R():
 def mortor_L():
     global turn
     global e
+    global update
     global distance_F
     global distance_L
     global distanceborder_F
     global distanceborder_L
-    global start_time
-    global from_start
+    global slow
+    global normal
+    global fast
+    global slow_L
+    global normal_L
+    global fast_L
     
-    #start_time = time.timea()
     while True:
-        #from_start = time.time() - start_time
+        update = 0
         if turn<11:
-            #if distance_F<distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
-            #    e=e+1
-            #    print(e)
-            #    if e>30:
-            #        turn_L()
+            if distance_F<distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+                e=e+1
+                if last_move = slow_L:
+                    while update = 0:
+                        left_G(slow)
+                if last_move = normal_L:
+                    while update = 0:
+                        left_G(normal)
+                if last_move = fast_L:
+                    while update = 0:
+                        left_G(fast)
+                if e>3:
+                    turn_L()
             print("A")
             if distance_F>=distanceborder_F:            #前壁との距離が規定値以上になったら直進
                 e=0
                 if distance_L<distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-                    for i in range(15):
-                        left_G(0.0005)
+                    while update = 0:
+                        left_G(fast)
+                    last_move = fast_L
 
                 elif distance_L>=distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
-                    for i in range(28):
-                        left_G(0.01)
+                    while update = 0:
+                        left_G(slow)
+                        last_move = slow_L
 
                 else:
-                    for i in range(20):
-                        left_G(0.001)
+                    while update = 0:
+                        left_G(normal)
+                        last_move = normal_L
 
 try:
     if __name__ == "__main__":
