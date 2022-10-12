@@ -22,6 +22,10 @@ duration_F = 0
 duration_L = 0
 distance_F = 0
 distance_L = 0
+test_F1 = 0
+test_F2 = 0
+test_L1 = 0
+test_L2 = 0
 
 #GPIOの設定
 GPIO.setmode(GPIO.BCM)              #GPIOのモードを"GPIO.BCM"に設定
@@ -40,14 +44,20 @@ def read_distance():
     global duration_L
     global distance_F
     global distance_L
+    global test_F1
+    global test_F2
+    global test_L1
+    global test_L2
 
     GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
     time.sleep(times)                     #10μ秒間待つ
+    test_F1 = time.time()
     GPIO.output(Trig_F, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
 
     while GPIO.input(Echo_F) == GPIO.LOW:     #GPIO18がLowの時間
         sig_off_F = time.time()
         #print("A")
+    test_F2 = time.time()
     while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
         sig_on_F = time.time()
         #print("B")
@@ -59,11 +69,13 @@ def read_distance():
     
     GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
     time.sleep(times)                     #10μ秒間待つ
+    test_L1 = time.time()
     GPIO.output(Trig_L, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
 
     while GPIO.input(Echo_L) == GPIO.LOW:     #GPIO18がLowの時間
         sig_off_L = time.time()
         #print("C")
+    test_L2 = time.time()
     while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
         sig_on_L = time.time()
         #print("D")
@@ -76,7 +88,7 @@ def read_distance():
 while True:
     try:
         read_distance()
-        print("duration_F=", duration_F, "duration_L=", duration_L)                   #HC-SR04で距離を測定する      
+        print("duration_F=", test_F2 - test_F1, "duration_L=", test_L2 - test_L1)                   #HC-SR04で距離を測定する      
         print("前", distance_F, "cm", "左=", distance_L, "cm")  #距離をint型で表示
 
     except KeyboardInterrupt:       #Ctrl+Cキーが押された
