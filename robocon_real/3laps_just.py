@@ -37,14 +37,17 @@ GPIO.setup(Echo_F, GPIO.IN)           #GPIO18を入力モードに設定
 GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
 
+duration_F
+duration_L
+
 #旋回回数
 turn = 0
 
 #前壁との距離を格納する変数
-#distance_F = 0
+distance_F
 
 #左壁との距離を格納する変数
-#distance_L = 0
+distance_L
 
 #旋回を始める距離
 distanceborder_F = 20
@@ -89,7 +92,7 @@ def read_distance():
         duration = sig_off_L - sig_on_L             #GPIO18がHighしている時間を算術
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
         
-        print("前=", distance_F, "  左=", distance_L)
+        print(duration_F, duration_L, sig_on_F, sig_on_L, sig_off_F, sig_off_L, "前=", distance_F, "  左=", distance_L)
 
 #ステッピングモータを制御する関数
 def right_G(waittime):  #右ステッピングモータを正転させる関数
