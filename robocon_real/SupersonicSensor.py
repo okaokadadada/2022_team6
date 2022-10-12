@@ -13,7 +13,7 @@ Echo_L = 24
 
 
 times = 0.00004
-sleeps = 0.05
+sleeps = 0.075
 
 sig_on_F = 0
 sig_off_F = 0
