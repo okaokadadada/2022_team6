@@ -49,7 +49,7 @@ sig_off_L = 0
 duration_F = 0
 duration_L = 0
 distance_F = 30
-distance_L = 50
+distance_L = 30
 distanceborder_F = 20
 distanceborder_L = 20
 
@@ -231,11 +231,11 @@ def mortor_L():
 
 try:
     if __name__ == "__main__":
-        #thread_1 = threading.Thread(target=read_distance)
+        thread_1 = threading.Thread(target=read_distance)
         #thread_2 = threading.Thread(target=mortor_R)
         thread_3 = threading.Thread(target=mortor_L)
 
-        #thread_1.start()
+        thread_1.start()
         #thread_2.start()
         thread_3.start()
 
