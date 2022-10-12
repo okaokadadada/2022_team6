@@ -13,7 +13,7 @@ Echo_L = 24
 
 
 times = 0.00004
-sleeps = 0.075
+sleeps = 0.05
 
 sig_on_F = 0
 sig_off_F = 0
@@ -75,7 +75,7 @@ def read_distance():
             time.sleep(10)
             break
             #test_finish = time.time() 
-    if a>500
+    if a>500:
         continue
     b=0
     c=0
@@ -89,7 +89,7 @@ def read_distance():
             time.sleep(10)
             break
             #test_finish = time.time() 
-    if b>500
+    if b>500:
         continue
     a=0
     c=0
@@ -113,7 +113,7 @@ def read_distance():
             time.sleep(10)
             break
             #test_finish = time.time() 
-    if c>500
+    if c>500:
         continue
     a=0
     b=0
@@ -127,7 +127,7 @@ def read_distance():
             time.sleep(10)
             break
             #test_finish = time.time() 
-    if d>500
+    if d>500:
         continue
     a=0
     b=0
