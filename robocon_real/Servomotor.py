@@ -19,7 +19,7 @@ for i in range(2):#初期の9.1から2.5まで動かす
     time.sleep(INTERVAL)
 
   for i in range(30):
-  servo.ChangeDutyCycle(2.5+0.22*i)
-  time.sleep(INTERVAL)
+    servo.ChangeDutyCycle(2.5+0.22*i)
+    time.sleep(INTERVAL)
 
 GPIO.cleanup()
