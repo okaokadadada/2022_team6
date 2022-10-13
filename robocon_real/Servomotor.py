@@ -13,12 +13,12 @@ servo = GPIO.PWM(PIN, FREQ)
 #init
 servo.start(0.0)
 
-servo.ChangeDutyCycle(2.5) #0度の位置まで動かす
+servo.ChangeDutyCycle(2.5)
 time.sleep(INTERVAL)
 
 time.sleep(1)
 
-servo.ChangeDutyCycle(9.1) #180度の位置まで動かす
+servo.ChangeDutyCycle(9.1)
 time.sleep(INTERVAL)
 
 GPIO.cleanup()
