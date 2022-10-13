@@ -16,8 +16,10 @@ servo.start(0.0)
 for i in range(2):
   servo.ChangeDutyCycle(2.5)
   time.sleep(INTERVAL)
+  
+  time.sleep(1)
 
-  servo.ChangeDutyCycle(12.0)
+  servo.ChangeDutyCycle(9.1)
   time.sleep(INTERVAL)
   
 GPIO.cleanup()
