@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-INTERVAL = 1
+INTERVAL = 0.6
 PIN = 14
 FREQ = 50
 
@@ -13,10 +13,11 @@ servo = GPIO.PWM(PIN, FREQ)
 #init
 servo.start(0.0)
 
-servo.ChangeDutyCycle(2.5) #0度の位置まで動かす
-time.sleep(INTERVAL)
+for i in range(2):
+  servo.ChangeDutyCycle(2.5)
+  time.sleep(INTERVAL)
 
-servo.ChangeDutyCycle(9.1) #180度の位置まで動かす
-time.sleep(INTERVAL)
-  
+  servo.ChangeDutyCycle(9.1)
+  time.sleep(INTERVAL)
+
 GPIO.cleanup()
