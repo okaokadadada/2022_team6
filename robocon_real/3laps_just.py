@@ -250,7 +250,7 @@ def mortor_R():
                   right_G(0.0065)
               last_move_L = slow_L
 
-            elif distance_L >= distanceborder_L+10:    #左壁との距離が規定値以上になったら左に方向修正
+            elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
               while update == 0:
                   right_G(0.0035)
               last_move_L = fast_L
@@ -294,7 +294,6 @@ def mortor_L():
             if eL > 3:
                 turn_L()
 
-          print("A")
           if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
             eL=0
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
