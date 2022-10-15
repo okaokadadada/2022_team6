@@ -229,33 +229,36 @@ def mortor_R():
     
     while True:
       update = 0
-        if turn<11:
-            if distance_F < distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
-              eR = eR + 1 
-              if last_move_R == slow_R:
-                    while update == 0:
-                        right_G(slow)
-                if last_move_R == normal_R:
-                    while update == 0:
-                        right_G(normal)
-                if last_move_R == fast_R:
-                    while update == 0:
-                        right_G(fast)
-                if eR > 3:
-                    turn_R()
+      if turn<11:
+          if distance_F < distanceborder_F:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+            eR = eR + 1 
+            if last_move_R == slow_R:
+                  while update == 0:
+                      right_G(slow)
+              if last_move_R == normal_R:
+                  while update == 0:
+                      right_G(normal)
+              if last_move_R == fast_R:
+                  while update == 0:
+                      right_G(fast)
+              if eR > 3:
+                  turn_R()
 
-            if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
-                if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-                    for i in range(15):
-                        right_G(0.0065)
+          if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
+              if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
+                  while update == 0:
+                      right_G(0.0065)
+                  last_move_L = slow_L
 
-                elif distance_L >= distanceborder_L+10:    #左壁との距離が規定値以上になったら左に方向修正
-                    for i in range(28):
-                        right_G(0.0035)
+              elif distance_L >= distanceborder_L+10:    #左壁との距離が規定値以上になったら左に方向修正
+                  while update == 0:
+                      right_G(0.0035)
+                  last_move_L = fast_L
 
-                else:
-                    for i in range(20):
-                        right_G(0.005)
+              else:
+                  while update == 0:
+                      right_G(0.005)
+                  last_move_R = normal_R
 
 
 def mortor_L():
@@ -290,6 +293,7 @@ def mortor_L():
                         left_G(fast)
                 if eL > 3:
                     turn_L()
+                    
             print("A")
             if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
                 eL=0
@@ -301,22 +305,22 @@ def mortor_L():
                 elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
                     while update == 0:
                         left_G(slow)
-                        last_move_L = slow_L
+                    last_move_L = slow_L
 
                 else:
                     while update == 0:
                         left_G(normal)
-                        last_move_L = normal_L
+                    last_move_L = normal_L
 
 try:
     if __name__ == "__main__":
         thread_1 = threading.Thread(target=read_distance)
-        thread_2 = threading.Thread(target=mortor_R)
-        thread_3 = threading.Thread(target=mortor_L)
+        #thread_2 = threading.Thread(target=mortor_R)
+        #thread_3 = threading.Thread(target=mortor_L)
 
         thread_1.start()
-        thread_2.start()
-        thread_3.start()
+        #thread_2.start()
+        #thread_3.start()
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
