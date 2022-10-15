@@ -245,6 +245,7 @@ def mortor_R():
             turn_R()
 
         if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
+            eR = 0
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
               while update == 0:
                   right_G(0.0065)
