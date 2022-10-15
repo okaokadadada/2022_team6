@@ -189,7 +189,7 @@ def left_B(waittime):   #左ステッピングモータを逆転させる関数
   time.sleep(waittime)
 
 def turn_R():
-    for i in range(500):
+    for i in range(100):
         GPIO.output(CWp_R, GPIO.HIGH)
         GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
         time.sleep(0.03)
@@ -201,13 +201,13 @@ def turn_R():
 def turn_L():
     global turn
     turn = turn + 1
-    for i in range(300):
+    for i in range(100):
         GPIO.output(CWp_L, GPIO.HIGH)
         GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
-        time.sleep(0.005)
+        time.sleep(0.03)
         GPIO.output(CWp_L, GPIO.LOW)
         GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
-        time.sleep(0.005)
+        time.sleep(0.03)
         print("turn=", int(turn))  #旋回回数をint型で表示
     
     
@@ -248,17 +248,17 @@ def mortor_R():
             eR = 0
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
               while update == 0:
-                  right_G(0.0065)
+                  right_G(slow)
               last_move_L = slow_L
 
             elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
               while update == 0:
-                  right_G(0.0035)
+                  right_G(fast)
               last_move_L = fast_L
 
             else:
               while update == 0:
-                  right_G(0.005)
+                  right_G(normal)
               last_move_R = normal_R
 
 
