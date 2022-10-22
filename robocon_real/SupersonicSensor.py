@@ -128,7 +128,7 @@ def read_distance():
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
         time.sleep(sleeps)                          #1秒間待つ
 
-        print("duration_F=", f"{(test_F2 - test_F1):.5f}", "duration_L=", f"{(test_L2 - test_L1):.5f}")                   #HC-SR04で距離を測定する      
+        #print("duration_F=", f"{(test_F2 - test_F1):.5f}", "duration_L=", f"{(test_L2 - test_L1):.5f}")                   #HC-SR04で距離を測定する      
         print("前", f"{distance_F:.2f}", "cm", "左=", f"{distance_L:.2f}", "cm")  #距離をint型で表示
 
 #連続して値を超音波センサの状態を読み取る
