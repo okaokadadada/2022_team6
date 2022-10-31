@@ -7,7 +7,7 @@ import threading
 
 #ポート番号の定義
 Trig_F = 14
-Echo_F = 15
+Echo_F = 27
 
 times = 0.00001
 sleeps = 0.075
