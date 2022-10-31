@@ -43,13 +43,13 @@ def read_distance():
 
     while True:
         if a>300 or b>300:
-            a=0
-            b=0
-            print("reset")
             if a>300:
               print("reset_a")
             if b>300:
               print("reset_b")
+            
+            a=0
+            b=0
         a=0
         b=0
         GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
