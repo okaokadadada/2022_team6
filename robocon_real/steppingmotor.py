@@ -28,7 +28,7 @@ GPIO.setup(CWm_L, GPIO.OUT)
 GPIO.setup(CCWp_L, GPIO.OUT)
 GPIO.setup(CCWm_L, GPIO.OUT)
 
-def right_G(waittime):  #右ステッピングモータを正転させる関数
+def right_G(waittime_R):  #右ステッピングモータを正転させる関数
   GPIO.output(CWp_R, GPIO.HIGH)
   GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
   time.sleep(waittime_R)
@@ -44,7 +44,7 @@ def right_B(waittime):  #右ステッピングモータを逆転させる関数
   GPIO.output(CCWm_R, GPIO.HIGH)            #CCWをOFFに
   time.sleep(waittime)
     
-def left_G(waittime):   #左ステッピングモータを正転させる関数
+def left_G(waittime_L):   #左ステッピングモータを正転させる関数
   GPIO.output(CWp_L, GPIO.HIGH)
   GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
   time.sleep(waittime_L)
