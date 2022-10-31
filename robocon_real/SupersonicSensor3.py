@@ -6,8 +6,8 @@ import sys                          #sysモジュールをインポート
 import threading
 
 #ポート番号の定義
-Trig_F = 10
-Echo_F = 24
+Trig_F = 22
+Echo_F = 23
 
 times = 0.00001
 sleeps = 0.075
