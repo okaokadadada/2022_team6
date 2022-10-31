@@ -3,10 +3,10 @@ import RPi.GPIO as GPIO             #GPIO用のモジュールをインポート
 import time                         #時間制御用のモジュールをインポート
 import sys                          #sysモジュールをインポート
 
-CWp=25  #25  #0
-CWm=8  #8  #5
-CCWp=7  #7  #6
-CCWm=1  #1  #13
+CWp=12  #25  #0
+CWm=6  #8  #5
+CCWp=5  #7  #6
+CCWm=7  #1  #13
 
 #GPIOの設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
