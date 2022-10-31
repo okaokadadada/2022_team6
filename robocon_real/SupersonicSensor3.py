@@ -73,7 +73,7 @@ def read_distance():
             continue
 
         duration_F = sig_on_F - sig_off_F             #GPIO18がHighしている時間を算術
-        distance_F = duration_F * 340 / 2         #距離を求める(cm)
+        distance_F = duration_F * 34000 / 2         #距離を求める(cm)
         time.sleep(sleeps)                          #1秒間待つ
 
         print("前", f"{distance_F:.2f}", "cm")  #距離をint型で表示
