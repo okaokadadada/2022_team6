@@ -7,7 +7,7 @@ import threading
 #モータのGPIO設定
 CWp_R=16
 CWm_R=19
-CCWp_R=10
+CCWp_R=20
 CCWm_R=21
 CWp_L=12
 CWm_L=6
