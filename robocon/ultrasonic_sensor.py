@@ -37,14 +37,16 @@ def read_distance():
     return distance
 
 #連続して値を超音波センサの状態を読み取る
+GPIO.cleanup()  
+
 while True:
     try:
         cm = -read_distance()
         print(cm)                   #HC-SR04で距離を測定する
         if cm > 2 and cm < 400:                #距離が2～400cmの場合
             print("distance=", int(cm), "cm")  #距離をint型で表示
-        # else:
-        #     print("over")
+        else:
+            print("over")
         time.sleep(1)                          #1秒間待つ
 
     except KeyboardInterrupt:       #Ctrl+Cキーが押された
