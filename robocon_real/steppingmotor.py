@@ -16,6 +16,7 @@ CCWm_L=7
 
 waittime_R = 0.01
 waittime_L = 0.01
+waittime = 0.01
 
 #モータのGPIO設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
@@ -58,13 +59,14 @@ def right_G():  #右ステッピングモータを正転させる関数
     GPIO.output(CCWm_R, GPIO.HIGH)            #CCWをOFFに
     time.sleep(waittime_R)
     
-def right_B(waittime):  #右ステッピングモータを逆転させる関数
-  GPIO.output(CCWp_R, GPIO.HIGH)
-  GPIO.output(CCWm_R, GPIO.LOW)             #CCWをONに
-  time.sleep(waittime)
-  GPIO.output(CCWp_R, GPIO.LOW)
-  GPIO.output(CCWm_R, GPIO.HIGH)            #CCWをOFFに
-  time.sleep(waittime)
+def right_B():  #右ステッピングモータを逆転させる関数
+  while True:
+    GPIO.output(CCWp_R, GPIO.HIGH)
+    GPIO.output(CCWm_R, GPIO.LOW)             #CCWをONに
+    time.sleep(waittime)
+    GPIO.output(CCWp_R, GPIO.LOW)
+    GPIO.output(CCWm_R, GPIO.HIGH)            #CCWをOFFに
+    time.sleep(waittime)
     
 def left_G():   #左ステッピングモータを正転させる関数
   for i in range(100):
@@ -89,18 +91,19 @@ def left_G():   #左ステッピングモータを正転させる関数
     GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
     time.sleep(waittime_L)
   
-def left_B(waittime):   #左ステッピングモータを逆転させる関数
-  GPIO.output(CCWp_L, GPIO.HIGH)
-  GPIO.output(CCWm_L, GPIO.LOW)             #CCWをONに
-  time.sleep(waittime)
-  GPIO.output(CCWp_L, GPIO.LOW)
-  GPIO.output(CCWm_L, GPIO.HIGH)            #CCWをOFFに
-  time.sleep(waittime)
+def left_B():   #左ステッピングモータを逆転させる関数
+  while True:
+    GPIO.output(CCWp_L, GPIO.HIGH)
+    GPIO.output(CCWm_L, GPIO.LOW)             #CCWをONに
+    time.sleep(waittime)
+    GPIO.output(CCWp_L, GPIO.LOW)
+    GPIO.output(CCWm_L, GPIO.HIGH)            #CCWをOFFに
+    time.sleep(waittime)
   
 try:
     if __name__ == "__main__":
-        thread_2 = threading.Thread(target=right_G)
-        thread_3 = threading.Thread(target=left_G)
+        thread_2 = threading.Thread(target=right_B)
+        thread_3 = threading.Thread(target=left_B)
         
         thread_2.start()
         thread_3.start()
