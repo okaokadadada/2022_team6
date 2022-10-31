@@ -55,7 +55,6 @@ def read_distance():
         b=0
         GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
         time.sleep(times)                     #10μ秒間待つ
-        test_F1 = time.time()
         GPIO.output(Trig_F, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
 
         while GPIO.input(Echo_F) == GPIO.LOW:     #GPIO18がLowの時間
@@ -65,6 +64,7 @@ def read_distance():
                 break
         if a>300:
             continue
+        
         while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
             sig_on_F = time.time()
             b=b+1
