@@ -3,10 +3,10 @@ import RPi.GPIO as GPIO             #GPIO用のモジュールをインポート
 import time                         #時間制御用のモジュールをインポート
 import sys                          #sysモジュールをインポート
 
-CWp=0  #25
-CWm=5  #8
-CCWp=6  #7
-CCWm=13  #1
+CWp=25  #25  #0
+CWm=8  #8  #5
+CCWp=7  #7  #6
+CCWm=1  #1  #13
 
 #GPIOの設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
@@ -27,11 +27,11 @@ while True:
       GPIO.output(CWm, GPIO.HIGH)        #CW入力をOFFに
       time.sleep(0.005)
     for i in range(1000):
-      GPIO.output(CWp, GPIO.HIGH)
-      GPIO.output(CWm, GPIO.LOW)         #CW入力をONに
+      GPIO.output(CCWp, GPIO.HIGH)
+      GPIO.output(CCWm, GPIO.LOW)         #CW入力をONに
       time.sleep(0.005)
-      GPIO.output(CWp, GPIO.LOW)
-      GPIO.output(CWm, GPIO.HIGH)        #CW入力をOFFに
+      GPIO.output(CCWp, GPIO.LOW)
+      GPIO.output(CCWm, GPIO.HIGH)        #CW入力をOFFに
       time.sleep(0.005)
     
   except KeyboardInterrupt:
