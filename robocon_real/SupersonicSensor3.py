@@ -45,6 +45,7 @@ def read_distance():
         if a>300 or b>300:
             a=0
             b=0
+            print("reset")
             if a>300:
               print("reset_a")
             if b>300:
