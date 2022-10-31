@@ -4,14 +4,14 @@ import time                         #時間制御用のモジュールをイン�
 import sys                          #sysモジュールをインポート
 
 #モータのGPIO設定
-CWp_R=2
-CWm_R=3
-CCWp_R=4
-CCWm_R=14
-CWp_L=15
-CWm_L=18
-CCWp_L=17
-CCWm_L=27
+CWp_R=25
+CWm_R=8
+CCWp_R=7
+CCWm_R=1
+CWp_L=0
+CWm_L=5
+CCWp_L=6
+CCWm_L=13
 
 waittime_R = 0.01
 waittime_L = 0.01
