@@ -14,8 +14,8 @@ CWm_L=6
 CCWp_L=5
 CCWm_L=7
 
-waittime_R = 0.01
-waittime_L = 0.01
+waittime_R = 0.005
+waittime_L = 0.005
 waittime = 0.01
 
 #モータのGPIO設定
