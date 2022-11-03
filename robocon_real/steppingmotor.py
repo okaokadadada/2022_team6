@@ -59,10 +59,10 @@ def turn_L():
     for i in range(100):
       GPIO.output(CWp_L, GPIO.HIGH)
       GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
-      time.sleep(waittime_L+0.005)
+      time.sleep(waittime_L+0.01)
       GPIO.output(CWp_L, GPIO.LOW)
       GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
-      time.sleep(waittime_L+0.005)
+      time.sleep(waittime_L+0.01)
 
 def right_G():  #右ステッピングモータを正転させる関数
   while True:
