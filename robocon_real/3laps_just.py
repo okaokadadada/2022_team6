@@ -153,7 +153,7 @@ def read_distance():
         
         #duration_F, duration_L, sig_on_F, sig_on_L, sig_off_F, sig_off_L, 
         update = 1
-        print("前=", distance_F, "  左=", distance_L)
+        print("前＝", f"{distance_F:.2f}", "cm", "左＝", f"{distance_L:.2f}", "cm")
 
 #ステッピングモータを制御する関数
 def right_G(waittime):  #右ステッピングモータを正転させる関数
@@ -235,12 +235,15 @@ def mortor_R():
           if last_move_R == slow_R:
             while update == 0:
                 right_G(slow)
+                print("                SLOW_R")
           if last_move_R == normal_R:
             while update == 0:
                 right_G(normal)
+                print("                NORMAL_L")
           if last_move_R == fast_R:
             while update == 0:
                 right_G(fast)
+                print("                FAST_L")
           if eR > 3:
             turn_R()
 
@@ -249,16 +252,19 @@ def mortor_R():
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
               while update == 0:
                   right_G(slow)
+                  print("                SLOW_R")
               last_move_L = slow_L
 
             elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
               while update == 0:
                   right_G(fast)
+                  print("                FAST_R")
               last_move_L = fast_L
 
             else:
               while update == 0:
                   right_G(normal)
+                  print("                NAOMAL_R")
               last_move_R = normal_R
 
 
@@ -286,12 +292,15 @@ def mortor_L():
             if last_move_L == slow_L:
                 while update == 0:
                     left_G(slow)
+                    print("                SLOW_L")
             if last_move_L == normal_L:
                 while update == 0:
                     left_G(normal)
+                    print("                NORMAL_L")
             if last_move_L == fast_L:
                 while update == 0:
                     left_G(fast)
+                    print("                FAST_L")
             if eL > 3:
                 turn_L()
 
@@ -300,16 +309,19 @@ def mortor_L():
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
               while update == 0:
                   left_G(fast)
+                  print("                FAST_L")
               last_move_L = fast_L
 
             elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
               while update == 0:
                   left_G(slow)
+                  print("                SLOW_L")
               last_move_L = slow_L
 
             else:
               while update == 0:
                   left_G(normal)
+                  print("                NORMAL_L")
               last_move_L = normal_L
 
 try:
