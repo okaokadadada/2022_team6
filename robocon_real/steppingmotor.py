@@ -34,10 +34,10 @@ def right_G():  #右ステッピングモータを正転させる関数
     for i in range(2000):
       GPIO.output(CCWp_R, GPIO.HIGH)
       GPIO.output(CCWm_R, GPIO.LOW)             #CWをONに
-      time.sleep(waittime_R/(2000-i))
+      time.sleep(waittime_R+(2/(2001-i)))
       GPIO.output(CCWp_R, GPIO.LOW)
       GPIO.output(CCWm_R, GPIO.HIGH)            #CWをOFFに
-      time.sleep(waittime_R/(2000-i))
+      time.sleep(waittime_R+(2/(2001-i)))
     for i in range(500):
       GPIO.output(CCWp_R, GPIO.HIGH)
       GPIO.output(CCWm_R, GPIO.LOW)             #CWをONに
@@ -48,10 +48,10 @@ def right_G():  #右ステッピングモータを正転させる関数
     for i in range(2000):
       GPIO.output(CCWp_R, GPIO.HIGH)
       GPIO.output(CCWm_R, GPIO.LOW)             #CWをONに
-      time.sleep(waittime_R/(i+1))
+      time.sleep(waittime_R+(2/(i+1)))
       GPIO.output(CCWp_R, GPIO.LOW)
       GPIO.output(CCWm_R, GPIO.HIGH)            #CWをOFFに
-      time.sleep(waittime_R/(i+1))
+      time.sleep(waittime_R+(2/(i+1)))
     
     #for i in range(100):
     #  GPIO.output(CWp_R, GPIO.HIGH)
@@ -76,10 +76,10 @@ def left_G():   #左ステッピングモータを正転させる関数
     for i in range(2000):
       GPIO.output(CWp_L, GPIO.HIGH)
       GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
-      time.sleep(waittime_L/(2000-i))
+      time.sleep(waittime_L+(2/(2001-i)))
       GPIO.output(CWp_L, GPIO.LOW)
       GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
-      time.sleep(waittime_L/(2000-i))
+      time.sleep(waittime_L+(2/(2001-i)))
     for i in range(500):
       GPIO.output(CWp_L, GPIO.HIGH)
       GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
@@ -90,10 +90,10 @@ def left_G():   #左ステッピングモータを正転させる関数
     for i in range(2000):
       GPIO.output(CWp_L, GPIO.HIGH)
       GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
-      time.sleep(waittime_L/(i+1))
+      time.sleep(waittime_L+(2/(i+1))
       GPIO.output(CWp_L, GPIO.LOW)
       GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
-      time.sleep(waittime_L/(i+1))
+      time.sleep(waittime_L+(2/(i+1)))
    # for i in range(100):
    #   GPIO.output(CCWp_L, GPIO.HIGH)
    #   GPIO.output(CCWm_L, GPIO.LOW)             #CCWをONに
