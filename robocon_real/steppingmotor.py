@@ -14,11 +14,11 @@ CWm_L=6
 CCWp_L=5
 CCWm_L=7
 
-waittime_R = 0.0025
-waittime_L = 0.0025
+waittime_R = 0.005
+waittime_L = 0.005
 waittime = 0.01
 starttime = 1
-difference = 0.00125
+difference = 0.0025
 
 #モータのGPIO設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
