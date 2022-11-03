@@ -18,6 +18,7 @@ waittime_R = 0.0025
 waittime_L = 0.0025
 waittime = 0.01
 starttime = 1
+difference = 0.5
 
 #モータのGPIO設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
@@ -51,18 +52,18 @@ def turn_L():
   for i in range(500,2000,2):
     GPIO.output(CWp_L, GPIO.HIGH)
     GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
-    time.sleep(waittime_L+0.005+(starttime/(i+1)))
+    time.sleep(waittime_L+difference+(starttime/(i+1)))
     GPIO.output(CWp_L, GPIO.LOW)
     GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
-    time.sleep(waittime_L+0.005+(starttime/(i+1)))
+    time.sleep(waittime_L+difference+(starttime/(i+1)))
   while True:
     for i in range(100):
       GPIO.output(CWp_L, GPIO.HIGH)
       GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
-      time.sleep(waittime_L+0.01)
+      time.sleep(waittime_L+difference)
       GPIO.output(CWp_L, GPIO.LOW)
       GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
-      time.sleep(waittime_L+0.01)
+      time.sleep(waittime_L+difference)
 
 def right_G():  #右ステッピングモータを正転させる関数
   while True:
