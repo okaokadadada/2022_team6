@@ -31,21 +31,21 @@ GPIO.setup(CCWm_L, GPIO.OUT)
 
 def right_G():  #右ステッピングモータを正転させる関数
   while True:
-    for i in range(200):
+    for i in range(2000):
       GPIO.output(CCWp_R, GPIO.HIGH)
       GPIO.output(CCWm_R, GPIO.LOW)             #CWをONに
       time.sleep(waittime_R/(200-i))
       GPIO.output(CCWp_R, GPIO.LOW)
       GPIO.output(CCWm_R, GPIO.HIGH)            #CWをOFFに
       time.sleep(waittime_R/(200-i))
-    for i in range(500):
+    for i in range(2000):
       GPIO.output(CCWp_R, GPIO.HIGH)
       GPIO.output(CCWm_R, GPIO.LOW)             #CWをONに
       time.sleep(waittime_R)
       GPIO.output(CCWp_R, GPIO.LOW)
       GPIO.output(CCWm_R, GPIO.HIGH)            #CWをOFFに
       time.sleep(waittime_R)
-    for i in range(200):
+    for i in range(2000):
       GPIO.output(CCWp_R, GPIO.HIGH)
       GPIO.output(CCWm_R, GPIO.LOW)             #CWをONに
       time.sleep(waittime_R/(i+1))
@@ -73,21 +73,21 @@ def right_B():  #右ステッピングモータを逆転させる関数
     
 def left_G():   #左ステッピングモータを正転させる関数
   while True:
-    for i in range(200):
+    for i in range(2000):
       GPIO.output(CWp_L, GPIO.HIGH)
       GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
       time.sleep(waittime_L/(200-i))
       GPIO.output(CWp_L, GPIO.LOW)
       GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
       time.sleep(waittime_L/(200-i))
-    for i in range(500):
+    for i in range(2000):
       GPIO.output(CWp_L, GPIO.HIGH)
       GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
       time.sleep(waittime_L)
       GPIO.output(CWp_L, GPIO.LOW)
       GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
       time.sleep(waittime_L)
-    for i in range(200):
+    for i in range(2000):
       GPIO.output(CWp_L, GPIO.HIGH)
       GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
       time.sleep(waittime_L/(i+1))
