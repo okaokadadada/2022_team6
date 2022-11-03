@@ -18,7 +18,7 @@ waittime_R = 0.0025
 waittime_L = 0.0025
 waittime = 0.01
 starttime = 1
-difference = 0.5
+difference = 0.0025
 
 #モータのGPIO設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
