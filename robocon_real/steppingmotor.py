@@ -39,6 +39,7 @@ def right_G():  #右ステッピングモータを正転させる関数
       GPIO.output(CCWp_R, GPIO.LOW)
       GPIO.output(CCWm_R, GPIO.HIGH)            #CWをOFFに
       time.sleep(waittime_R+(starttime/(i+1)))
+    print("accererarion")
     for i in range(500):
       GPIO.output(CCWp_R, GPIO.HIGH)
       GPIO.output(CCWm_R, GPIO.LOW)             #CWをONに
