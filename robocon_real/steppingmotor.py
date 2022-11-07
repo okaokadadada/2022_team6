@@ -33,36 +33,36 @@ GPIO.setup(CCWm_L, GPIO.OUT)
 
 def turn_R():
   for i in range(500,2000,2):
-    GPIO.output(CCWp_R, GPIO.HIGH)
-    GPIO.output(CCWm_R, GPIO.LOW)             #CWをONに
+    GPIO.output(CWp_R, GPIO.HIGH)
+    GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
     time.sleep(waittime_R+difference+(starttime/(i+1)))
-    GPIO.output(CCWp_R, GPIO.LOW)
-    GPIO.output(CCWm_R, GPIO.HIGH)            #CWをOFFに
+    GPIO.output(CWp_R, GPIO.LOW)
+    GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
     time.sleep(waittime_R+difference+(starttime/(i+1)))
   while True:
     for i in range(100):
-      GPIO.output(CCWp_R, GPIO.HIGH)
-      GPIO.output(CCWm_R, GPIO.LOW)             #CWをONに
+      GPIO.output(CWp_R, GPIO.HIGH)
+      GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
       time.sleep(waittime_R)#+difference)
-      GPIO.output(CCWp_R, GPIO.LOW)
-      GPIO.output(CCWm_R, GPIO.HIGH)            #CWをOFFに
+      GPIO.output(CWp_R, GPIO.LOW)
+      GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
       time.sleep(waittime_R)#+difference)
 
 def turn_L():
   for i in range(500,2000,2):
-    GPIO.output(CWp_L, GPIO.HIGH)
-    GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
+    GPIO.output(CCWp_L, GPIO.HIGH)
+    GPIO.output(CCWm_L, GPIO.LOW)             #CWをONに
     time.sleep(waittime_L+(starttime/(i+1)))
-    GPIO.output(CWp_L, GPIO.LOW)
-    GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
+    GPIO.output(CCWp_L, GPIO.LOW)
+    GPIO.output(CCWm_L, GPIO.HIGH)            #CWをOFFに
     time.sleep(waittime_L+(starttime/(i+1)))
   while True:
     for i in range(100):
-      GPIO.output(CWp_L, GPIO.HIGH)
-      GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
+      GPIO.output(CCWp_L, GPIO.HIGH)
+      GPIO.output(CCWm_L, GPIO.LOW)             #CWをONに
       time.sleep(waittime_L)
-      GPIO.output(CWp_L, GPIO.LOW)
-      GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
+      GPIO.output(CCWp_L, GPIO.LOW)
+      GPIO.output(CCWm_L, GPIO.HIGH)            #CWをOFFに
       time.sleep(waittime_L)
 
 def right_G():  #右ステッピングモータを正転させる関数
