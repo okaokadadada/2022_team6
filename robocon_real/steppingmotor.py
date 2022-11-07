@@ -43,10 +43,10 @@ def turn_R():
     for i in range(100):
       GPIO.output(CWp_R, GPIO.HIGH)
       GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
-      time.sleep(waittime_R)#+difference)
+      time.sleep(waittime_R+difference)
       GPIO.output(CWp_R, GPIO.LOW)
       GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
-      time.sleep(waittime_R)#+difference)
+      time.sleep(waittime_R+difference)
 
 def turn_L():
   for i in range(500,2000,2):
