@@ -51,8 +51,8 @@ duration_F = 0
 duration_L = 0
 distance_F = 30
 distance_L = 30
-distanceborder_F = 20
-distanceborder_L = 20
+distanceborder_F = 130
+distanceborder_L = 30
 
 #旋回回数
 turn = 0
@@ -61,9 +61,9 @@ turn = 0
   #遅い
 slow = 0.01
   #普通
-normal = 0.001
+normal = 0.005
   #速い
-fast = 0.0005
+fast = 0.0025
 
 #モータの制御に用いる変数，定数
 eR = 0
@@ -192,10 +192,10 @@ def turn_R():
     for i in range(100):
         GPIO.output(CWp_R, GPIO.HIGH)
         GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
-        time.sleep(0.03)
+        time.sleep(0.008)
         GPIO.output(CWp_R, GPIO.LOW)
         GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
-        time.sleep(0.03)
+        time.sleep(0.008)
     
 
 def turn_L():
@@ -204,10 +204,10 @@ def turn_L():
     for i in range(100):
         GPIO.output(CWp_L, GPIO.HIGH)
         GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
-        time.sleep(0.03)
+        time.sleep(0.005)
         GPIO.output(CWp_L, GPIO.LOW)
         GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
-        time.sleep(0.03)
+        time.sleep(0.005)
         print("turn=", int(turn))  #旋回回数をint型で表示
     
     
