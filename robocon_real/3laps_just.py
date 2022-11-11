@@ -64,7 +64,7 @@ slow = 0.01
 normal = 0.005
   #速い
 fast = 0.0025
-turn_R_speed = 0.007
+turn_R_speed = 0.006
 turn_L_speed = 0.005
 
 #モータの制御に用いる変数，定数
@@ -191,7 +191,7 @@ def left_B(waittime):   #左ステッピングモータを逆転させる関数
   time.sleep(waittime)
 
 def turn_R():
-    for i in range(100):
+    for i in range(turn_L_speed100):
         GPIO.output(CWp_R, GPIO.HIGH)
         GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
         time.sleep(turn_R_speed)
@@ -203,7 +203,7 @@ def turn_R():
 def turn_L():
     global turn
     turn = turn + 1
-    for i in range(100):
+    for i in range(turn_R_speed*100):
         GPIO.output(CWp_L, GPIO.HIGH)
         GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
         time.sleep(turn_L_speed)
