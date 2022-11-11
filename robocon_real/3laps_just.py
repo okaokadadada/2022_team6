@@ -191,7 +191,7 @@ def left_B(waittime):   #左ステッピングモータを逆転させる関数
   time.sleep(waittime)
 
 def turn_R():
-    for i in range(turn_L_speed100):
+    for i in range(turn_L_speed*10000):
         GPIO.output(CWp_R, GPIO.HIGH)
         GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
         time.sleep(turn_R_speed)
@@ -203,7 +203,7 @@ def turn_R():
 def turn_L():
     global turn
     turn = turn + 1
-    for i in range(turn_R_speed*100):
+    for i in range(turn_R_speed*10000):
         GPIO.output(CWp_L, GPIO.HIGH)
         GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
         time.sleep(turn_L_speed)
