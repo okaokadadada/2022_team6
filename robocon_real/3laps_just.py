@@ -64,7 +64,7 @@ slow = 0.01
 normal = 0.005
   #速い
 fast = 0.0025
-turn_R_speed = 0.006
+turn_R_speed = 0.0075
 turn_L_speed = 0.005
 
 #モータの制御に用いる変数，定数
