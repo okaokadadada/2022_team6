@@ -42,7 +42,7 @@ a=0
 b=0
 c=0
 d=0
-rimit = 600
+rimit = 20000
 sig_on_F = 0
 sig_off_F = 0
 sig_on_L = 0
@@ -51,7 +51,7 @@ duration_F = 0
 duration_L = 0
 distance_F = 30
 distance_L = 30
-distanceborder_F = 130
+distanceborder_F = 50
 distanceborder_L = 30
 
 #旋回回数
