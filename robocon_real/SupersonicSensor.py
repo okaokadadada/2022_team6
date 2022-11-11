@@ -62,11 +62,14 @@ def read_distance():
 
     while True:
         if a>300 or b>300 or c>300 or d>300:
-            a=0
-            b=0
-            c=0
-            d=0
-            print("reset")
+            if a>300:
+              print("reset_a")
+            if b>300:
+              print("reset_b")
+            if c>300:
+              print("reset_a")
+            if d>300:
+              print("reset_b")
         a=0
         b=0
         c=0
