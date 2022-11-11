@@ -6,10 +6,10 @@ import sys                          #sysモジュールをインポート
 import threading
 
 #ポート番号の定義
-Trig_F = 22
-Echo_F = 23
-Trig_L = 10
-Echo_L = 24
+Trig_F = 23
+Echo_F = 24
+Trig_L = 14
+Echo_L = 27
 
 
 times = 0.00001
@@ -73,26 +73,20 @@ def read_distance():
         d=0
         GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
         time.sleep(times)                     #10μ秒間待つ
-        test_F1 = time.time()
         GPIO.output(Trig_F, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
-
-        #test_start = time.time()
 
         while GPIO.input(Echo_F) == GPIO.LOW:     #GPIO18がLowの時間
             sig_off_F = time.time()
             a=a+1
             if a>300:
                 break
-                #test_finish = time.time() 
         if a>300:
             continue
-        test_F2 = time.time()
         while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
             sig_on_F = time.time()
             b=b+1
             if b>300:
                 break
-                #test_finish = time.time() 
         if b>300:
             continue
 
@@ -103,7 +97,6 @@ def read_distance():
 
         GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
         time.sleep(times)                     #10μ秒間待つ
-        test_L1 = time.time()
         GPIO.output(Trig_L, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
 
         while GPIO.input(Echo_L) == GPIO.LOW:     #GPIO18がLowの時間
@@ -111,16 +104,13 @@ def read_distance():
             c=c+1
             if c>300:
                 break
-                #test_finish = time.time() 
         if c>300:
             continue
-        test_L2 = time.time()
         while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
             sig_on_L = time.time()
             d=d+1
             if d>300:
                 break
-                #test_finish = time.time() 
         if d>300:
             continue
 
@@ -128,7 +118,6 @@ def read_distance():
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
         time.sleep(sleeps)                          #1秒間待つ
 
-        #print("duration_F=", f"{(test_F2 - test_F1):.5f}", "duration_L=", f"{(test_L2 - test_L1):.5f}")                   #HC-SR04で距離を測定する      
         print("前", f"{distance_F:.2f}", "cm", "左=", f"{distance_L:.2f}", "cm")  #距離をint型で表示
 
 #連続して値を超音波センサの状態を読み取る
