@@ -11,14 +11,14 @@ Trig_L = 14
 Echo_L = 27
 
 #モータのGPIO設定
-CWp_R=2
-CWm_R=3
-CCWp_R=4
-CCWm_R=14
-CCWp_L=15
-CCWm_L=18
-CWp_L=17
-CWm_L=27
+CWp_R=16
+CWm_R=19
+CCWp_R=20
+CCWm_R=21
+CCWp_L=12
+CCWm_L=6
+CWp_L=5
+CWm_L=7
 
 #モータのGPIO設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
