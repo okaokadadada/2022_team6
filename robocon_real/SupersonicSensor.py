@@ -29,6 +29,7 @@ test_L1 = 0
 test_L2 = 0
 test_start = 0
 test_finish = 0
+rimit = 10000
 a=0
 b=0
 c=0
@@ -61,14 +62,14 @@ def read_distance():
     global d
 
     while True:
-        if a>300 or b>300 or c>300 or d>300:
-            if a>300:
+        if a>rimit or b>rimit or c>rimit or d>rimit:
+            if a>rimit:
               print("reset_a")
-            if b>300:
+            if b>rimit:
               print("reset_b")
-            if c>300:
+            if c>rimit:
               print("reset_a")
-            if d>300:
+            if d>rimit:
               print("reset_b")
         a=0
         b=0
@@ -81,16 +82,16 @@ def read_distance():
         while GPIO.input(Echo_F) == GPIO.LOW:     #GPIO18がLowの時間
             sig_off_F = time.time()
             a=a+1
-            if a>300:
+            if a>rimit:
                 break
-        if a>300:
+        if a>rimit:
             continue
         while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
             sig_on_F = time.time()
             b=b+1
-            if b>300:
+            if b>rimit:
                 break
-        if b>300:
+        if b>rimit:
             continue
 
         duration_F = sig_on_F - sig_off_F             #GPIO18がHighしている時間を算術
@@ -105,16 +106,16 @@ def read_distance():
         while GPIO.input(Echo_L) == GPIO.LOW:     #GPIO18がLowの時間
             sig_off_L = time.time()
             c=c+1
-            if c>300:
+            if c>rimit:
                 break
-        if c>300:
+        if c>rimit:
             continue
         while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
             sig_on_L = time.time()
             d=d+1
-            if d>300:
+            if d>rimit:
                 break
-        if d>300:
+        if d>rimit:
             continue
 
         duration_L = sig_on_L - sig_off_L             #GPIO18がHighしている時間を算術
