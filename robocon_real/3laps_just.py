@@ -64,6 +64,8 @@ slow = 0.01
 normal = 0.005
   #速い
 fast = 0.0025
+turn_R_speed = 0.007
+turn_L speed = 0.005
 
 #モータの制御に用いる変数，定数
 eR = 0
@@ -192,10 +194,10 @@ def turn_R():
     for i in range(100):
         GPIO.output(CWp_R, GPIO.HIGH)
         GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
-        time.sleep(0.008)
+        time.sleep(turn_R_speed)
         GPIO.output(CWp_R, GPIO.LOW)
         GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
-        time.sleep(0.008)
+        time.sleep(turn_R_speed
     
 
 def turn_L():
@@ -204,10 +206,10 @@ def turn_L():
     for i in range(100):
         GPIO.output(CWp_L, GPIO.HIGH)
         GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
-        time.sleep(0.005)
+        time.sleep(turn_R_speed)
         GPIO.output(CWp_L, GPIO.LOW)
         GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
-        time.sleep(0.005)
+        time.sleep(turn_R_speed)
         print("turn=", int(turn))  #旋回回数をint型で表示
     
     
