@@ -5,7 +5,7 @@ INTERVAL =0.5
 PIN = 14
 FREQ = 50
 
-GPIO.cleanup()
+# GPIO.cleanup()
 
 GPIO.setmode(GPIO.BCM)
 
