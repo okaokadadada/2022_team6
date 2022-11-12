@@ -14,7 +14,7 @@ servo = GPIO.PWM(PIN, FREQ)
 
 servo.start(0.0)
 
-servo.ChangeDutyCycle(6.0)
+servo.ChangeDutyCycle(8.0)
 
 #for i in range(2):#初期の9.1から2.5まで動かす
  # for i in range(70):
