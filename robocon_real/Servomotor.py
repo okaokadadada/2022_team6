@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-INTERVAL =0.5
+INTERVAL =00.5
 PIN = 14
 FREQ = 50
 
