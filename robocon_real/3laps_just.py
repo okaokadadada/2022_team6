@@ -66,6 +66,8 @@ normal = 0.005
 fast = 0.0025
 turn_R_speed = 0.0075
 turn_L_speed = 0.005
+turn_R_range = 250
+turn_L_range = 375
 
 #モータの制御に用いる変数，定数
 eR = 0
@@ -191,7 +193,7 @@ def left_B(waittime):   #左ステッピングモータを逆転させる関数
   time.sleep(waittime)
 
 def turn_R():
-    for i in range(int(turn_L_speed*10000)):
+    for i in range(turn_R_range):
         GPIO.output(CWp_R, GPIO.HIGH)
         GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
         time.sleep(turn_R_speed)
@@ -203,7 +205,7 @@ def turn_R():
 def turn_L():
     global turn
     turn = turn + 1
-    for i in range(int(turn_R_speed*10000)):
+    for i in range(turn_L_range):
         GPIO.output(CWp_L, GPIO.HIGH)
         GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
         time.sleep(turn_L_speed)
@@ -237,16 +239,12 @@ def mortor_R():
           if last_move_R == slow_R:
             while update == 0:
                 right_G(slow)
-                print("R_SLOW")
-                print("R_FAST")
           if last_move_R == normal_R:
             while update == 0:
                 right_G(normal)
-                print("R_NORMAL")
           if last_move_R == fast_R:
             while update == 0:
                 right_G(fast)
-                print("R_FAST")
           if eR > 3:
             turn_R()
 
@@ -255,19 +253,16 @@ def mortor_R():
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
               while update == 0:
                   right_G(slow)
-                  print("R_SLOW")
               last_move_L = slow_L
 
             elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
               while update == 0:
                   right_G(fast)
-                  print("R_FAST")
               last_move_L = fast_L
 
             else:
               while update == 0:
                   right_G(normal)
-                  print("R_NORMAL")
               last_move_R = normal_R
 
 
@@ -295,15 +290,12 @@ def mortor_L():
             if last_move_L == slow_L:
                 while update == 0:
                     left_G(slow)
-                    print("L_SLOW")
             if last_move_L == normal_L:
                 while update == 0:
                     left_G(normal)
-                    print("L_NORMAL")
             if last_move_L == fast_L:
                 while update == 0:
                     left_G(fast)
-                    print("L_FAST")
             if eL > 3:
                 turn_L()
 
@@ -312,19 +304,16 @@ def mortor_L():
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
               while update == 0:
                   left_G(fast)
-                  print("L_FAST")
               last_move_L = fast_L
 
             elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
               while update == 0:
                   left_G(slow)
-                  print("L_SLOW")
               last_move_L = slow_L
 
             else:
               while update == 0:
                   left_G(normal)
-                  print("L_NORMAL")
               last_move_L = normal_L
 
 try:
