@@ -238,7 +238,7 @@ def mortor_R():
             while update == 0:
                 right_G(slow)
                 print("R_SLOW")
-                print("R_FAST)
+                print("R_FAST")
           if last_move_R == normal_R:
             while update == 0:
                 right_G(normal)
