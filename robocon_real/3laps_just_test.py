@@ -63,7 +63,7 @@ slow = 0.01
   #普通
 normal = 0.005
   #速い
-fast = 0.0025
+fast = 0.005    #0.0025
 
 turn_R_speed = 0.0075
 turn_L_speed = 0.005
