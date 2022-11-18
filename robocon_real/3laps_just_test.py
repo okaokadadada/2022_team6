@@ -305,26 +305,29 @@ def mortor_L():
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
               while update == 0:
                   left_G(fast)
+                  print("fast_L")
               last_move_L = fast_L
 
             elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
               while update == 0:
                   left_G(slow)
+                  print("slow_L")
               last_move_L = slow_L
 
             else:
               while update == 0:
                   left_G(normal)
+                  print("normal_L")
               last_move_L = normal_L
 
 try:
     if __name__ == "__main__":
         thread_1 = threading.Thread(target=read_distance)
-        thread_2 = threading.Thread(target=mortor_R)
+        #thread_2 = threading.Thread(target=mortor_R)
         thread_3 = threading.Thread(target=mortor_L)
 
         thread_1.start()
-        thread_2.start()
+        #thread_2.start()
         thread_3.start()
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
