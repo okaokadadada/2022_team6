@@ -53,7 +53,7 @@ duration_L = 0
 distance_F = 30
 distance_L = 30
 distanceborder_F = 50
-distanceborder_L = 30
+distanceborder_L = 20
 
 #旋回回数
 turn = 0
