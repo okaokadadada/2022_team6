@@ -50,8 +50,10 @@ sig_on_L = 0
 sig_off_L = 0
 duration_F = 0
 duration_L = 0
-distance_F = 30
-distance_L = 30
+distance_F = 0
+distance_L = 0
+distance_preF = 0
+distance_preL = 0
 distanceborder_F = 50
 distanceborder_L = 20
 
@@ -101,6 +103,8 @@ def read_distance():
     global duration_L
     global distance_F
     global distance_L
+    global distance_preF
+    global distance_preL
     while True:
         if a>300 or b>300 or c>300 or d>300:  #リセット報告
             a=0
@@ -133,7 +137,11 @@ def read_distance():
             continue
         duration_F = sig_on_F -sig_off_F            #GPIO18がHighしている時間を算術
         distance_F = duration_F * 34000 / 2         #距離を求める(cm)
-        time.sleep(0.05)
+        if distance_F - distance_preF > 20:
+          distance_F = distance_F + 10
+        else distance_F - distance_preF < -20:
+          distance_F = distance F - 10
+        time.sleep(0.01)
 
         #左方
         GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
@@ -156,13 +164,19 @@ def read_distance():
             continue
         duration_L = sig_on_L - sig_off_L           #GPIO18がHighしている時間を算術
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
-        time.sleep(0.05)
+        if distance_L - distance_preL > 10:
+          distance_L = distance_L + 5
+        else distance_L - distance_preL < -10:
+          distance_L = distance L - 5
+        time.sleep(0.01)
         
         #duration_F, duration_L, sig_on_F, sig_on_L, sig_off_F, sig_off_L, 
         update = 1
         print("前＝", f"{distance_F:.2f}", "cm", "左＝", f"{distance_L:.2f}", "cm")
         if e < 51:
           e = e + 1
+        distance_preF = distance_F
+        distance_preL = distance_L
 
 #ステッピングモータを制御する関数
 def right_G(waittime):  #右ステッピングモータを正転させる関数
