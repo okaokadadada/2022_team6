@@ -153,10 +153,10 @@ def left_G():   #左ステッピングモータを正転させる関数
 
 try:
     if __name__ == "__main__":
-        thread_2 = threading.Thread(target=right_G)  #right_G  turn_R
+        #thread_2 = threading.Thread(target=right_G)  #right_G  turn_R
         thread_3 = threading.Thread(target=left_G)  #left_G  turn_L
         
-        thread_2.start()
+        #thread_2.start()
         thread_3.start()
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
