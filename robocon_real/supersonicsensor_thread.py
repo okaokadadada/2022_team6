@@ -11,6 +11,7 @@ Trig_L = 14
 Echo_L = 27
 
 #超音波センサのピン設定
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(Trig_F, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_F, GPIO.IN)           #GPIO18を入力モードに設定
 GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
