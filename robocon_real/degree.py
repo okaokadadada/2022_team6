@@ -115,8 +115,8 @@ if __name__ == "__main__":
         acc = acc_value()
         gyro= gyro_value()
         mag = mag_value()
-        X[i]=mag[0]
-        Y[i]=mag[1]
+        X[i]=mag[0]-25
+        Y[i]=mag[1]+20
         Z[i]=mag[2] 
         i+=1
         if i==9:
