@@ -323,11 +323,11 @@ def mortor_L():
 try:
     if __name__ == "__main__":
         thread_1 = threading.Thread(target=read_distance)
-        #thread_2 = threading.Thread(target=mortor_R)
+        thread_2 = threading.Thread(target=mortor_L)
         thread_3 = threading.Thread(target=mortor_R)
 
         thread_1.start()
-        #thread_2.start()
+        thread_2.start()
         thread_3.start()
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
