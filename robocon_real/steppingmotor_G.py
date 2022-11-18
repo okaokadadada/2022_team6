@@ -146,9 +146,11 @@ def left_G():   #左ステッピングモータを正転させる関数
   while True:
     GPIO.output(CWp_L, GPIO.HIGH)
     GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
+    print("GPIO_HIGH")
     time.sleep(waittime)
     GPIO.output(CWp_L, GPIO.LOW)
     GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
+    print("GPIO_LOW")
     time.sleep(waittime)    
 
 try:
