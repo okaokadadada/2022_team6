@@ -129,14 +129,15 @@ if __name__ == "__main__":
                 avZ+=Z[k]
             
             i=0
-        deg=0
-        if avX>0 :
-          deg=np.rad2deg(avY/avX)+86
-        if avX<0 :
-          deg=np.rad2deg(avY/avX)+266
-        if avX==0 :
-          deg=0
-        print(deg)
+            deg=0
+
+            if avX>0 :
+              deg=np.rad2deg(avY/avX)+86
+            if avX<0 :
+              deg=np.rad2deg(avY/avX)+266
+            if avX==0 :
+              deg=0
+            print(deg)
        # print("Mag -> x:{}, y:{}, z: {}".format(mag[0], mag[1], mag[2]))
         print("\n")
         time.sleep(0.1)
