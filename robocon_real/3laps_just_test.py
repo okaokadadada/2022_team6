@@ -161,7 +161,7 @@ def read_distance():
         #duration_F, duration_L, sig_on_F, sig_on_L, sig_off_F, sig_off_L, 
         update = 1
         print("前＝", f"{distance_F:.2f}", "cm", "左＝", f"{distance_L:.2f}", "cm")
-        if e < 101:
+        if e < 51:
           e = e + 1
 
 #ステッピングモータを制御する関数
@@ -240,7 +240,7 @@ def mortor_R():
     while True:
       update = 0
       if turn<11:
-        if distance_F < distanceborder_F and e > 100:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+        if distance_F < distanceborder_F and e > 50:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
           eR = eR + 1 
           if last_move_R == slow_R:
             while update == 0:
@@ -292,7 +292,7 @@ def mortor_L():
     while True:
         update = 0
         if turn<11:
-          if distance_F < distanceborder_F and e > 100:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+          if distance_F < distanceborder_F and e > 50:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
             eL = eL + 1
             if last_move_L == slow_L:
                 while update == 0:
