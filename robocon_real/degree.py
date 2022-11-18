@@ -13,6 +13,7 @@ import time
 import math
 import datetime
 import csv
+import numpy as np
 
 # I2C
 ACCL_ADDR = 0x19
