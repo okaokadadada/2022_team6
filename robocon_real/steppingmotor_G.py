@@ -17,7 +17,7 @@ CCWm_L=6
 
 waittime_R = 0.005
 waittime_L = 0.005
-waittime = 0.01
+waittime = 0.005
 starttime = 1
 difference = 0.0025
 
@@ -133,7 +133,7 @@ def left_B():   #左ステッピングモータを逆転させる関数
     GPIO.output(CCWm_L, GPIO.HIGH)            #CCWをOFFに
     time.sleep(waittime)
 
-def right_G(waittime):  #右ステッピングモータを正転させる関数
+def right_G():  #右ステッピングモータを正転させる関数
   while True:
     GPIO.output(CWp_R, GPIO.HIGH)
     GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
@@ -142,7 +142,7 @@ def right_G(waittime):  #右ステッピングモータを正転させる関数
     GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
     time.sleep(waittime)
     
-def left_G(waittime):   #左ステッピングモータを正転させる関数
+def left_G():   #左ステッピングモータを正転させる関数
   while True:
     GPIO.output(CWp_L, GPIO.HIGH)
     GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
