@@ -9,10 +9,11 @@ CWp_R=16
 CWm_R=19
 CCWp_R=20
 CCWm_R=21
-CWp_L=12
-CWm_L=6
-CCWp_L=5
-CCWm_L=7
+CWp_L=5
+CWm_L=7
+CCWp_L=12
+CCWm_L=6
+
 
 waittime_R = 0.005
 waittime_L = 0.005
