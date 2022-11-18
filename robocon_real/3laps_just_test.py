@@ -105,7 +105,7 @@ def read_distance():
             b=0
             c=0
             d=0
-            print("reset")
+            #print("reset")
         a=0
         b=0
         c=0
@@ -305,19 +305,19 @@ def mortor_L():
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
               while update == 0:
                   left_G(fast)
-                  print("fast_L")
+                  #print("fast_L")
               last_move_L = fast_L
 
             elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
               while update == 0:
                   left_G(slow)
-                  print("slow_L")
+                  #print("slow_L")
               last_move_L = slow_L
 
             else:
               while update == 0:
                   left_G(normal)
-                  print("normal_L")
+                  #print("normal_L")
               last_move_L = normal_L
 
 try:
