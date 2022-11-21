@@ -139,7 +139,7 @@ def read_distance():
         distance_F = duration_F * 34000 / 2         #距離を求める(cm)
         if distance_F - distance_preF > 100:
           distance_F = distance_preF
-        else distance_F - distance_preF < -100:
+        elif distance_F - distance_preF < -100:
           distance_F = distance_preF
         time.sleep(0.01)
 
@@ -166,7 +166,7 @@ def read_distance():
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
         if distance_L - distance_preL > 100:
           distance_L = distance_preL
-        else distance_L - distance_preL < -100:
+        el distance_L - distance_preL < -100:
           distance_L = distance_preL
         time.sleep(0.01)
         
