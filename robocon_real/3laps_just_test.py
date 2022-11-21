@@ -164,10 +164,10 @@ def read_distance():
             continue
         duration_L = sig_on_L - sig_off_L           #GPIO18がHighしている時間を算術
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
-        #if distance_L - distance_preL > 100:
-        #  distance_L = distance_preL + 10
-        #elif distance_L - distance_preL < -100:
-        #  distance_L = distance_preL - 10
+        if distance_L - distance_preL > 100:
+          distance_L = distance_preL + 10
+        elif distance_L - distance_preL < -100:
+          distance_L = distance_preL - 10
         time.sleep(0.01)
         
         update = 1
