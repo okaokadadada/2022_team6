@@ -144,12 +144,12 @@ def right_G():  #右ステッピングモータを正転させる関数
     
 def left_G():   #左ステッピングモータを正転させる関数
   while True:
-    GPIO.output(7, GPIO.HIGH)
-    GPIO.output(5, GPIO.LOW)             #CWをONに
+    GPIO.output(6, GPIO.HIGH)
+    GPIO.output(12, GPIO.LOW)             #CWをONに
     #print("GPIO_HIGH")
     time.sleep(waittime)
-    GPIO.output(7, GPIO.LOW)
-    GPIO.output(5, GPIO.HIGH)            #CWをOFFに
+    GPIO.output(6, GPIO.LOW)
+    GPIO.output(12, GPIO.HIGH)            #CWをOFFに
     #print("GPIO_LOW")
     time.sleep(waittime)    
 
