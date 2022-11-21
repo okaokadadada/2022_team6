@@ -5,10 +5,15 @@ import sys                          #sysモジュールをインポート
 import threading
 
 #超音波センサのピン設定
-Trig_F = 23
-Echo_F = 24
-Trig_L = 14
-Echo_L = 27
+Trig_F = 14
+Echo_F = 27
+Trig_L = 23
+Echo_L = 23
+
+#Trig_F = 23
+#Echo_F = 24
+#Trig_L = 14
+#Echo_L = 27
 
 #モータのGPIO設定
 CWp_R=16
@@ -43,7 +48,7 @@ b=0
 c=0
 d=0
 e=0
-rimit = 2000000000
+rimit = 200000
 sig_on_F = 0
 sig_off_F = 0
 sig_on_L = 0
@@ -170,7 +175,6 @@ def read_distance():
         #  distance_L = distance_preL - 10
         time.sleep(0.01)
         
-        #duration_F, duration_L, sig_on_F, sig_on_L, sig_off_F, sig_off_L, 
         update = 1
         print("前＝", f"{distance_F:6.1f}", "cm", "左＝", f"{distance_L:6.1f}", "cm")
         if e < 51:
