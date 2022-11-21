@@ -78,7 +78,7 @@ def compass():
     if avX>0 :
             now_direction=np.rad2deg(avY/avX)
     if avX<0 :
-            now_direction=np.rad2deg(avX/avX)
+            now_direction=np.rad2deg(avY/avX)
     if avX==0 :
             now_direction=0
             
