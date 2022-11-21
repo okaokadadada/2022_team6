@@ -71,8 +71,10 @@ def compass():
         time.sleep(0.1)
 
     avX=np.average(x)
+    print('avX='+str(avX))
     avY=np.average(y)
-
+    print('avY='+str(avY))
+    
     if avX>0 :
             now_direction=np.rad2deg(avY/avX)
     if avX<0 :
