@@ -156,7 +156,7 @@ def left_G():   #左ステッピングモータを正転させる関数
 try:
     if __name__ == "__main__":
         #thread_2 = threading.Thread(target=right_G)  #right_G  turn_R
-        thread_1 = threading.Thread(target=right_G)  #left_G  turn_L
+        thread_1 = threading.Thread(target=left_G)  #left_G  turn_L
         
         #thread_2.start()
         thread_1.start()
