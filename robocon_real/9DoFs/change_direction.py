@@ -23,14 +23,7 @@ GYRO_R_ADDR = 0x02
 MAG_ADDR = 0x13
 MAG_R_ADDR = 0x42
 i2c = SMBus(1)
-X=[0,0,0,0,0,0,0,0,0,0]
-Y=[0,0,0,0,0,0,0,0,0,0]
-Z=[0,0,0,0,0,0,0,0,0,0]
-i=0
 
-avX=0
-avY=0
-avZ=0
 
 def mag_value():
     data = [0, 0, 0, 0, 0, 0, 0, 0]
