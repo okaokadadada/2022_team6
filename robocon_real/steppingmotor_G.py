@@ -5,8 +5,8 @@ import sys                          #sysモジュールをインポート
 import threading
 
 #モータのGPIO設定
-CWp_R=5
-CWm_R=7
+CWp_R=7
+CWm_R=5
 CCWp_R=6
 CCWm_R=12
 CWp_L=16
