@@ -74,6 +74,8 @@ def compass():
         mag=mag_value()
         x[i]=mag[0]-25
         y[i]=mag[1]+20
+        
+        time.sleep(0.1)
 
     avX=np.average(x)
     avY=np.average(y)
@@ -84,6 +86,7 @@ def compass():
             now_direction=np.rad2deg(avX/avX)
     if avX==0 :
             now_direction=0
+            
     difference=now_direction-id
 
     print(difference)
@@ -97,4 +100,4 @@ if __name__ == "__main__":
     id=initial()
     while True:
         compass() 
-        time.sleep(1)
+        
