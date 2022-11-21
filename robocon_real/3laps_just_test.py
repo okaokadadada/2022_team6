@@ -5,15 +5,10 @@ import sys                          #sysモジュールをインポート
 import threading
 
 #超音波センサのピン設定
-Trig_F = 14
-Echo_F = 27
-Trig_L = 23
-Echo_L = 24
-
-#Trig_F = 23
-#Echo_F = 24
-#Trig_L = 14
-#Echo_L = 27
+Trig_F = 23
+Echo_F = 24
+Trig_L = 14
+Echo_L = 27
 
 #モータのGPIO設定
 CWp_R=16
@@ -163,7 +158,7 @@ def read_distance():
         while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
             sig_on_L = time.time()
             d=d+1
-            if d>300:
+            if d>rimit:
                 break
         if d>rimit:
             continue
