@@ -63,7 +63,7 @@ def compass():
     x=[0,0,0,0,0,0,0,0,0,0]
     y=[0,0,0,0,0,0,0,0,0,0]
 
-    while i in range(10):
+    for i in range(10):
         mag=mag_value()
         x[i]=mag[0]-25
         y[i]=mag[1]+20
