@@ -54,7 +54,7 @@ distance_F = 0
 distance_L = 0
 distance_preF = 0
 distance_preL = 0
-distanceborder_F = 50
+distanceborder_F = 10
 distanceborder_L = 20
 
 #旋回回数
