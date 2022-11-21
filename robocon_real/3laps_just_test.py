@@ -15,8 +15,8 @@ CWp_R=16
 CWm_R=19
 CCWp_R=20
 CCWm_R=21
-CWp_L=5
-CWm_L=7
+CWp_L=7
+CWm_L=5
 CCWp_L=12
 CCWm_L=6
 
