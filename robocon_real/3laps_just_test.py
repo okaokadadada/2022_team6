@@ -172,7 +172,7 @@ def read_distance():
         
         #duration_F, duration_L, sig_on_F, sig_on_L, sig_off_F, sig_off_L, 
         update = 1
-        print("前＝", f"{distance_F:.2f}", "cm", "左＝", f"{distance_L:.2f}", "cm")
+        print("前＝", f"{distance_F:8.1f}", "cm", "左＝", f"{distance_L:8.2f}", "cm")
         if e < 51:
           e = e + 1
         distance_preF = distance_F
