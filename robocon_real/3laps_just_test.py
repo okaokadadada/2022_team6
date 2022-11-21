@@ -8,7 +8,7 @@ import threading
 Trig_F = 14
 Echo_F = 27
 Trig_L = 23
-Echo_L = 23
+Echo_L = 24
 
 #Trig_F = 23
 #Echo_F = 24
