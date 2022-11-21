@@ -15,10 +15,10 @@ CWp_R=16
 CWm_R=19
 CCWp_R=20
 CCWm_R=21
-CWp_L=5
-CWm_L=7
-CCWp_L=12
-CCWm_L=6
+CWp_L=12
+CWm_L=6
+CCWp_L=5
+CCWm_L=7
 
 #モータのGPIO設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
@@ -138,9 +138,9 @@ def read_distance():
         duration_F = sig_on_F -sig_off_F            #GPIO18がHighしている時間を算術
         distance_F = duration_F * 34000 / 2         #距離を求める(cm)
         if distance_F - distance_preF > 100:
-          distance_F = distance_preF
+          distance_F = distance_preF + 20
         elif distance_F - distance_preF < -100:
-          distance_F = distance_preF
+          distance_F = distance_preF - 20
         time.sleep(0.01)
 
         #左方
@@ -165,9 +165,9 @@ def read_distance():
         duration_L = sig_on_L - sig_off_L           #GPIO18がHighしている時間を算術
         distance_L = duration_L * 34000 / 2         #距離を求める(cm)
         if distance_L - distance_preL > 100:
-          distance_L = distance_preL
+          distance_L = distance_preL + 10
         elif distance_L - distance_preL < -100:
-          distance_L = distance_preL
+          distance_L = distance_preL - 10
         time.sleep(0.01)
         
         #duration_F, duration_L, sig_on_F, sig_on_L, sig_off_F, sig_off_L, 
