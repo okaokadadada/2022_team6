@@ -53,34 +53,7 @@ def bmx_setup():
     i2c.write_byte_data(MAG_ADDR, 0x51, 0x04)
     i2c.write_byte_data(MAG_ADDR, 0x52, 0x16)
     time.sleep(0.5)
-def acc_value():
-    data = [0, 0, 0, 0, 0, 0]
-    acc_data = [0.0, 0.0, 0.0]
-    try:
-        for i in range(6):
-            data[i] = i2c.read_byte_data(ACCL_ADDR, ACCL_R_ADDR + i)
-        for i in range(3):
-            acc_data[i] = ((data[2*i + 1] * 256) + int(data[2*i] & 0xF0)) / 16
-            if acc_data[i] > 2047:
-                acc_data[i] -= 4096
-            acc_data[i] *= 0.0098
-    except IOError as e:
-        print("I/O error({0}): {1}".format(e.errno, e.strerror))
-    return acc_data
-def gyro_value():
-    data = [0, 0, 0, 0, 0, 0]
-    gyro_data = [0.0, 0.0, 0.0]
-    try:
-        for i in range(6):
-            data[i] = i2c.read_byte_data(GYRO_ADDR, GYRO_R_ADDR + i)
-        for i in range(3):
-            gyro_data[i] = (data[2*i + 1] * 256) + data[2*i]
-            if gyro_data[i] > 32767:
-                gyro_data[i] -= 65536
-            gyro_data[i] *= 0.0038
-    except IOError as e:
-        print("I/O error({0}): {1}".format(e.errno, e.strerror))
-    return gyro_data
+
 def mag_value():
     data = [0, 0, 0, 0, 0, 0, 0, 0]
     mag_data = [0.0, 0.0, 0.0]
@@ -101,17 +74,9 @@ def mag_value():
     return mag_data
 
 if __name__ == "__main__":
-    bmx_setup()
-    time.sleep(0.1)
-    now_time = datetime.datetime.now()
-    filename = 'test_' + now_time.strftime('%Y%m%d_%H%M%S') + '.csv'
-    # ファイル，1行目(カラム)の作成
-    with open(filename, 'a') as f:
-        writer = csv.writer(f)
-        writer.writerow(['Mag_x', 'Mag_y', 'Mag_z'])
+
     while True:
-        acc = acc_value()
-        gyro= gyro_value()
+
         mag = mag_value()
         X[i]=mag[0]
         Y[i]=mag[1]
@@ -131,6 +96,3 @@ if __name__ == "__main__":
        # print("Mag -> x:{}, y:{}, z: {}".format(mag[0], mag[1], mag[2]))
         print("\n")
         time.sleep(0.1)
-        with open(filename, 'a', newline="") as f:
-            writer = csv.writer(f)
-            writer.writerow([mag[0], mag[1], mag[2]])
