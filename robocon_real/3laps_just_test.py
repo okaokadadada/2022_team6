@@ -175,7 +175,7 @@ def read_distance():
         
         update = 1
         
-        if distance_F > ditanceborder_F:
+        if distance_F > distanceborder_F:
           certainty = certainty + 1
         else:
           certainty = 0
