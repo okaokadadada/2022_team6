@@ -59,6 +59,7 @@ distanceborder_L = 20
 
 #旋回回数
 turn_number = 0
+turn = False
 
 #モータの速度
   #遅い
