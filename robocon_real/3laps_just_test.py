@@ -91,6 +91,8 @@ def read_distance():
     global b
     global c
     global d
+    global turn_number
+    global turn
     global initial
     global update
     global rimit
