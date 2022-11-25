@@ -63,11 +63,11 @@ turn = False
 
 #モータの速度
   #遅い
-slow = 0.0075
+slow = 0.007
   #普通
 normal = 0.005
   #速い
-fast = 0.005    #0.0025
+fast = 0.003    #0.0025
 
 turn_R_speed = 0.0075
 turn_L_speed = 0.005
@@ -330,12 +330,14 @@ def mortor_L():
             if last_move_L == slow_L:
                 while update == 0:
                     left_G(slow)
+                    left_G(fast)
             if last_move_L == normal_L:
                 while update == 0:
                     left_G(normal)
             if last_move_L == fast_L:
                 while update == 0:
                     left_G(fast)
+                    left_G(slow)
             if certainty > 5:
                 turn_L()
 
@@ -343,11 +345,13 @@ def mortor_L():
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
               while update == 0:
                   left_G(fast)
+                  left_G(slow)
               last_move_L = fast_L
 
             elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
               while update == 0:
                   left_G(slow)
+                  left_G(fast)
               last_move_L = slow_L
 
             else:
