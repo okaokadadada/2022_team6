@@ -92,11 +92,6 @@ def read_distance():
     global b
     global c
     global d
-    global turn_number
-    global turn
-    global initial
-    global update
-    global rimit
     global sig_on_F
     global sig_off_F
     global sig_on_L
@@ -107,6 +102,12 @@ def read_distance():
     global distance_L
     global distance_preF
     global distance_preL
+    global rimit
+    global turn_number
+    global turn
+    global initial
+    global certainty
+    global update
     while True:
         if a>300 or b>300 or c>300 or d>300:  #リセット報告
             a=0
@@ -173,12 +174,20 @@ def read_distance():
         time.sleep(0.01)
         
         update = 1
-        if turn:
-          print("前＝", f"{distance_F:5.1f}", "cm", "左＝", f"{distance_L:5.1f}", "cm", "turn_number=",f"{turn_number}")
+        
+        if distance_F > ditanceborder_F:
+          certainty = certainty + 1
         else:
-          print(f"前＝ {distance_F:5.1f} cm, 左＝ {distance_L:5.1f}cm")
+          certainty = 0
+        
+        if turn:
+          print(f"前＝ {distance_F:5.1f} cm 左＝ {distance_L:5.1f} cm turn_number= {turn_number}")
+        else:
+          print(f"前＝ {distance_F:5.1f} cm 左＝ {distance_L:5.1f}cm")
+        
         if initial < 51:
           initial = initial + 1
+        
         distance_preF = distance_F
         distance_preL = distance_L
 
@@ -261,7 +270,6 @@ def mortor_R():
       update = 0
       if turn_number<11:
         if distance_F < distanceborder_F and initial > 50:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
-          certainty = certainty + 1 
           if last_move_R == slow_R:
             while update == 0:
                 right_G(slow)
@@ -277,7 +285,6 @@ def mortor_R():
             turn = False
 
         if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
-            certainty = 0
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
               while update == 0:
                   right_G(slow)
