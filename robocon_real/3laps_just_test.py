@@ -171,7 +171,7 @@ def read_distance():
         
         update = 1
         if turn:
-          print("前＝", f"{distance_F:6.1f}", "cm", "左＝", f"{distance_L:6.1f}", "cm", "turn_number=",f"{turn_number})
+          print("前＝", f"{distance_F:6.1f}", "cm", "左＝", f"{distance_L:6.1f}", "cm", "turn_number=",f"{turn_number}")
         else:
           print("前＝", f"{distance_F:6.1f}", "cm", "左＝", f"{distance_L:6.1f}", "cm")
         if initial < 51:
