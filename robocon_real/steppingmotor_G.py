@@ -15,9 +15,9 @@ CCWp_L=20
 CCWm_L=21
 
 
-waittime_R = 0.005
-waittime_L = 0.005
-waittime = 0.005
+waittime_R = 0.0075
+waittime_L = 0.0075
+waittime = 0.0075
 starttime = 1
 difference = 0.0025
 
