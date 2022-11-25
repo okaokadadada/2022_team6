@@ -17,8 +17,8 @@ CCWp_R=20
 CCWm_R=21
 CWp_L=7
 CWm_L=5
-CCWp_L=12
-CCWm_L=6
+CCWp_L=6
+CCWm_L=12
 
 #モータのGPIO設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
