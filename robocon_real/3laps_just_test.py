@@ -193,7 +193,7 @@ def read_distance():
 
 #ステッピングモータを制御する関数
 def right_G(waittime):  #右ステッピングモータを正転させる関数
-  for i in range(20):
+  for i in range(200):
     GPIO.output(CWp_R, GPIO.HIGH)
     GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
     time.sleep(waittime)
@@ -210,7 +210,7 @@ def right_B(waittime):  #右ステッピングモータを逆転させる関数
   time.sleep(waittime)
     
 def left_G(waittime):   #左ステッピングモータを正転させる関数
-  for i in range(20):
+  for i in range(200):
     GPIO.output(CWp_L, GPIO.HIGH)
     GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
     time.sleep(waittime)
