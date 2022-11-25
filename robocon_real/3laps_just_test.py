@@ -174,9 +174,9 @@ def read_distance():
         
         update = 1
         if turn:
-          print("前＝", f"{distance_F:6.1f}", "cm", "左＝", f"{distance_L:6.1f}", "cm", "turn_number=",f"{turn_number}")
+          print("前＝", f"{distance_F:4.1f}", "cm", "左＝", f"{distance_L:4.1f}", "cm", "turn_number=",f"{turn_number}")
         else:
-          print("前＝", f"{distance_F:6.1f}", "cm", "左＝", f"{distance_L:6.1f}", "cm")
+          print("前＝", f"{distance_F:4.1f}", "cm", "左＝", f"{distance_L:4.1f}", "cm")
         if initial < 51:
           initial = initial + 1
         distance_preF = distance_F
@@ -237,7 +237,6 @@ def turn_L():
     GPIO.output(CWp_L, GPIO.LOW)
     GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
     time.sleep(turn_L_speed)
-    print("turn=", int(turn))  #旋回回数をint型で表示
     
     
 def mortor_R():
@@ -273,9 +272,9 @@ def mortor_R():
             while update == 0:
                 right_G(fast)
           if certainty > 5:
-            turn = true
+            turn = True
             turn_R()
-            turn = false
+            turn = False
 
         if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
             certainty = 0
