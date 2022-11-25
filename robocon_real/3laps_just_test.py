@@ -193,7 +193,7 @@ def read_distance():
 
 #ステッピングモータを制御する関数
 def right_G(waittime):  #右ステッピングモータを正転させる関数
-  for i in range(200):
+  for i in range(20):
     GPIO.output(CWp_R, GPIO.HIGH)
     GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
     time.sleep(waittime)
@@ -210,7 +210,7 @@ def right_B(waittime):  #右ステッピングモータを逆転させる関数
   time.sleep(waittime)
     
 def left_G(waittime):   #左ステッピングモータを正転させる関数
-  for i in range(200):
+  for i in range(20):
     GPIO.output(CWp_L, GPIO.HIGH)
     GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
     time.sleep(waittime)
@@ -273,12 +273,14 @@ def mortor_R():
           if last_move_R == slow_R:
             while update == 0:
                 right_G(slow)
-          if last_move_R == normal_R:
+                right_G(fast)
+          elif last_move_R == normal_R:
             while update == 0:
                 right_G(normal)
           if last_move_R == fast_R:
             while update == 0:
                 right_G(fast)
+                right_G(slow)
           if certainty > 5:
             turn = True
             turn_R()
@@ -288,11 +290,13 @@ def mortor_R():
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
               while update == 0:
                   right_G(slow)
+                  right_G(fast)
               last_move_L = slow_L
 
             elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
               while update == 0:
                   right_G(fast)
+                  right_G(slow)
               last_move_L = fast_L
 
             else:
