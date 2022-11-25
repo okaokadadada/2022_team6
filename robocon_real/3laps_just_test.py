@@ -273,9 +273,9 @@ def mortor_R():
             while update == 0:
                 right_G(fast)
           if eR > 5:
-            turn = True
+            turn = true
             turn_R()
-            turn = False
+            turn = false
 
         if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
             certainty = 0
