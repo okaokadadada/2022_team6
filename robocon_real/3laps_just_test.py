@@ -42,7 +42,7 @@ a=0
 b=0
 c=0
 d=0
-e=0
+initial=0
 rimit = 200000
 sig_on_F = 0
 sig_off_F = 0
@@ -58,7 +58,7 @@ distanceborder_F = 10
 distanceborder_L = 20
 
 #旋回回数
-turn = 0
+turn_number = 0
 
 #モータの速度
   #遅い
@@ -74,8 +74,7 @@ turn_R_range = 250
 turn_L_range = 375
 
 #モータの制御に用いる変数，定数
-eR = 0
-eL = 0
+certainty = 0
 update = 0
 last_move_R = 0
 last_move_L = 0
@@ -92,7 +91,7 @@ def read_distance():
     global b
     global c
     global d
-    global e
+    global initial
     global update
     global rimit
     global sig_on_F
@@ -171,20 +170,24 @@ def read_distance():
         time.sleep(0.01)
         
         update = 1
-        print("前＝", f"{distance_F:6.1f}", "cm", "左＝", f"{distance_L:6.1f}", "cm")
-        if e < 51:
-          e = e + 1
+        if turn:
+          print("前＝", f"{distance_F:6.1f}", "cm", "左＝", f"{distance_L:6.1f}", "cm", "turn_number=",f"{turn_number})
+        else:
+          print("前＝", f"{distance_F:6.1f}", "cm", "左＝", f"{distance_L:6.1f}", "cm")
+        if initial < 51:
+          initial = initial + 1
         distance_preF = distance_F
         distance_preL = distance_L
 
 #ステッピングモータを制御する関数
 def right_G(waittime):  #右ステッピングモータを正転させる関数
-  GPIO.output(CWp_R, GPIO.HIGH)
-  GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
-  time.sleep(waittime)
-  GPIO.output(CWp_R, GPIO.LOW)
-  GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
-  time.sleep(waittime)
+  for i in range(20):
+    GPIO.output(CWp_R, GPIO.HIGH)
+    GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
+    time.sleep(waittime)
+    GPIO.output(CWp_R, GPIO.LOW)
+    GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
+    time.sleep(waittime)
   
 def right_B(waittime):  #右ステッピングモータを逆転させる関数
   GPIO.output(CCWp_R, GPIO.HIGH)
@@ -195,12 +198,13 @@ def right_B(waittime):  #右ステッピングモータを逆転させる関数
   time.sleep(waittime)
     
 def left_G(waittime):   #左ステッピングモータを正転させる関数
-  GPIO.output(CWp_L, GPIO.HIGH)
-  GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
-  time.sleep(waittime)
-  GPIO.output(CWp_L, GPIO.LOW)
-  GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
-  time.sleep(waittime)
+  for i in range(20):
+    GPIO.output(CWp_L, GPIO.HIGH)
+    GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
+    time.sleep(waittime)
+    GPIO.output(CWp_L, GPIO.LOW)
+    GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
+    time.sleep(waittime)
   
 def left_B(waittime):   #左ステッピングモータを逆転させる関数
   GPIO.output(CCWp_L, GPIO.HIGH)
@@ -211,31 +215,32 @@ def left_B(waittime):   #左ステッピングモータを逆転させる関数
   time.sleep(waittime)
 
 def turn_R():
-    for i in range(turn_R_range):
-        GPIO.output(CWp_R, GPIO.HIGH)
-        GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
-        time.sleep(turn_R_speed)
-        GPIO.output(CWp_R, GPIO.LOW)
-        GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
-        time.sleep(turn_R_speed)
+  global turn_number
+  turn_number = turn_number + 1
+  for i in range(turn_R_range):
+    GPIO.output(CWp_R, GPIO.HIGH)
+    GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
+    time.sleep(turn_R_speed)
+    GPIO.output(CWp_R, GPIO.LOW)
+    GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
+    time.sleep(turn_R_speed)
     
 
 def turn_L():
-    global turn
-    turn = turn + 1
-    for i in range(turn_L_range):
-        GPIO.output(CWp_L, GPIO.HIGH)
-        GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
-        time.sleep(turn_L_speed)
-        GPIO.output(CWp_L, GPIO.LOW)
-        GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
-        time.sleep(turn_L_speed)
-        print("turn=", int(turn))  #旋回回数をint型で表示
+  for i in range(turn_L_range):
+    GPIO.output(CWp_L, GPIO.HIGH)
+    GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
+    time.sleep(turn_L_speed)
+    GPIO.output(CWp_L, GPIO.LOW)
+    GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
+    time.sleep(turn_L_speed)
+    print("turn=", int(turn))  #旋回回数をint型で表示
     
     
 def mortor_R():
+    global turn_number
     global turn
-    global eR
+    global certainty
     global update
     global distance_F
     global distance_L
@@ -248,13 +253,13 @@ def mortor_R():
     global normal_R
     global fast_R
     global last_move_R
-    global e
+    global initial
     
     while True:
       update = 0
-      if turn<11:
-        if distance_F < distanceborder_F and e > 50:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
-          eR = eR + 1 
+      if turn_number<11:
+        if distance_F < distanceborder_F and initial > 50:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
+          certainty = certainty + 1 
           if last_move_R == slow_R:
             while update == 0:
                 right_G(slow)
@@ -264,11 +269,13 @@ def mortor_R():
           if last_move_R == fast_R:
             while update == 0:
                 right_G(fast)
-          if eR > 3:
+          if eR > 5:
+            turn = True
             turn_R()
+            turn = False
 
         if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
-            eR = 0
+            certainty = 0
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
               while update == 0:
                   right_G(slow)
@@ -286,8 +293,9 @@ def mortor_R():
 
 
 def mortor_L():
+    global turn_number
     global turn
-    global eL
+    global certainty
     global update
     global distance_F
     global distance_L
@@ -300,13 +308,12 @@ def mortor_L():
     global normal_L
     global fast_L
     global last_move_L
-    global e
+    global initial
     
     while True:
         update = 0
-        if turn<11:
-          if distance_F < distanceborder_F and e > 50:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
-            eL = eL + 1
+        if turn_number<11:
+          if distance_F < distanceborder_F and initial > 50:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
             if last_move_L == slow_L:
                 while update == 0:
                     left_G(slow)
@@ -316,27 +323,23 @@ def mortor_L():
             if last_move_L == fast_L:
                 while update == 0:
                     left_G(fast)
-            if eL > 3:
+            if certainty > 3:
                 turn_L()
 
           if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
-            eL=0
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
               while update == 0:
                   left_G(fast)
-                  #print("fast_L")
               last_move_L = fast_L
 
             elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
               while update == 0:
                   left_G(slow)
-                  #print("slow_L")
               last_move_L = slow_L
 
             else:
               while update == 0:
                   left_G(normal)
-                  #print("normal_L")
               last_move_L = normal_L
 
 try:
