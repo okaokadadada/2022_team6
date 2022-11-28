@@ -56,6 +56,7 @@ distance_preF = 0
 distance_preL = 0
 distanceborder_F = 10
 distanceborder_L = 20
+distance = 10
 
 #旋回回数
 turn_number = 0
@@ -247,6 +248,7 @@ def mortor():
     global turn_number
     global turn
     global update
+    global distance
     global distance_F
     global distance_L
     global distanceborder_F
@@ -262,7 +264,7 @@ def mortor():
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                 turn_R(fast)
                 straight(fast)
-            elif distance_L > distanceborder_L + 20:# and distance_L < 80:
+            elif distance_L > distanceborder_L + distance:# and distance_L < 80:
                 turn_L(fast)
                 straight(fast)
             elif distance_L > distanceborder_L and distance_L < distanceborder_L + 20:
