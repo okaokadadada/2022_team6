@@ -192,7 +192,7 @@ def read_distance():
 
 #ステッピングモータを制御する関数
 def straight(waittime):  #右ステッピングモータを正転させる関数
-    for i in range(100):
+    for i in range(150):
         GPIO.output(CWp_R, GPIO.HIGH)
         GPIO.output(CWm_R, GPIO.LOW)
         GPIO.output(CWp_L, GPIO.HIGH)
