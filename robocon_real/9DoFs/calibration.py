@@ -65,6 +65,11 @@ def compass():
 
     avX=np.average(x)
     avY=np.average(y)
+    
+    global max_x
+    global min_x
+    global max_y
+    global min_y
 
     if max_x==None:
         max_x=avX  
@@ -94,10 +99,7 @@ def compass():
 
  
 if __name__ == "__main__":
-    max_x=None
-    min_x=None
-    max_y=None
-    min_y=None
+    
     compass()
     while True:
         compass() 
