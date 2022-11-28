@@ -273,8 +273,8 @@ def mortor_R():
               print("Rslow")
               for i in range(50):
                 right_G(slow)
-              #for i in range(450):
-               # right_G(fast)
+              for i in range(450):
+                right_G(fast)
 
           elif distance_L >= distanceborder_L:    #左壁との距離が規定値以上になったら左に方向修正
             last_move_R = fast_R
@@ -282,8 +282,8 @@ def mortor_R():
               print("Rfast")
               for i in range(450):
                 right_G(fast)
-              #for i in range(50):
-               # right_G(slow)
+              for i in range(50):
+                right_G(slow)
 
           #else:
            # last_move_R = normal_R
@@ -313,14 +313,14 @@ def mortor_L():
         if last_move_R == slow_R:
           for i in range(450):
             left_G(fast)
-          #for i in range(50):
-           # left_G(slow)
+          for i in range(50):
+            left_G(slow)
         
         elif last_move_R == fast_R:
           for i in range(50):
             left_G(slow)
-          #for i in range(450):
-           # left_G(fast)
+          for i in range(450):
+            left_G(fast)
             
         #else:
         #  for i in range(200):
