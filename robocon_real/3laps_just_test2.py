@@ -54,7 +54,7 @@ distance_F = 0
 distance_L = 0
 distance_preF = 0
 distance_preL = 0
-distanceborder_F = 150
+distanceborder_F = 100
 distanceborder_L = 20
 distance = 10
 danger = False
@@ -266,7 +266,7 @@ def mortor():
         if distance_F < distanceborder_F and initial > 50:
             turn_number = turn_number + 1
             turn = True
-            for i in range(3):
+            for i in range(6):
                 turn_R(fast,2)
             turn = False
             
