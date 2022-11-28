@@ -47,8 +47,8 @@ def mag_value():
 def initial():
     
     mag=mag_value()
-    x=mag[0]+31
-    y=mag[1]+51
+    x=mag[0]+26
+    y=mag[1]+90
     if x>0 :
         initial_direction=(np.rad2deg(math.atan(y/x)))%360
     if x<0 :
@@ -65,8 +65,8 @@ def compass():
 
     for i in range(10):
         mag=mag_value()
-        x[i]=mag[0]+31
-        y[i]=mag[1]+51
+        x[i]=mag[0]+26
+        y[i]=mag[1]+90
         
         time.sleep(0.1)
 
