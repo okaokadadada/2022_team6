@@ -269,10 +269,10 @@ def mortor():
               if i % speed_rate == 0: 
                 right_G(fast)
               left_G(fast)
-            for i in range(int(0.5/fast)):
-              if i % speed_rate == 0: 
-                left_G(fast)
-              right_G(fast)
+            #for i in range(int(0.5/fast)):
+             # if i % speed_rate == 0: 
+             #   left_G(fast)
+             # right_G(fast)
         
         elif distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
           while update == 0:
@@ -280,10 +280,10 @@ def mortor():
               if i % speed_rate == 0: 
                 left_G(fast)
               right_G(fast)
-            for i in range(int(0.5/fast)):
-              if i % speed_rate == 0: 
-                right_G(fast)
-              left_G(fast)
+            #for i in range(int(0.5/fast)):
+             # if i % speed_rate == 0: 
+             #   right_G(fast)
+             # left_G(fast)
               
         else:
           while update == 0:
