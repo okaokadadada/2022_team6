@@ -193,13 +193,12 @@ def read_distance():
 
 #ステッピングモータを制御する関数
 def right_G(waittime):  #右ステッピングモータを正転させる関数
-  for i in range(20):
-    GPIO.output(CWp_R, GPIO.HIGH)
-    GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
-    time.sleep(waittime)
-    GPIO.output(CWp_R, GPIO.LOW)
-    GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
-    time.sleep(waittime)
+  GPIO.output(CWp_R, GPIO.HIGH)
+  GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
+  time.sleep(waittime)
+  GPIO.output(CWp_R, GPIO.LOW)
+  GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
+  time.sleep(waittime)
   
 def right_B(waittime):  #右ステッピングモータを逆転させる関数
   GPIO.output(CCWp_R, GPIO.HIGH)
@@ -210,13 +209,12 @@ def right_B(waittime):  #右ステッピングモータを逆転させる関数
   time.sleep(waittime)
     
 def left_G(waittime):   #左ステッピングモータを正転させる関数
-  for i in range(20):
-    GPIO.output(CWp_L, GPIO.HIGH)
-    GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
-    time.sleep(waittime)
-    GPIO.output(CWp_L, GPIO.LOW)
-    GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
-    time.sleep(waittime)
+  GPIO.output(CWp_L, GPIO.HIGH)
+  GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
+  time.sleep(waittime)
+  GPIO.output(CWp_L, GPIO.LOW)
+  GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
+  time.sleep(waittime)
   
 def left_B(waittime):   #左ステッピングモータを逆転させる関数
   GPIO.output(CCWp_L, GPIO.HIGH)
@@ -289,15 +287,19 @@ def mortor_R():
         if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
               while update == 0:
-                  print("Rslow")
+                print("Rslow")
+                for i in range(50):
                   right_G(slow)
+                for i in range(450):
                   right_G(fast)
               last_move_L = slow_L
 
             elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
               while update == 0:
                   print("Rfast")
+                for i in range(450):
                   right_G(fast)
+                for i in rnge(50):
                   right_G(slow)
               last_move_L = fast_L
 
@@ -347,14 +349,18 @@ def mortor_L():
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
               while update == 0:
                   print("Lfast")
+                for i in range(450):
                   left_G(fast)
+                for i in range(50):
                   left_G(slow)
               last_move_L = fast_L
 
             elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
               while update == 0:
                   print("Lslow")
+                for i in range(50):
                   left_G(slow)
+                for i in range(450):
                   left_G(fast)
               last_move_L = slow_L
 
