@@ -313,7 +313,7 @@ def mortor_L():
         if last_move_R == slow_R:
           for i in range(450):
             left_G(fast)
-          for i in tange(50):
+          for i in range(50):
             left_G(slow)
         
         elif last_move_R == fast_R:
