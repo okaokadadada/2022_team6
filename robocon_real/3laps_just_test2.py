@@ -174,11 +174,11 @@ def read_distance():
           distance_L = distance_preL - 10
         time.sleep(0.01)
         
-        update = 1
-        
         if distance_L > 100:
-            danger == True
-        
+            danger = True
+        if update == 0:
+            danger = False
+            
         if turn:
           print(f"前＝ {distance_F:5.1f} cm 左＝ {distance_L:5.1f} cm turn_number= {turn_number}")
         else:
@@ -189,6 +189,8 @@ def read_distance():
         
         distance_preF = distance_F
         distance_preL = distance_L
+        
+        update = 1
 
 #ステッピングモータを制御する関数
 def straight(waittime):  #右ステッピングモータを正転させる関数
@@ -262,7 +264,6 @@ def mortor():
 
     while True:
         update = 0
-        denger = False
         if distance_F >= distanceborder_F:
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                 turn_R(fast)
