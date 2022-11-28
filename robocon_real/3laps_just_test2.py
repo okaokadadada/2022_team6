@@ -66,7 +66,7 @@ turn = False
 slow = 0.007
 normal = 0.005
 fast = 0.003
-speedrate = 2
+speedrate = 3
 
 turn_R_speed = 0.0075
 turn_L_speed = 0.005
@@ -188,8 +188,8 @@ def read_distance():
         update = 1
 
 #ステッピングモータを制御する関数
-def straight(waittime):  #右ステッピングモータを正転させる関数
-    for i in range(150):
+def straight(waittime,repeat):  #右ステッピングモータを正転させる関数
+    for i in range(int(repeat):
         GPIO.output(CWp_R, GPIO.HIGH)
         GPIO.output(CWm_R, GPIO.LOW)
         GPIO.output(CWp_L, GPIO.HIGH)
@@ -263,12 +263,12 @@ def mortor():
         if distance_F >= distanceborder_F:
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                 turn_R(fast)
-                straight(fast)
+                straight(fast, 150)
             elif distance_L > distanceborder_L + distance:# and distance_L < 80:
                 turn_L(fast)
-                straight(fast)
+                straight(fast, 200)
             elif distance_L > distanceborder_L and distance_L < distanceborder_L + 20:
-                straight(fast)
+                straight(fast, 150)
 
 try:
     if __name__ == "__main__":
