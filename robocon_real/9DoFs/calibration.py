@@ -92,6 +92,8 @@ def compass():
     if avY<min_y:
         min_y=avY
         update()
+        
+    print(max_x)
    
 if __name__ == "__main__":
     max_x=None
