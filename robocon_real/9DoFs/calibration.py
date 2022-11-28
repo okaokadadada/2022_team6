@@ -61,7 +61,7 @@ def compass():
         x[i]=mag[0]
         y[i]=mag[1]
         
-        print("ok")
+        print(x[i])
         
         time.sleep(0.1)
 
