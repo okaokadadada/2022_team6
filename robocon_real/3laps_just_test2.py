@@ -83,6 +83,7 @@ fast_R = 3
 slow_L = 1
 normal_L = 2
 fast_L = 3
+danger = False
 
 #HC-SR04で距離を測定する関数
 def read_distance():
