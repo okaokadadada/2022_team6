@@ -64,7 +64,6 @@ def compass():
     min_y=None
 
     for i in range(10):
-        print('OK')
         mag=mag_value()
         x[i]=mag[0]
         y[i]=mag[1]
@@ -95,6 +94,8 @@ def compass():
     if avY<min_y:
         min_y=avY
         update()
+    
+    print(max_x)
          
 
 
