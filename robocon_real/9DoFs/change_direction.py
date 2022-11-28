@@ -52,7 +52,7 @@ def initial():
     if x>0 :
         initial_direction=np.rad2deg(y/x)
     if x<0 :
-        initial_direction=np.rad2deg(y/x)
+        initial_direction=np.rad2deg(y/x)+180
     if x==0 :
         initial_direction=0
 
@@ -78,7 +78,7 @@ def compass():
     if avX>0 :
             now_direction=np.rad2deg(avY/avX)
     if avX<0 :
-            now_direction=np.rad2deg(avY/avX)
+            now_direction=np.rad2deg(avY/avX)+180
     if avX==0 :
             now_direction=0
             
