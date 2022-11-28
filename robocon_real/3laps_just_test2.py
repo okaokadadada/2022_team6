@@ -204,8 +204,8 @@ def straight(waittime,repeat):  #右ステッピングモータを正転させ�
         GPIO.output(CWm_L, GPIO.HIGH)
         time.sleep(waittime)
   
-def turn_R(waittime,speedrate):
-    for i in range(100):
+def turn_R(waittime,repeat,speedrate):
+    for i in range(repeat):
         if i % speedrate == 0:
             GPIO.output(CWp_R, GPIO.HIGH)
             GPIO.output(CWm_R, GPIO.LOW)
@@ -219,8 +219,8 @@ def turn_R(waittime,speedrate):
         GPIO.output(CWm_L, GPIO.HIGH)
         time.sleep(waittime)
 
-def turn_L(waittime,speedrate):
-    for i in range(100):
+def turn_L(waittime,repeat,speedrate):
+    for i in range(repeat):
         GPIO.output(CWp_R, GPIO.HIGH)
         GPIO.output(CWm_R, GPIO.LOW)
         if i % speedrate == 0:
@@ -265,19 +265,20 @@ def mortor():
         update = 0
         if distance_F < distanceborder_F and initial > 50:
             turn_number = turn_number + 1
+            if turn_number == 11:
+                break
             turn = True
-            for i in range(6):
-                turn_R(fast,2)
+            turn_R(fast,,550,2)
             turn = False
             
         else:
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-                turn_R(fast,2)
-                straight(fast, 150)
+                turn_R(fast,100,2)
+                straight(fast,150)
             elif distance_L > distanceborder_L + distance:# and distance_L < 80:
-                turn_L(fast,3)
-                turn_R(fast,2)
-                straight(fast, 200)
+                turn_L(fast,100,3)
+                turn_R(fast,80,2)
+                straight(fast,200)
                 danger = False
             elif distance_L > distanceborder_L and distance_L < distanceborder_L + 20:
                 straight(fast, 150)
