@@ -173,11 +173,6 @@ def read_distance():
         elif distance_L - distance_preL < -100:
           distance_L = distance_preL - 10
         time.sleep(0.01)
-        
-        if distance_L > 100:
-            danger = True
-        if update == 0:
-            danger = False
             
         if turn:
           print(f"前＝ {distance_F:5.1f} cm 左＝ {distance_L:5.1f} cm turn_number= {turn_number}")
@@ -273,9 +268,6 @@ def mortor():
                 straight(fast)
             elif distance_L > distanceborder_L and distance_L < distanceborder_L + 20:
                 straight(fast)
-            if danger:
-                back(fast)
-                turn_L(fast)
 
 try:
     if __name__ == "__main__":
