@@ -84,7 +84,7 @@ def compass():
             
     difference=now_direction-id
 
-    print(difference)
+    print(now_direction)
 
     if difference>20:
             print("R")
