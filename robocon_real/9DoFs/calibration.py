@@ -64,6 +64,7 @@ def compass():
     min_y=None
 
     for i in range(10):
+        print('OK')
         mag=mag_value()
         x[i]=mag[0]
         y[i]=mag[1]
