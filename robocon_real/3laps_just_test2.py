@@ -65,7 +65,7 @@ turn = False
 slow = 0.007
 normal = 0.005
 fast = 0.003
-speedrate = 3
+speedrate = 2
 
 turn_R_speed = 0.0075
 turn_L_speed = 0.005
@@ -83,7 +83,6 @@ fast_R = 3
 slow_L = 1
 normal_L = 2
 fast_L = 3
-danger = False
 
 #HC-SR04で距離を測定する関数
 def read_distance():
