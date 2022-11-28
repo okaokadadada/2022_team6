@@ -50,9 +50,9 @@ def initial():
     x=mag[0]-10
     y=mag[1]+100
     if x>0 :
-        initial_direction=np.rad2deg(y/x)
+        initial_direction=(np.rad2deg(y/x))%360
     if x<0 :
-        initial_direction=np.rad2deg(y/x)+180
+        initial_direction=(np.rad2deg(y/x)+180)%360
     if x==0 :
         initial_direction=0
 
