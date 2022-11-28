@@ -266,30 +266,30 @@ def mortor_R():
     
     while True:
       update = 0
-        if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
-            if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-              last_move_R = slow_R
-              while update == 0:
-                print("Rslow")
-                for i in range(50):
-                  right_G(slow)
-                for i in range(450):
-                  right_G(fast)
+      if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
+          if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
+            last_move_R = slow_R
+            while update == 0:
+              print("Rslow")
+              for i in range(50):
+                right_G(slow)
+              for i in range(450):
+                right_G(fast)
 
-            elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
-              last_move_R = fast_R
-              while update == 0:
-                print("Rfast")
-                for i in range(450):
-                  right_G(fast)
-                for i in range(50):
-                  right_G(slow)
+          elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
+            last_move_R = fast_R
+            while update == 0:
+              print("Rfast")
+              for i in range(450):
+                right_G(fast)
+              for i in range(50):
+                right_G(slow)
 
-            else:
-              last_move_R = normal_R
-              while update == 0:
-                for i in range(200):
-                right_G(normal)
+          else:
+            last_move_R = normal_R
+            while update == 0:
+              for i in range(200):
+              right_G(normal)
 
 def mortor_L():
     global turn_number
