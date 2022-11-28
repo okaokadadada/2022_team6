@@ -56,8 +56,7 @@ def mag_value():
 if __name__ == "__main__":
   
     while True:
-        acc = acc_value()
-        gyro= gyro_value()
+
         mag = mag_value()
         X[i]=mag[0]-25
         Y[i]=mag[1]+20
