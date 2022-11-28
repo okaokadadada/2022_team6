@@ -49,13 +49,29 @@ def update():
     Y=(max_y+min_y)/2
 
     print('center is ('+str(X)+','+str(Y)+')')
+    
+def initial():
+    x=[0,0,0,0,0,0,0,0,0,0]
+    y=[0,0,0,0,0,0,0,0,0,0]
+    
+    for i in range(10):
+        mag=mag_value()
+        x[i]=mag[0]
+        y[i]=mag[1]
+        
+        time.sleep(0.1)
+
+    avX=np.average(x)
+    avY=np.average(y)
+    
+    initial=[avX,avY]
+    
+    return initial
 
 def compass():
     x=[0,0,0,0,0,0,0,0,0,0]
     y=[0,0,0,0,0,0,0,0,0,0]
-
     
-
     for i in range(10):
         mag=mag_value()
         x[i]=mag[0]
@@ -99,7 +115,10 @@ def compass():
 
  
 if __name__ == "__main__":
-    
+    max_x=None
+    min_x=None
+    max_y=None
+    min_y=None
     compass()
     while True:
         compass() 
