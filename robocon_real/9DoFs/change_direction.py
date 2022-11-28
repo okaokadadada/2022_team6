@@ -65,8 +65,8 @@ def compass():
 
     for i in range(10):
         mag=mag_value()
-        x[i]=mag[0]-10
-        y[i]=mag[1]+100
+        x[i]=mag[0]+31
+        y[i]=mag[1]+51
         
         time.sleep(0.1)
 
