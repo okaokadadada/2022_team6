@@ -61,6 +61,8 @@ def compass():
         x[i]=mag[0]
         y[i]=mag[1]
         
+        print("ok")
+        
         time.sleep(0.1)
 
     avX=np.average(x)
