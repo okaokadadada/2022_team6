@@ -289,7 +289,7 @@ def mortor_R():
             last_move_R = normal_R
             while update == 0:
               for i in range(200):
-              right_G(normal)
+                right_G(normal)
 
 def mortor_L():
     global turn_number
