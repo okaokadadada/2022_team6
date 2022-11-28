@@ -357,7 +357,7 @@ def mortor_L():
 
             elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
               while update == 0:
-                  print("Lslow")
+                print("Lslow")
                 for i in range(50):
                   left_G(slow)
                 for i in range(450):
