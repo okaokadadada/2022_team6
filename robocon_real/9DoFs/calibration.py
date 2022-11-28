@@ -53,15 +53,8 @@ def update():
 def compass():
     x=[0,0,0,0,0,0,0,0,0,0]
     y=[0,0,0,0,0,0,0,0,0,0]
-    global max_x
-    global min_x
-    global max_y
-    global min_y
 
-    max_x=None
-    min_x=None
-    max_y=None
-    min_y=None
+    
 
     for i in range(10):
         mag=mag_value()
@@ -101,6 +94,10 @@ def compass():
 
  
 if __name__ == "__main__":
+    max_x=None
+    min_x=None
+    max_y=None
+    min_y=None
     compass()
     while True:
         compass() 
