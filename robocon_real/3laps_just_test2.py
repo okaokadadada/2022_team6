@@ -106,6 +106,7 @@ def read_distance():
     global initial
     global certainty
     global update
+    
     while True:
         if a>300 or b>300 or c>300 or d>300:  #リセット報告
             a=0
@@ -259,7 +260,7 @@ def mortor():
     global speed_rate
 
     while True:
-    update = 0
+        update = 0
         if distance_F >= distanceborder_F:
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                 turn_R(fast)
