@@ -82,13 +82,13 @@ def compass():
     if avX==0 :
             now_direction=0
             
-    difference=now_direction-id
+    difference=(now_direction-id)%360
 
-    print(now_direction)
+    print(difference)
 
-    if difference>20:
+    if difference>20 and difference<180:
             print("R")
-    if difference<-20:
+    if difference<340 and difference>180:
             print("L")
     
 if __name__ == "__main__":
