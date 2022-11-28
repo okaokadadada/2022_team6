@@ -264,8 +264,9 @@ def mortor():
     while True:
         update = 0
         if distance_F < distanceborder_F and initial > 50:
+            turn_number = turn_number + 1
             turn = True
-            for i in range(5):
+            for i in range(3):
                 turn_R(fast,2)
             turn = False
             
