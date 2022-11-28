@@ -82,6 +82,6 @@ if __name__ == "__main__":
               deg=0
             print(deg)
        # print("Mag -> x:{}, y:{}, z: {}".format(mag[0], mag[1], mag[2]))
-        print("\n")
+        
         time.sleep(0.1)
 
