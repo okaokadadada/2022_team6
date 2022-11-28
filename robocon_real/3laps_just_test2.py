@@ -62,12 +62,10 @@ turn_number = 0
 turn = False
 
 #モータの速度
-  #遅い
 slow = 0.007
-  #普通
 normal = 0.005
-  #速い
-fast = 0.003    #0.0025
+fast = 0.003
+speed_rate = 3
 
 turn_R_speed = 0.0075
 turn_L_speed = 0.005
@@ -175,10 +173,10 @@ def read_distance():
         
         update = 1
         
-        if distance_F < distanceborder_F:
-          certainty = certainty + 1
-        else:
-          certainty = 0
+        #if distance_F < distanceborder_F:
+         # certainty = certainty + 1
+        #else:
+         # certainty = 0
         
         if turn:
           print(f"前＝ {distance_F:5.1f} cm 左＝ {distance_L:5.1f} cm turn_number= {turn_number}")
@@ -245,6 +243,61 @@ def turn_L():
     time.sleep(turn_L_speed)
 
 def mortor():
+  global turn_number
+  global turn
+  global update
+  global distance_F
+  global distance_L
+  global distanceborder_F
+  global distanceborder_L
+  global fast
+  global initial
+  global speed_rate
+  
   while True:
+    update = 0
     if turn_number<11:
-      if distance_F
+      if distance_F < distanceborder_F and initial > 50:
+        turn = True
+        turn_R()
+        turn = False
+    
+      if distance_F >= distanceborder_F:
+        if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
+          while update == 0:
+            for i in range(int(0.5/fast)):
+              if i % speed_rate == 0: 
+                right_G(fast)
+              left_G(fast)
+            for i in range(int(0.5/fast)):
+              if i % speed_rate == 0: 
+                left_G(fast)
+              right_G(fast)
+        
+        elif distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
+          while update == 0:
+            for i in range(int(0.5/fast)):
+              if i % speed_rate == 0: 
+                left_G(fast)
+              right_G(fast)
+            for i in range(int(0.5/fast)):
+              if i % speed_rate == 0: 
+                right_G(fast)
+              left_G(fast)
+              
+        else:
+          while update == 0:
+            right_G(normal)
+            left_G(normal)
+
+try:
+    if __name__ == "__main__":
+        thread_1 = threading.Thread(target=read_distance)
+        thread_2 = threading.Thread(target=mortor)
+
+        thread_1.start()
+        thread_2.start()
+
+except KeyboardInterrupt:       #Ctrl+Cキーが押された
+        GPIO.cleanup()              #GPIOをクリーンアップ
+        sys.exit()                  #プログラム終了
