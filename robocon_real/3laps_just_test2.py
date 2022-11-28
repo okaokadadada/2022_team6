@@ -268,12 +268,9 @@ def mortor():
                 turn_R(fast,2)
                 straight(fast, 150)
             elif distance_L > distanceborder_L + distance:# and distance_L < 80:
-                if danger:
-                    turn_R(fast,2)
-                    straight(fast, 150)
-                else:
-                    turn_L(fast,3)
-                    straight(fast, 200)
+                turn_L(fast,3)
+                turn_R(fast,2)
+                straight(fast, 200)
                 danger = False
             elif distance_L > distanceborder_L and distance_L < distanceborder_L + 20:
                 straight(fast, 150)
