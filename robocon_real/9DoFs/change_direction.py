@@ -50,9 +50,9 @@ def initial():
     x=mag[0]+31
     y=mag[1]+51
     if x>0 :
-        initial_direction=(np.rad2deg(y/x))%360
+        initial_direction=(np.rad2deg(math.atan(y/x)))%360
     if x<0 :
-        initial_direction=(np.rad2deg(y/x)+180)%360
+        initial_direction=(np.rad2deg(math.atan(y/x))+180)%360
     if x==0 :
         initial_direction=0
 
@@ -76,9 +76,9 @@ def compass():
     print('avY='+str(avY))
     
     if avX>0 :
-            now_direction=(np.rad2deg(avY/avX))%360
+            now_direction=(np.rad2deg(math.atan(avY/avX)))%360
     if avX<0 :
-            now_direction=(np.rad2deg(avY/avX)+180)%360
+            now_direction=(np.rad2deg(math.atan(avY/avX))+180)%360
     if avX==0 :
             now_direction=0
             
