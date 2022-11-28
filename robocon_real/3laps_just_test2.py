@@ -265,7 +265,8 @@ def mortor():
         update = 0
         if distance_F < distanceborder_F and initial > 50:
             turn = True
-            turn_R(fast,500)
+            for i in range(5):
+                turn_R(fast,2)
             turn = False
             
         else:
