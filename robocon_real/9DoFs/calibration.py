@@ -60,8 +60,7 @@ def compass():
         mag=mag_value()
         x[i]=mag[0]
         y[i]=mag[1]
-        
-        print(x[i])
+       
         
         time.sleep(0.1)
 
@@ -95,7 +94,7 @@ def compass():
         min_y=avY
         update()
         
-    print(max_x)
+   
    
 if __name__ == "__main__":
     max_x=None
