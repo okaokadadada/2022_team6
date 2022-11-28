@@ -274,14 +274,14 @@ def mortor_R():
               for i in range(50):
                 right_G(slow)
               for i in range(450):
-                right_G(fast)
+                right_G(fast-0.0015)
 
           elif distance_L >= distanceborder_L:    #左壁との距離が規定値以上になったら左に方向修正
             last_move_R = fast_R
             while update == 0:
               print("Rfast")
               for i in range(450):
-                right_G(fast)
+                right_G(fast-0.0015)
               for i in range(50):
                 right_G(slow)
 
