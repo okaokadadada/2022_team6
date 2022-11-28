@@ -274,7 +274,7 @@ def mortor():
              #   left_G(fast)
              # right_G(fast)
         
-        elif distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
+        elif distance_L > distanceborder_L + 20:          #左壁との距離が規定値未満になったら右に方向修正
           while update == 0:
             for i in range(int(0.5/fast)):
               if i % speed_rate == 0: 
