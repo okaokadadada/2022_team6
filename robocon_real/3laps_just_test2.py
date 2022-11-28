@@ -263,7 +263,7 @@ def mortor():
 
     while True:
         update = 0
-        if distance_F < distanceborder_F:
+        if distance_F < distanceborder_F and initial > 50:
             turn = True
             turn_R(fast,500)
             turn = False
