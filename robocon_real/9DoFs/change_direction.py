@@ -47,8 +47,8 @@ def mag_value():
 def initial():
     
     mag=mag_value()
-    x=mag[0]-10
-    y=mag[1]+100
+    x=mag[0]+31
+    y=mag[1]+51
     if x>0 :
         initial_direction=(np.rad2deg(y/x))%360
     if x<0 :
