@@ -54,7 +54,7 @@ distance_F = 0
 distance_L = 0
 distance_preF = 0
 distance_preL = 0
-distanceborder_F = 10
+distanceborder_F = 150
 distanceborder_L = 20
 distance = 10
 danger = False
@@ -263,7 +263,9 @@ def mortor():
 
     while True:
         update = 0
-        if distance_F >= distanceborder_F:
+        if distance_F < distanceborder_F:
+            turn_R(fast,500)
+        else distance_F >= distanceborder_F:
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                 turn_R(fast,2)
                 straight(fast, 150)
