@@ -104,8 +104,9 @@ def read_distance():
     global turn_number
     global turn
     global initial
-    global certainty
+    global danger
     global update
+    
     
     while True:
         if a>300 or b>300 or c>300 or d>300:  #リセット報告
@@ -174,10 +175,8 @@ def read_distance():
         
         update = 1
         
-        #if distance_F < distanceborder_F:
-         # certainty = certainty + 1
-        #else:
-         # certainty = 0
+        if distance_L > 100:
+            danger == True
         
         if turn:
           print(f"前＝ {distance_F:5.1f} cm 左＝ {distance_L:5.1f} cm turn_number= {turn_number}")
@@ -235,7 +234,7 @@ def turn_L(waittime):
         time.sleep(waittime)
 
 def back(waittime):  #右ステッピングモータを逆転させる関数
-    for i in range(int(1/waittime)):
+    for i in range(150):
         GPIO.output(CCWp_R, GPIO.HIGH)
         GPIO.output(CCWm_R, GPIO.LOW)
         GPIO.output(CCWp_L, GPIO.HIGH)
@@ -257,6 +256,7 @@ def mortor():
     global distanceborder_L
     global fast
     global initial
+    global danger
     global speed_rate
 
     while True:
@@ -270,9 +270,9 @@ def mortor():
                 straight(fast)
             elif distance_L > distanceborder_L and distance_L < distanceborder_L + 20:
                 straight(fast)
-            #else:
-             #   back(fast)
-              #  turn_L(fast)
+            if danger:
+                back(fast)
+                turn_L(fast)
 
 try:
     if __name__ == "__main__":
