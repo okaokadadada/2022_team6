@@ -299,7 +299,7 @@ def mortor_R():
                 print("Rfast")
                 for i in range(450):
                   right_G(fast)
-                for i in rnge(50):
+                for i in range(50):
                   right_G(slow)
               last_move_L = fast_L
 
