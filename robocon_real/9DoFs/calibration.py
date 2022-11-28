@@ -48,7 +48,7 @@ def update():
     X=(max_x+min_x)/2
     Y=(max_y+min_y)/2
 
-    print('center is ('+str(X)','+str(Y)')')
+    print('center is ('+str(X)+','+str(Y)+')')
 
 def compass():
     x=[0,0,0,0,0,0,0,0,0,0]
