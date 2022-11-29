@@ -260,10 +260,11 @@ def mortor():
     global initial
     global danger
     global speed_rate
+    global A
 
     while True:
         update = 0
-        if distance_F < distanceborder_F and initial > 50:
+        if distance_F < distanceborder_F and initial > 50 and A == 1:
             turn_number = turn_number + 1
             #if turn_number == 11:
             #    break
@@ -272,6 +273,8 @@ def mortor():
             turn_R(fast,550,2)
             time.sleep(1)
             turn = False
+            
+            A = 0
             
         else:
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
@@ -284,6 +287,8 @@ def mortor():
                 danger = False
             elif distance_L > distanceborder_L and distance_L < distanceborder_L + 20:
                 straight(fast, 150)
+            
+            A = 1
 
 try:
     if __name__ == "__main__":
