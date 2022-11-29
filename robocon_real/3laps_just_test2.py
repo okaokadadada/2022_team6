@@ -176,7 +176,7 @@ def read_distance():
           distance_L = distance_preL - 10
         time.sleep(0.01)
         
-        if distance_L < distanceborder_L:
+        if distance_F < distanceborder_F:
             certainty = certainty + 1
         else:
             certainty = 0
