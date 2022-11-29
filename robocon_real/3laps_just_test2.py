@@ -268,7 +268,9 @@ def mortor():
             if turn_number == 11:
                 break
             turn = True
+            time.sleep(1)
             turn_R(fast,,550,2)
+            time.sleep(1)
             turn = False
             
         else:
