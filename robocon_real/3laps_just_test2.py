@@ -268,7 +268,7 @@ def mortor():
 
     while True:
         update = 0
-        if distance_F < distanceborder_F and initial > 50 and certainty == 10:
+        if distance_F < distanceborder_F and initial > 50 and certainty > 10:
             turn_number = turn_number + 1
             #if turn_number == 11:
             #    break
