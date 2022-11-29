@@ -58,6 +58,7 @@ distanceborder_F = 150
 distanceborder_L = 20
 distance = 10
 danger = False
+certainty = 0
 
 #旋回回数
 turn_number = 0
@@ -75,6 +76,7 @@ turn_L_range = 375
 
 #モータの制御に用いる変数，定数
 certainty = 0
+A = 0
 update = 0
 last_move_R = 0
 last_move_L = 0
@@ -105,12 +107,12 @@ def read_distance():
     global turn_number
     global turn
     global initial
-    global danger
+    global certainty
     global update
     
     
     while True:
-        if a>300 or b>300 or c>300 or d>300:  #リセット報告
+        if a>rimit or b>rimit or c>rimit or d>rimit:
             a=0
             b=0
             c=0
@@ -174,8 +176,10 @@ def read_distance():
           distance_L = distance_preL - 10
         time.sleep(0.01)
         
-        if distance_L > 100:
-            danger = True
+        if distance_L < distanceborder_L:
+            certainty = certainty + 1
+        else:
+            certainty = 0
             
         if turn:
           print(f"前＝ {distance_F:5.1f} cm 左＝ {distance_L:5.1f} cm turn_number= {turn_number}")
@@ -258,13 +262,13 @@ def mortor():
     global distanceborder_L
     global fast
     global initial
-    global danger
+    global certainty
     global speed_rate
     global A
 
     while True:
         update = 0
-        if distance_F < distanceborder_F and initial > 50 and A == 1:
+        if distance_F < distanceborder_F and initial > 50 and certainty == 10:
             turn_number = turn_number + 1
             #if turn_number == 11:
             #    break
