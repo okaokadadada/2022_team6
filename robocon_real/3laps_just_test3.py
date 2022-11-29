@@ -274,7 +274,7 @@ def mortor():
             #    break
             turn = True
             time.sleep(1)
-            turn_R(fast,290,5)
+            turn_R(fast,295,5)
             time.sleep(1)
             turn = False
             
