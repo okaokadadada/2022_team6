@@ -265,11 +265,11 @@ def mortor():
         update = 0
         if distance_F < distanceborder_F and initial > 50:
             turn_number = turn_number + 1
-            if turn_number == 11:
-                break
+            #if turn_number == 11:
+            #    break
             turn = True
             time.sleep(1)
-            turn_R(fast,,550,2)
+            turn_R(fast,550,2)
             time.sleep(1)
             turn = False
             
