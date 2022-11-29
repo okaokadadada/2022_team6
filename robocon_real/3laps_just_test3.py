@@ -54,19 +54,19 @@ distance_F = 0
 distance_L = 0
 distance_preF = 0
 distance_preL = 0
-distanceborder_F = 10
+distanceborder_F = 50
 distanceborder_L = 20
+distance = 10
+danger = False
+certainty = 0
 
 #旋回回数
 turn_number = 0
 turn = False
 
 #モータの速度
-  #遅い
 slow = 0.007
-  #普通
 normal = 0.005
-  #速い
 fast = 0.003
 
 turn_R_speed = 0.0075
@@ -76,6 +76,7 @@ turn_L_range = 375
 
 #モータの制御に用いる変数，定数
 certainty = 0
+A = 0
 update = 0
 last_move_R = 0
 last_move_L = 0
@@ -108,8 +109,10 @@ def read_distance():
     global initial
     global certainty
     global update
+    
+    
     while True:
-        if a>300 or b>300 or c>300 or d>300:  #リセット報告
+        if a>rimit or b>rimit or c>rimit or d>rimit:
             a=0
             b=0
             c=0
@@ -173,13 +176,11 @@ def read_distance():
           distance_L = distance_preL - 10
         time.sleep(0.01)
         
-        update = 1
-        
         if distance_F < distanceborder_F:
-          certainty = certainty + 1
+            certainty = certainty + 1
         else:
-          certainty = 0
-        
+            certainty = 0
+            
         if turn:
           print(f"前＝ {distance_F:5.1f} cm 左＝ {distance_L:5.1f} cm turn_number= {turn_number}")
         else:
@@ -190,151 +191,116 @@ def read_distance():
         
         distance_preF = distance_F
         distance_preL = distance_L
+        
+        update = 1
 
 #ステッピングモータを制御する関数
-def right_G(waittime):  #右ステッピングモータを正転させる関数
-  GPIO.output(CWp_R, GPIO.HIGH)
-  GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
-  time.sleep(waittime)
-  GPIO.output(CWp_R, GPIO.LOW)
-  GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
-  time.sleep(waittime)
+def straight(waittime,repeat):  #右ステッピングモータを正転させる関数
+    for i in range(int(repeat)):
+        GPIO.output(CWp_R, GPIO.HIGH)
+        GPIO.output(CWm_R, GPIO.LOW)
+        GPIO.output(CWp_L, GPIO.HIGH)
+        GPIO.output(CWm_L, GPIO.LOW)
+        time.sleep(waittime)
+        GPIO.output(CWp_R, GPIO.LOW)
+        GPIO.output(CWm_R, GPIO.HIGH)
+        GPIO.output(CWp_L, GPIO.LOW)
+        GPIO.output(CWm_L, GPIO.HIGH)
+        time.sleep(waittime)
   
-def right_B(waittime):  #右ステッピングモータを逆転させる関数
-  GPIO.output(CCWp_R, GPIO.HIGH)
-  GPIO.output(CCWm_R, GPIO.LOW)             #CCWをONに
-  time.sleep(waittime)
-  GPIO.output(CCWp_R, GPIO.LOW)
-  GPIO.output(CCWm_R, GPIO.HIGH)            #CCWをOFFに
-  time.sleep(waittime)
-    
-def left_G(waittime):   #左ステッピングモータを正転させる関数
-  GPIO.output(CWp_L, GPIO.HIGH)
-  GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
-  time.sleep(waittime)
-  GPIO.output(CWp_L, GPIO.LOW)
-  GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
-  time.sleep(waittime)
-  
-def left_B(waittime):   #左ステッピングモータを逆転させる関数
-  GPIO.output(CCWp_L, GPIO.HIGH)
-  GPIO.output(CCWm_L, GPIO.LOW)             #CCWをONに
-  time.sleep(waittime)
-  GPIO.output(CCWp_L, GPIO.LOW)
-  GPIO.output(CCWm_L, GPIO.HIGH)            #CCWをOFFに
-  time.sleep(waittime)
+def turn_R(waittime,repeat,speedrate):
+    for i in range(repeat):
+        if i % speedrate == 0:
+            GPIO.output(CWp_R, GPIO.HIGH)
+            GPIO.output(CWm_R, GPIO.LOW)
+        GPIO.output(CWp_L, GPIO.HIGH)
+        GPIO.output(CWm_L, GPIO.LOW)
+        time.sleep(waittime)
+        if i % speedrate == 0:
+            GPIO.output(CWp_R, GPIO.LOW)
+            GPIO.output(CWm_R, GPIO.HIGH)
+        GPIO.output(CWp_L, GPIO.LOW)
+        GPIO.output(CWm_L, GPIO.HIGH)
+        time.sleep(waittime)
 
-def turn_R():
-  global turn_number
-  turn_number = turn_number + 1
-  for i in range(turn_R_range):
-    GPIO.output(CWp_R, GPIO.HIGH)
-    GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
-    time.sleep(turn_R_speed)
-    GPIO.output(CWp_R, GPIO.LOW)
-    GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
-    time.sleep(turn_R_speed)
-    
+def turn_L(waittime,repeat,speedrate):
+    for i in range(repeat):
+        GPIO.output(CWp_R, GPIO.HIGH)
+        GPIO.output(CWm_R, GPIO.LOW)
+        if i % speedrate == 0:
+            GPIO.output(CWp_L, GPIO.HIGH)
+            GPIO.output(CWm_L, GPIO.LOW)
+        time.sleep(waittime)
+        GPIO.output(CWp_R, GPIO.LOW)
+        GPIO.output(CWm_R, GPIO.HIGH)
+        if i % speedrate == 0:
+            GPIO.output(CWp_L, GPIO.LOW)
+            GPIO.output(CWm_L, GPIO.HIGH)
+        time.sleep(waittime)
 
-def turn_L():
-  for i in range(turn_L_range):
-    GPIO.output(CWp_L, GPIO.HIGH)
-    GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
-    time.sleep(turn_L_speed)
-    GPIO.output(CWp_L, GPIO.LOW)
-    GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
-    time.sleep(turn_L_speed)
-    
-    
-def mortor_R():
+def back(waittime):  #右ステッピングモータを逆転させる関数
+    for i in range(150):
+        GPIO.output(CCWp_R, GPIO.HIGH)
+        GPIO.output(CCWm_R, GPIO.LOW)
+        GPIO.output(CCWp_L, GPIO.HIGH)
+        GPIO.output(CCWm_L, GPIO.LOW) 
+        time.sleep(waittime)
+        GPIO.output(CCWp_R, GPIO.LOW)
+        GPIO.output(CCWm_R, GPIO.HIGH)
+        GPIO.output(CCWp_L, GPIO.LOW)
+        GPIO.output(CCWm_L, GPIO.HIGH)
+        time.sleep(waittime)
+
+def mortor():
     global turn_number
     global turn
-    global certainty
     global update
+    global distance
     global distance_F
     global distance_L
     global distanceborder_F
     global distanceborder_L
-    global slow
-    global normal
     global fast
-    global slow_R
-    global normal_R
-    global fast_R
-    global last_move_R
     global initial
-    
-    while True:
-      update = 0
-      if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
-          if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-            last_move_R = slow_R
-            while update == 0:
-              print("Rslow")
-              for i in range(50):
-                right_G(slow)
-              for i in range(450):
-                right_G(fast)
-
-          elif distance_L >= distanceborder_L:    #左壁との距離が規定値以上になったら左に方向修正
-            last_move_R = fast_R
-            while update == 0:
-              print("Rfast")
-              for i in range(450):
-                right_G(fast)
-              for i in range(50):
-                right_G(slow)
-
-          #else:
-           # last_move_R = normal_R
-           # while update == 0:
-           #   for i in range(200):
-           #     right_G(normal)
-
-def mortor_L():
-    global turn_number
-    global turn
     global certainty
-    global update
-    global distance_F
-    global distance_L
-    global distanceborder_F
-    global distanceborder_L
-    global slow
-    global normal
-    global fast
-    global slow_L
-    global normal_L
-    global fast_L
-    global last_move_L
-    global initial
-    
+    global speed_rate
+    global A
+
     while True:
-        if last_move_R == slow_R:
-          for i in range(450):
-            left_G(fast)
-          for i in range(50):
-            left_G(slow)
-        
-        elif last_move_R == fast_R:
-          for i in range(50):
-            left_G(slow)
-          for i in range(450):
-            left_G(fast)
+        update = 0
+        if distance_F < distanceborder_F and initial > 50 and certainty > 20:
+            turn_number = turn_number + 1
+            #if turn_number == 11:
+            #    break
+            turn = True
+            time.sleep(1)
+            turn_R(fast,550,100)
+            time.sleep(1)
+            turn = False
             
-        #else:
-        #  for i in range(200):
-        #    left_G(normal) 
+            A = 0
+            
+        else:
+            if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
+                turn_R(fast,100,)
+                straight(fast,150)
+            elif distance_L > distanceborder_L + distance:
+                turn_L(fast,100,3)
+                turn_R(fast,60,2)
+                straight(fast,200)
+                danger = False
+            else:
+                straight(fast, 150)
+            
+            A = 1
 
 try:
     if __name__ == "__main__":
         thread_1 = threading.Thread(target=read_distance)
-        thread_2 = threading.Thread(target=mortor_L)
-        thread_3 = threading.Thread(target=mortor_R)
+        thread_2 = threading.Thread(target=mortor)
 
         thread_1.start()
         thread_2.start()
-        thread_3.start()
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
