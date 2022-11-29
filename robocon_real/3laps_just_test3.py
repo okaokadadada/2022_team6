@@ -182,9 +182,9 @@ def read_distance():
             certainty = 0
             
         if turn:
-          print(f"前＝ {distance_F:5.1f} cm 左＝ {distance_L:5.1f} cm turn_number= {turn_number}")
+          print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f} cm   turn_number= {turn_number}")
         else:
-          print(f"前＝ {distance_F:5.1f} cm 左＝ {distance_L:5.1f}cm")
+          print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f}cm")
         
         if initial < 51:
           initial = initial + 1
@@ -282,15 +282,15 @@ def mortor():
             
         else:
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-                turn_R(fast,100,2)
-                straight(fast,150)
+                turn_R(fast,50,2)
+                straight(fast,50)
             elif distance_L > distanceborder_L + distance:
-                turn_L(fast,100,3)
-                turn_R(fast,60,2)
-                straight(fast,200)
+                turn_L(fast,50,3)
+                turn_R(fast,30,2)
+                straight(fast,50)
                 danger = False
             else:
-                straight(fast, 150)
+                straight(fast, 50)
             
             A = 1
 
