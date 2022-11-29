@@ -282,7 +282,7 @@ def mortor():
             
         else:
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-                turn_R(fast,100,)
+                turn_R(fast,100,2)
                 straight(fast,150)
             elif distance_L > distanceborder_L + distance:
                 turn_L(fast,100,3)
