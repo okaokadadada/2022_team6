@@ -262,7 +262,47 @@ def back(waittime):  #右ステッピングモータを逆転させる関数
         GPIO.output(CCWp_L, GPIO.LOW)
         GPIO.output(CCWm_L, GPIO.HIGH)
         time.sleep(waittime)
+        
 
+def correct_direction():
+    rotate_ave = (rotate_R + rotate_L)/2 
+    if rotate_R - rotate_ave > 0: # 右の方が多く回転している場合
+        for i in range(abs(rotate_R - rotate_ave)):
+            # 右逆転
+            GPIO.output(CCWp_R, GPIO.HIGH)
+            GPIO.output(CCWm_R, GPIO.LOW)
+            # 左正転
+            GPIO.output(CWp_L, GPIO.HIGH)
+            GPIO.output(CWm_L, GPIO.LOW)
+
+            time.sleep(watetime)
+
+            # 右逆転
+            GPIO.output(CCWp_R, GPIO.LOW)
+            GPIO.output(CCWm_R, GPIO.HIGH)
+            # 左正転
+            GPIO.output(CWp_L, GPIO.LOW)
+            GPIO.output(CWm_L, GPIO.HIGH)
+
+    elif rotate_L - rotate_ave > 0: # 左の方が多く回転している場合
+        for i in range(abs(rotate_R - rotate_ave)):
+            # 右正転
+            GPIO.output(CWp_R, GPIO.HIGH)
+            GPIO.output(CWm_R, GPIO.LOW)
+            # 左逆転
+            GPIO.output(CCWp_L, GPIO.HIGH)  
+            GPIO.output(CCWm_L, GPIO.LOW) 
+            
+            time.sleep(watetime)
+
+            # 右正転
+            GPIO.output(CWp_R, GPIO.LOW)
+            GPIO.output(CWm_R, GPIO.HIGH)
+            # 左逆転
+            GPIO.output(CCWp_L, GPIO.LOW)
+            GPIO.output(CCWm_L, GPIO.HIGH)
+
+            
 def mortor():
     global turn_number
     global turn
@@ -284,6 +324,9 @@ def mortor():
             turn_number = turn_number + 1
             #if turn_number == 11:
             #    break
+            
+            correct_direction()
+            
             turn = True
             time.sleep(1)
             turn_R(fast,295,5)
