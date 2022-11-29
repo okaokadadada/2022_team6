@@ -55,7 +55,7 @@ distance_L = 0
 distance_preF = 0
 distance_preL = 0
 distanceborder_F = 150
-distanceborder_L = 20
+distanceborder_L = 40
 distance = 10
 danger = False
 certainty = 0
@@ -284,12 +284,12 @@ def mortor():
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                 turn_R(fast,100,2)
                 straight(fast,150)
-            elif distance_L > distanceborder_L + distance:# and distance_L < 80:
+            elif distance_L > distanceborder_L + distance:
                 turn_L(fast,100,3)
                 turn_R(fast,60,2)
                 straight(fast,200)
                 danger = False
-            elif distance_L > distanceborder_L and distance_L < distanceborder_L + 20:
+            else:
                 straight(fast, 150)
             
             A = 1
