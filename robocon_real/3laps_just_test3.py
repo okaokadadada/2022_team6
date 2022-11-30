@@ -47,11 +47,11 @@ duration_F = 0
 duration_L = 0
 distance_F = 0
 distance_L = 0
-distance_preF = 0
-distance_preL = 0
+distance_sumF = 0
+distance_sumL = 0
 distanceborder_F = 65
 distanceborder_L = 20
-distance = 0
+distance = 20
 
 # 左右のモータの回転数を記録
 rotate_R = 0
