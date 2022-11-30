@@ -317,6 +317,8 @@ def mortor():
     global certainty
     global speed_rate
     global A
+    global rotate_R
+    global rotate_L
 
     while True:
         update = 0
