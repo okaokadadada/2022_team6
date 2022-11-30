@@ -366,14 +366,14 @@ def mortor():
                 
             elif distance_L > distanceborder_L + distance:
                 turn_L(fast,50,3)
-                turn_R(fast,30,2)
+#                 turn_R(fast,30,2)
                 straight(fast,50)
                 danger = False
                 
                 correct_direction(fast)
                 
             else:
-                straight(fast, 50)
+                straight(fast, 100)
             
             A = 1
 
