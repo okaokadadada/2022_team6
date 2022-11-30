@@ -300,9 +300,8 @@ try:
                 correct_direction(fast)
 
             elif distance_L > distanceborder_L + distance:
-                turn_L(fast,50,3)
+                turn_L(fast,50,2)
                 straight(fast,50)
-                danger = False
 
                 correct_direction(fast)
 
