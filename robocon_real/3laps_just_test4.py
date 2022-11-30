@@ -213,6 +213,7 @@ def straight(waittime,repeat):  #右ステッピングモータを正転させ�
         time.sleep(waittime)
   
 def turn_R(waittime,repeat,speedrate):
+    print("turnR start")
     global rotate_R
     global rotate_L
     for i in range(repeat):
@@ -235,6 +236,7 @@ def turn_R(waittime,repeat,speedrate):
         
 
 def turn_L(waittime,repeat,speedrate):
+    print("turnL start")
     global rotate_R
     global rotate_L
     for i in range(repeat):
@@ -269,6 +271,7 @@ def back(waittime):  #右ステッピングモータを逆転させる関数
         
 
 def correct_direction(watetime):
+    print("correct start")
     global rotate_R 
     global rotate_L
     rotate_ave = (rotate_R + rotate_L)/2 
