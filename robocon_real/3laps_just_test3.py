@@ -38,6 +38,10 @@ GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
 
 #距離測定に使用する変数，定数
+a = 0
+b = 0
+c = 0
+d = 0
 rimit = 200000
 sig_on_F = 0
 sig_off_F = 0
