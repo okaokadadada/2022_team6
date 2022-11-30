@@ -316,9 +316,9 @@ def correct_direction(watetime):
             
             time.sleep(watetime)
 
-        
-        rotate_R = 0
-        rotate_l = 0
+
+    rotate_R = 0
+    rotate_l = 0
             
           
 
