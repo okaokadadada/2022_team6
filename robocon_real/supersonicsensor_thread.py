@@ -271,7 +271,7 @@ try:
         if turn:
           print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f} cm   turn_number= {turn_number}")
         else:
-          print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f}cm")
+          print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f}cm   difference＝{distance_F - distance_L}")
 
         #モータの制御
         difference = distance_F - distance_L
