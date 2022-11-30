@@ -281,14 +281,14 @@ try:
 
         else:
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-                turn_R(fast,20,2)
-                straight(fast,20)
+                turn_R(fast,50,2)
+                straight(fast,50)
 
                 correct_direction(fast)
 
             elif distance_L > distanceborder_L + distance:
-                turn_L(fast,20,3)
-                straight(fast,20)
+                turn_L(fast,50,3)
+                straight(fast,50)
                 danger = False
 
                 correct_direction(fast)
