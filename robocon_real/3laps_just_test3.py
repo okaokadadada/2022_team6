@@ -262,6 +262,8 @@ try:
             distance_L = duration_L * 34000 / 2         #距離を求める(cm)
             distance_sumL += distance_L
             time.sleep(0.001)
+            
+            print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f}cm")
         
         distance_F = distance_sumF / 10
         distance_L = distance_sumL / 10
