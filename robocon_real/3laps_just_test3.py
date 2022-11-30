@@ -270,7 +270,7 @@ try:
         distance_preL = distance_L
 
         #モータの制御
-        if distance_F < distanceborder_F and initial > 10:
+        if distance_F < distanceborder_F:
             turn_number = turn_number + 1
             #if turn_number == 11:
             #    break
