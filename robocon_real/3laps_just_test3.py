@@ -280,8 +280,8 @@ try:
             
             #print(f"i＝　{i}  前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f}cm")
         
-        distance_F = distance_sumF / (10 - reset)
-        distance_L = distance_sumL / (10 - reset)
+        distance_F = distance_sumF / (10 - reset_F)
+        distance_L = distance_sumL / (10 - reset_L)
 
         if turn:
           print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f} cm   turn_number= {turn_number}")
