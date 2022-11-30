@@ -208,11 +208,13 @@ def correct_direction(waittime):
 try:
     while True:
         #超音波センサで距離を計測
+        reset = 0
         distance_sumF = 0
         distance_sumL = 0
         for i in range(10):
             if a>=rimit or b>=rimit or c>=rimit or d>=rimit:
                 print("reset")
+                reset += 1
             a=0
             b=0
             c=0
@@ -271,8 +273,8 @@ try:
             
             print(f"i＝　{i}  前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f}cm")
         
-        distance_F = distance_sumF / 10
-        distance_L = distance_sumL / 10
+        distance_F = distance_sumF / (10 - reset)
+        distance_L = distance_sumL / (10 - reset)
 
         if turn:
           print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f} cm   turn_number= {turn_number}")
