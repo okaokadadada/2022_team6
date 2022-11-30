@@ -271,10 +271,10 @@ try:
         if turn:
           print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f} cm   turn_number= {turn_number}")
         else:
-          print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f}cm   difference＝{distance_F - distance_L}")
+          print(f"前＝ {distance_F + 3:5.1f} cm   左＝ {distance_L:5.1f}cm   difference＝{distance_F + 3 - distance_L:5.1f}")
 
         #モータの制御
-        difference = distance_F - distance_L
+        difference = distance_F + 3 - distance_L
         if difference >= 1:
             turn_R(fast,int(abs(difference))*2,2)
         elif difference <= -1:
