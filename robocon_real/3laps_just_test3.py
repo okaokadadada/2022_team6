@@ -301,18 +301,18 @@ try:
         else:
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                 turn_R(fast,50,2)
-                straight(fast,50)
+                straight(fast,400)
 
                 correct_direction(fast)
 
             elif distance_L > distanceborder_L + distance:
                 turn_L(fast,50,2)
-                straight(fast,50)
+                straight(fast,400)
 
                 correct_direction(fast)
 
             else:
-                straight(fast, 50)
+                straight(fast, 400)
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
