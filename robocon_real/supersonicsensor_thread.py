@@ -277,7 +277,7 @@ try:
         difference = distance_F - distance_L
         if difference >= 1:
             turn_R(fast,int(abs(difference))*2,2)
-        elif different <= -1:
+        elif difference <= -1:
             turn_L(fast,int(abs(difference))*2,2)
         
         else:
