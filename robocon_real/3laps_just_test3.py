@@ -205,6 +205,8 @@ try:
     while True:
         #超音波センサで距離を計測
         for i in range(10):
+            if a>=rimit or b>=rimit or c>=rimit or d>=rimit:
+                print("reset")
             a=0
             b=0
             c=0
