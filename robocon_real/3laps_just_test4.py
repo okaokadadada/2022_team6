@@ -229,9 +229,9 @@ def turn_R(waittime,repeat,speedrate):
         GPIO.output(CWp_L, GPIO.LOW)
         GPIO.output(CWm_L, GPIO.HIGH)
         time.sleep(waittime)
-        
-        rotate_R += int(repeat/speedrate)
-        rotate_L += repeat
+
+    rotate_R += int(repeat/speedrate)
+    rotate_L += repeat
         
         
 
@@ -252,9 +252,9 @@ def turn_L(waittime,repeat,speedrate):
             GPIO.output(CWp_L, GPIO.LOW)
             GPIO.output(CWm_L, GPIO.HIGH)
         time.sleep(waittime)
-        
-        rotate_R += repeat
-        rotate_L += int(repeat/speedrate)
+
+    rotate_R += repeat
+    rotate_L += int(repeat/speedrate)
 
 def back(waittime):  #右ステッピングモータを逆転させる関数
     for i in range(150):
