@@ -26,13 +26,6 @@ GPIO.setup(CWm_L, GPIO.OUT)            #GPIO　を出力モードに設定
 GPIO.setup(CCWp_L, GPIO.OUT)           #GPIO　を出力モードに設定
 GPIO.setup(CCWm_L, GPIO.OUT)           #GPIO　を出力モードに設定
 
-#超音波センサのピン設定
-GPIO.setup(Trig_F, GPIO.OUT)          #GPIO27を出力モードに設定
-GPIO.setup(Echo_F, GPIO.IN)           #GPIO18を入力モードに設定
-GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
-GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
-
-
 
 #距離測定に使用する変数，定数
 a=0
