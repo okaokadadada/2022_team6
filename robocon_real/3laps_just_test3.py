@@ -89,16 +89,22 @@ fast_L = 3
 def straight(waittime,repeat):  #右ステッピングモータを正転させる関数
     print("straight")
     for i in range(int(repeat)):
-        GPIO.output(CWp_R, GPIO.HIGH)
-        GPIO.output(CWm_R, GPIO.LOW)
-        GPIO.output(CWp_L, GPIO.HIGH)
-        GPIO.output(CWm_L, GPIO.LOW)
-        time.sleep(waittime)
-        GPIO.output(CWp_R, GPIO.LOW)
-        GPIO.output(CWm_R, GPIO.HIGH)
-        GPIO.output(CWp_L, GPIO.LOW)
-        GPIO.output(CWm_L, GPIO.HIGH)
-        time.sleep(waittime)
+        if i % 6 == 0:
+            GPIO.output(CWp_R, GPIO.HIGH)
+            GPIO.output(CWm_R, GPIO.LOW)
+        if i % 8 == 0:
+            GPIO.output(CWp_L, GPIO.HIGH)
+            GPIO.output(CWm_L, GPIO.LOW)
+        if i % 6 == 0 or i % 8 == 0:
+            time.sleep(waittime)
+        if i % 6 == 0:
+            GPIO.output(CWp_R, GPIO.LOW)
+            GPIO.output(CWm_R, GPIO.HIGH)
+        if i % 8 == 0:
+            GPIO.output(CWp_L, GPIO.LOW)
+            GPIO.output(CWm_L, GPIO.HIGH)
+        if i % 6 == 0 or i % 8 == 0:
+            time.sleep(waittime)
   
 def turn_R(waittime,repeat,speedrate):
     print("turnR")
