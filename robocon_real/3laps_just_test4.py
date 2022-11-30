@@ -373,7 +373,7 @@ def mortor():
                 correct_direction(fast)
                 
             else:
-                straight(fast, 100)
+                straight(fast, 50)
             
             A = 1
 
