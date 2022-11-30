@@ -69,21 +69,6 @@ turn = False
 slow = 0.007
 normal = 0.005
 fast = 0.006
-
-turn_R_speed = 0.0075
-turn_L_speed = 0.005
-turn_R_range = 250
-turn_L_range = 375
-
-#モータの制御に用いる変数，定数
-last_move_R = 0
-last_move_L = 0
-slow_R = 1
-normal_R = 2
-fast_R = 3
-slow_L = 1
-normal_L = 2
-fast_L = 3    
     
 #ステッピングモータを制御する関数
 def straight(waittime,repeat):  #右ステッピングモータを正転させる関数
