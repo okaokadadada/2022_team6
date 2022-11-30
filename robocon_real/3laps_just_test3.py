@@ -83,6 +83,7 @@ fast_L = 3
     
 #ステッピングモータを制御する関数
 def straight(waittime,repeat):  #右ステッピングモータを正転させる関数
+    print("straight")
     for i in range(int(repeat)):
         GPIO.output(CWp_R, GPIO.HIGH)
         GPIO.output(CWm_R, GPIO.LOW)
@@ -96,7 +97,7 @@ def straight(waittime,repeat):  #右ステッピングモータを正転させ�
         time.sleep(waittime)
   
 def turn_R(waittime,repeat,speedrate):
-    print("turnR start")
+    print("turnR")
     global rotate_R
     global rotate_L
     for i in range(repeat):
@@ -117,7 +118,7 @@ def turn_R(waittime,repeat,speedrate):
     rotate_L += repeat
 
 def turn_L(waittime,repeat,speedrate):
-    print("turnL start")
+    print("turnL")
     global rotate_R
     global rotate_L
     for i in range(repeat):
@@ -151,7 +152,7 @@ def back(waittime):  #右ステッピングモータを逆転させる関数
         time.sleep(waittime)
 
 def correct_direction(waittime):
-    print("correct start")
+    print("correct_direction")
     global rotate_R 
     global rotate_L
     rotate_ave = (rotate_R + rotate_L)/2 
