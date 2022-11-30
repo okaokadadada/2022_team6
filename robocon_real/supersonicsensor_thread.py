@@ -281,7 +281,7 @@ try:
             turn_L(fast,int(abs(difference))*2,2)
         
         else:
-            straight(50)
+            straight(fast,50)
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
