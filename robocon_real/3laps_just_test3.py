@@ -214,17 +214,16 @@ def correct_direction(waittime):
 try:
     while True:
         #超音波センサで距離を計測
-        reset = 0
+        reset_F = 0
+        reset_L = 0
         distance_sumF = 0
         distance_sumL = 0
         for i in range(10):
-            if a>=rimit or b>=rimit or c>=rimit or d>=rimit:
+            if a>=rimit or b>=rimit :
                 print("reset")
-                reset += 1
+                reset_F += 1
             a=0
             b=0
-            c=0
-            d=0
             #前方
             GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
             time.sleep(0.00001)                     #10μ秒間待つ
@@ -250,6 +249,12 @@ try:
             time.sleep(0.001)
 
             #左方
+        for i in range(10):
+            if c>=rimit or d>=rimit :
+                print("reset")
+                reset_L += 1
+            c=0
+            d=0
             GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
             time.sleep(0.00001)                     #10μ秒間待つ
             GPIO.output(Trig_L, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
