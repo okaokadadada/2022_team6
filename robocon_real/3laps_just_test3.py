@@ -156,10 +156,10 @@ def back(waittime):  #右ステッピングモータを逆転させる関数
         time.sleep(waittime)
 
 def correct_direction(waittime):
-    print("correct_direction")
     global rotate_R 
     global rotate_L
     rotate_ave = (rotate_R + rotate_L)/2 
+    print(f"correct_direction  rotate_ave＝　{rotate_ave}")
     if rotate_R - rotate_ave > 0: # 右の方が多く回転している場合
         for i in range(int(abs(rotate_R - rotate_ave))):
             # 右逆転
