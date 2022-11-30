@@ -275,7 +275,7 @@ try:
 
         #モータの制御
         difference = distance_F - 3 - distance_L
-        if distance_F < 50 and distance_L < 50:
+        if abs(distance_F) < 50 and abs(distance_L) < 50:
             if difference >= 1:
                 turn_R(fast,int(abs(difference))*2,2)
             elif difference <= -1:
