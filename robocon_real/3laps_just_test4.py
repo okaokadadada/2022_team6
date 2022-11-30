@@ -269,6 +269,8 @@ def back(waittime):  #右ステッピングモータを逆転させる関数
         
 
 def correct_direction():
+    global rotate_R 
+    global rotate_L
     rotate_ave = (rotate_R + rotate_L)/2 
     if rotate_R - rotate_ave > 0: # 右の方が多く回転している場合
         for i in range(abs(rotate_R - rotate_ave)):
@@ -305,6 +307,11 @@ def correct_direction():
             # 左逆転
             GPIO.output(CCWp_L, GPIO.LOW)
             GPIO.output(CCWm_L, GPIO.HIGH)
+        
+        rotate_R = 0
+        rotate_l = 0
+            
+          
 
             
 def mortor():
@@ -340,18 +347,22 @@ def mortor():
             turn = False
             
             A = 0
-            rotate_R = 0
-            rotate_l = 0
             
         else:
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
                 turn_R(fast,50,2)
                 straight(fast,50)
+                
+                correct_direction()
+                
             elif distance_L > distanceborder_L + distance:
                 turn_L(fast,50,3)
                 turn_R(fast,30,2)
                 straight(fast,50)
                 danger = False
+                
+                correct_direction()
+                
             else:
                 straight(fast, 50)
             
