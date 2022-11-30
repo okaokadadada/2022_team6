@@ -205,7 +205,7 @@ try:
         distance_sumL = 0
         for i in range(10):
             if a>=rimit or b>=rimit :
-                print("reset")
+                print("resetAB")
                 reset_F += 1
             a=0
             b=0
@@ -236,7 +236,7 @@ try:
             #左方
         for i in range(10):
             if c>=rimit or d>=rimit :
-                print("reset")
+                print("reseCDt")
                 reset_L += 1
             c=0
             d=0
