@@ -213,6 +213,8 @@ def straight(waittime,repeat):  #右ステッピングモータを正転させ�
         time.sleep(waittime)
   
 def turn_R(waittime,repeat,speedrate):
+    global rotate_R
+    global rotate_L
     for i in range(repeat):
         if i % speedrate == 0:
             GPIO.output(CWp_R, GPIO.HIGH)
@@ -233,6 +235,8 @@ def turn_R(waittime,repeat,speedrate):
         
 
 def turn_L(waittime,repeat,speedrate):
+    global rotate_R
+    global rotate_L
     for i in range(repeat):
         GPIO.output(CWp_R, GPIO.HIGH)
         GPIO.output(CWm_R, GPIO.LOW)
