@@ -14,7 +14,7 @@ img = cv2.imread(name+".jpg")#読み込み
 #2値化する
 hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 lower = (100,0, 0)
-upper = (230, 255, 255)
+upper = (250, 255, 255)
 img2 = cv2.inRange(hsv, lower, upper)
 cv2.imwrite(name+"_binarized.jpg",img2)
 
