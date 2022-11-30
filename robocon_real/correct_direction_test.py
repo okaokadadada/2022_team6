@@ -135,5 +135,5 @@ def correct_direction(watetime):
         rotate_l = 0
         
 rotate_R = 50
-rotate_L = 100
+rotate_L = 25
 correct_direction(fast)
