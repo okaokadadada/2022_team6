@@ -280,7 +280,7 @@ try:
         elif different <= -1:
             turn_L(fast,int(abs(difference))*2,2)
         
-        if abs(difference) < 1:
+        else:
             straight(50)
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
