@@ -240,8 +240,6 @@ try:
                 continue
             duration_F = sig_on_F -sig_off_F            #GPIO18がHighしている時間を算術
             distance_F = duration_F * 34000 / 2         #距離を求める(cm)
-            if abs(distance_F - distance_preF) > 100:
-                distance_F = distance_preF
             distance_sumF += distance_F 
             time.sleep(0.001)
 
@@ -266,10 +264,8 @@ try:
                 continue
             duration_L = sig_on_L - sig_off_L           #GPIO18がHighしている時間を算術
             distance_L = duration_L * 34000 / 2         #距離を求める(cm)
-            if abs(distance_L - distance_preL) > 100:
-                distance_L = distance_preL
             distance_sumL += distance_L
-            time.sleep(0.001)
+            time.sleep(0.001)            
             
             print(f"i＝　{i}  前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f}cm")
         
