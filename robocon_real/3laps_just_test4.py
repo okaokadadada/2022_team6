@@ -352,6 +352,8 @@ def mortor():
             turn_R(fast,295,5)
             time.sleep(1)
             turn = False
+            rotate_R = 0
+            rotate_L = 0
             
             A = 0
             
