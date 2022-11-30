@@ -182,7 +182,7 @@ def correct_direction(waittime):
 
 
     elif rotate_L - rotate_ave > 0: # 左の方が多く回転している場合
-        for i in range(int(abs(rotate_R - rotate_ave))):
+        for i in range(int(abs(rotate_R - rotate_ave))+10):
             # 右正転
             GPIO.output(CWp_R, GPIO.HIGH)
             GPIO.output(CWm_R, GPIO.LOW)
