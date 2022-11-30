@@ -202,7 +202,7 @@ def correct_direction(waittime):
             time.sleep(waittime)
 
     rotate_R = 0
-    rotate_l = 0
+    rotate_L = 0
             
             
 try:
