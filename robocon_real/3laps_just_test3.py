@@ -272,6 +272,7 @@ try:
 
             turn = True
             time.sleep(1)
+            print("close to wall")
             turn_R(fast,320,5)
             time.sleep(1)
             turn = False
