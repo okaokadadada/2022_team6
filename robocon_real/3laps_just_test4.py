@@ -347,8 +347,6 @@ def mortor():
             #if turn_number == 11:
             #    break
             
-            correct_direction(fast)
-            
             turn = True
             time.sleep(1)
             turn_R(fast,295,5)
