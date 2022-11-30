@@ -205,7 +205,7 @@ try:
         distance_sumL = 0
         for i in range(10):
             if a>=rimit or b>=rimit :
-                print("resetAB")
+                #print("resetAB")
                 reset_F += 1
             a=0
             b=0
@@ -236,7 +236,7 @@ try:
             #左方
         for i in range(10):
             if c>=rimit or d>=rimit :
-                print("reseCDt")
+                #print("reseCDt")
                 reset_L += 1
             c=0
             d=0
@@ -275,13 +275,14 @@ try:
 
         #モータの制御
         difference = distance_F + 3 - distance_L
-        if difference >= 1:
-            turn_R(fast,int(abs(difference))*2,2)
-        elif difference <= -1:
-            turn_L(fast,int(abs(difference))*2,2)
-        
-        else:
-            straight(fast,50)
+        if distance_F < 50 and distance_L < 50:
+            if difference >= 1:
+                turn_R(fast,int(abs(difference))*2,2)
+            elif difference <= -1:
+                turn_L(fast,int(abs(difference))*2,2)
+
+            else:
+                straight(fast,50)
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
