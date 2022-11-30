@@ -273,7 +273,7 @@ def correct_direction():
     global rotate_L
     rotate_ave = (rotate_R + rotate_L)/2 
     if rotate_R - rotate_ave > 0: # 右の方が多く回転している場合
-        for i in range(abs(rotate_R - rotate_ave)):
+        for i in range(int(abs(rotate_R - rotate_ave))):
             # 右逆転
             GPIO.output(CCWp_R, GPIO.HIGH)
             GPIO.output(CCWm_R, GPIO.LOW)
@@ -291,7 +291,7 @@ def correct_direction():
             GPIO.output(CWm_L, GPIO.HIGH)
 
     elif rotate_L - rotate_ave > 0: # 左の方が多く回転している場合
-        for i in range(abs(rotate_R - rotate_ave)):
+        for i in range(int(abs(rotate_R - rotate_ave))):
             # 右正転
             GPIO.output(CWp_R, GPIO.HIGH)
             GPIO.output(CWm_R, GPIO.LOW)
