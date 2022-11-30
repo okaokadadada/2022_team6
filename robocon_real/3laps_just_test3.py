@@ -64,7 +64,7 @@ turn = False
 #モータの速度
 slow = 0.007
 normal = 0.005
-fast = 0.003
+fast = 0.006
 
 turn_R_speed = 0.0075
 turn_L_speed = 0.005
