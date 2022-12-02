@@ -452,6 +452,7 @@ try:
                 straight(fast,400)
                 
                 difference = compass()
+                print(f" difference = {difference}")
                 if difference > 0:
                     turn_L(fast,int(abs(difference)),5)
                 if difference < 0:
@@ -464,6 +465,7 @@ try:
                 straight(fast,400)
                 
                 difference = compass()
+                print(f" difference = {difference}")
                 if difference > 0:
                     turn_L(fast,int(abs(difference)),5)
                 if difference < 0:
