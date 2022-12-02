@@ -111,12 +111,14 @@ if __name__ == "__main__":
     time.sleep(0.1)
     
     while True:
-      acc = acc_value()
-      gyro= gyro_value()
-      mag = mag_value()
-      print(f"acc={acc}")
-      print(f"acc={gyro}")
-      print(f"acc={mag}")
+        acc = acc_value()
+        gyro= gyro_value()
+        mag = mag_value()
+        print(f"acc={acc}")
+        print(f"gyro={gyro}")
+        print(f"mag={mag}")
+        time.sleep(0.5)
+    
 
     
 #     now_time = datetime.datetime.now()
