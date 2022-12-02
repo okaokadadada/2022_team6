@@ -282,7 +282,7 @@ try:
             elif difference <= -3:
                 turn_L(fast,50,2)
             else:
-                straight(fast,30)
+                straight(fast,600)
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
