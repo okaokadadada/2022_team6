@@ -158,6 +158,7 @@ try:
         #f = 0
         for i in range(10):
             if a>=rimit or b>=rimit :
+                print("resetAB")
                 reset_F += 1
             a=0
             b=0
@@ -188,6 +189,7 @@ try:
             #左方
         for i in range(10):
             if c>=rimit or d>=rimit :
+                print("resetCD")
                 reset_LF += 1
             c=0
             d=0
@@ -216,6 +218,7 @@ try:
             
         for i in range(10):
             if c>=rimit or d>=rimit :
+                print("resetEF")
                 reset_LB += 1
             e=0
             f=0
