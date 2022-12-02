@@ -103,12 +103,14 @@ def compass():
       difference -= 360
     if difference < -180:
       difference += 360
-      
-    print(difference)
+
+    return difference
+    
     
 if __name__ == "__main__":
     bmx_setup()
     time.sleep(0.1)
     id=initial()
     while True:
-        compass() 
+        difference = compass()
+        print(difference)
