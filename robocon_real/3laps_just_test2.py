@@ -245,8 +245,8 @@ try:
         if reset_F == 10 or reset_LF == 10 or reset_LB == 0:
             continue
         distance_F = distance_sumF / (10 - reset_F)
-        distance_LF = distance_sumLF / (10 - reset_L)
-        distance_LB = distance_sumLB / (10 - reset_L)
+        distance_LF = distance_sumLF / (10 - reset_LF)
+        distance_LB = distance_sumLB / (10 - reset_LB)
         difference = distance_LF - distance_LB
 
         print(f"前＝ {distance_F:5.1f} cm   左前＝ {distance_LF:5.1f}cm   左後＝ {distance_LB:5.1f} cm   difference＝{difference:5.1f}")
