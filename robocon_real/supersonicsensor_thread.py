@@ -264,7 +264,8 @@ try:
             time.sleep(0.001)            
             
             #print(f"i＝　{i}  前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f}cm")
-        
+        if reset_F == 10 or reset_L == 10:
+            continue
         distance_F = distance_sumF / (10 - reset_F)
         distance_L = distance_sumL / (10 - reset_L)
 
@@ -277,9 +278,9 @@ try:
         difference = distance_F - distance_L
         if abs(distance_F) < 50 and abs(distance_L) < 50:
             if difference >= 3:
-                turn_R(fast,10,2)
+                turn_R(fast,50,2)
             elif difference <= -3:
-                turn_L(fast,10,2)
+                turn_L(fast,50,2)
             else:
                 straight(fast,30)
 
