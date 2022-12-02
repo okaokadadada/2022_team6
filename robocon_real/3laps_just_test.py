@@ -439,7 +439,7 @@ try:
         if distance_F < distanceborder_F:
             turn_number +=  1
             print(f"旋回{turn_number}回目")
-            turn_R(fast,320,5)
+            turn_R(fast,300,5)
             #if turn_number == 11:
             #    break
             rotate_R = 0
@@ -474,7 +474,7 @@ try:
 #                 correct_direction(fast)
 
             else:
-                straight(fast, 400)
+                straight(fast, 1000)
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
