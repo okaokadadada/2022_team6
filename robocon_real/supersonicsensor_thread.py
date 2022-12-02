@@ -79,7 +79,7 @@ def straight(waittime,repeat):  #右ステッピングモータを正転させ�
     a=0
     b=0
     for i in range(int(repeat)):
-        if i % rate_R == 0 and rate_L % == 0:
+        if i % rate_R == 0 and i % rate_L == 0:
             GPIO.output(CWp_R, GPIO.HIGH)
             GPIO.output(CWm_R, GPIO.LOW)
             GPIO.output(CWp_L, GPIO.HIGH)
