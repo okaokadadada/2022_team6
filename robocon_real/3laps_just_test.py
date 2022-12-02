@@ -447,13 +447,13 @@ try:
             id  += 90
 
         else:
-            if distance_L < distanceborder_L:         #左壁との距離が規定値未満になったら右に方向修正
+            if distance_LF < distanceborder_LF:         #左壁との距離が規定値未満になったら右に方向修正
                 turn_R(fast,50,2)
                 straight(fast,400)
 
                 correct_direction(fast)
 
-            elif distance_L > distanceborder_L + distance:
+            elif distance_LF > distanceborder_LF + 20:
                 turn_L(fast,50,2)
                 straight(fast,400)
 
