@@ -68,7 +68,7 @@ sig_off_LB = 0
 duration_LB = 0
 distance_LB = 0
 distanceborder_F = 65
-distanceborder_LF = 20
+distanceborder_LF = 50
 
 # 左右のモータの回転数を記録
 rotate_R = 0
