@@ -54,6 +54,7 @@ c = 0
 d = 0
 e = 0
 f = 0
+rimit = 2000
 sig_on_F = 0
 sig_off_F = 0
 duration_F = 0
