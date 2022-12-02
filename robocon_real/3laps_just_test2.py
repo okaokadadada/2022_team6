@@ -5,12 +5,12 @@ import sys                          #sysモジュールをインポート
 import threading
 
 #超音波センサのピン設定
-Trig_F = 23
-Echo_F = 24
+Trig_F = 17
+Echo_F = 15
 Trig_LF = 14
 Echo_LF = 27
-Trig_LB = 17
-Echo_LB = 15
+Trig_LB = 23
+Echo_LB = 24
 
 #モータのGPIO設定
 CWp_R=16
