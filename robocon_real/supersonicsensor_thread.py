@@ -278,9 +278,9 @@ try:
         difference = distance_F - distance_L
         if abs(distance_F) < 50 and abs(distance_L) < 50:
             if difference >= 3:
-                turn_R(fast,50,2)
-            elif difference <= -3:
                 turn_L(fast,50,2)
+            elif difference <= -3:
+                turn_R(fast,50,2)
             else:
                 straight(fast,600)
 
