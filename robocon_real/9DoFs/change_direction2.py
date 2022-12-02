@@ -83,9 +83,9 @@ def compass():
         time.sleep(0.1)
 
     avX=np.average(x)
-    print('avX='+str(avX))
+#     print('avX='+str(avX))
     avY=np.average(y)
-    print('avY='+str(avY))
+#     print('avY='+str(avY))
     
 #     ベクトル → 角度
     if avX>0 :
