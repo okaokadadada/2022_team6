@@ -451,14 +451,28 @@ try:
             if distance_LF < distanceborder_LF:         #左壁との距離が規定値未満になったら右に方向修正
                 turn_R(fast,50,2)
                 straight(fast,400)
-
-                correct_direction(fast)
+                
+                difference = compass()
+                if difference > 0:
+                    turn_L(fast,abs(difference),5)
+                if difference < 0:
+                    turn_R(fast,abs(difference),5)
+                
+#                 correct_direction(fast)
 
             elif distance_LF > distanceborder_LF + 20:
                 turn_L(fast,50,2)
                 straight(fast,400)
+                
+                difference = compass()
+                if difference > 0:
+                    turn_L(fast,abs(difference),5)
+                if difference < 0:
+                    turn_R(fast,abs(difference),5)
+                
+                difference = compass()
 
-                correct_direction(fast)
+#                 correct_direction(fast)
 
             else:
                 straight(fast, 400)
