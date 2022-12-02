@@ -69,6 +69,9 @@ turn = False
 slow = 0.007
 normal = 0.005
 fast = 0.006
+
+rate_R = 6
+rate_L = 7
     
 #ステッピングモータを制御する関数
 def straight(waittime,repeat):  #右ステッピングモータを正転させる関数
@@ -76,27 +79,31 @@ def straight(waittime,repeat):  #右ステッピングモータを正転させ�
     a=0
     b=0
     for i in range(int(repeat)):
-        if i % 12 == 0:
-            a += 1
+        if i % rate_R == 0 and rate_L % == 0:
             GPIO.output(CWp_R, GPIO.HIGH)
             GPIO.output(CWm_R, GPIO.LOW)
-        if i % 11 == 0:
-            b += 0
             GPIO.output(CWp_L, GPIO.HIGH)
             GPIO.output(CWm_L, GPIO.LOW)
-        if i % 12 == 0 or i % 11 == 0:
             time.sleep(waittime)
-        if i % 12 == 0:
-            a += 0
             GPIO.output(CWp_R, GPIO.LOW)
             GPIO.output(CWm_R, GPIO.HIGH)
-        if i % 11 == 0:
-            b += 0
             GPIO.output(CWp_L, GPIO.LOW)
             GPIO.output(CWm_L, GPIO.HIGH)
-        if i % 12 == 0 or i % 11 == 0:
             time.sleep(waittime)
-    print(a,b)
+        elif i % rate_R == 0:
+            GPIO.output(CWp_R, GPIO.HIGH)
+            GPIO.output(CWm_R, GPIO.LOW)
+            time.sleep(waittime)
+            GPIO.output(CWp_R, GPIO.LOW)
+            GPIO.output(CWm_R, GPIO.HIGH)
+            time.sleep(waittime)
+        elif i % rate_L == 0:
+            GPIO.output(CWp_L, GPIO.HIGH)
+            GPIO.output(CWm_L, GPIO.LOW)
+            time.sleep(waittime)
+            GPIO.output(CWp_L, GPIO.LOW)
+            GPIO.output(CWm_L, GPIO.HIGH)
+            time.sleep(waittime)
   
 def turn_R(waittime,repeat,speedrate):
     print("turnR")
