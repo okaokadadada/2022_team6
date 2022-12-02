@@ -15,14 +15,10 @@ CWp_R=16
 CWm_R=19
 CCWp_R=20
 CCWm_R=21
-#CWp_L=7
-#CWm_L=5
-#CCWp_L=6
-#CCWm_L=12
-CWp_L=6
-CWm_L=12
-CCWp_L=7
-CCWm_L=5
+CWp_L=7
+CWm_L=5
+CCWp_L=6
+CCWm_L=12
 
 #モータのGPIO設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
@@ -82,6 +78,7 @@ def straight(waittime,repeat):  #右ステッピングモータを正転させ�
             GPIO.output(CWp_R, GPIO.HIGH)
             GPIO.output(CWm_R, GPIO.LOW)
         if i % 7 == 0:
+            print("A")
             GPIO.output(CWp_L, GPIO.HIGH)
             GPIO.output(CWm_L, GPIO.LOW)
         if i % 6 == 0 or i % 7 == 0:
