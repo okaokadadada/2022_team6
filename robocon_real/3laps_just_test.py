@@ -453,9 +453,9 @@ try:
                 
                 difference = compass()
                 if difference > 0:
-                    turn_L(fast,abs(difference),5)
+                    turn_L(fast,int(abs(difference)),5)
                 if difference < 0:
-                    turn_R(fast,abs(difference),5)
+                    turn_R(fast,int(abs(difference)),5)
                 
 #                 correct_direction(fast)
 
@@ -465,9 +465,9 @@ try:
                 
                 difference = compass()
                 if difference > 0:
-                    turn_L(fast,abs(difference),5)
+                    turn_L(fast,int(abs(difference)),5)
                 if difference < 0:
-                    turn_R(fast,abs(difference),5)
+                    turn_R(fast,int(abs(difference)),5)
                 
                 difference = compass()
 
