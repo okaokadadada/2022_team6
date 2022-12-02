@@ -38,12 +38,11 @@ GPIO.setup(Trig_L, GPIO.OUT)          #GPIO27を出力モードに設定
 GPIO.setup(Echo_L, GPIO.IN)           #GPIO18を入力モードに設定
 
 #距離測定に使用する変数，定数
-a=0
-b=0
-c=0
-d=0
-initial=0
-rimit = 200000
+a = 0
+b = 0
+c = 0
+d = 0
+rimit = 20000
 sig_on_F = 0
 sig_off_F = 0
 sig_on_L = 0
@@ -52,22 +51,24 @@ duration_F = 0
 duration_L = 0
 distance_F = 0
 distance_L = 0
-distance_preF = 0
-distance_preL = 0
-distanceborder_F = 10
+distance_sumF = 0
+distance_sumL = 0
+distanceborder_F = 65
 distanceborder_L = 20
+distance = 20
+
+# 左右のモータの回転数を記録
+rotate_R = 0
+rotate_L = 0
 
 #旋回回数
 turn_number = 0
 turn = False
 
 #モータの速度
-  #遅い
 slow = 0.007
-  #普通
 normal = 0.005
-  #速い
-fast = 0.003    #0.0025
+fast = 0.006
 
 turn_R_speed = 0.0075
 turn_L_speed = 0.005
@@ -75,8 +76,6 @@ turn_R_range = 250
 turn_L_range = 375
 
 #モータの制御に用いる変数，定数
-certainty = 0
-update = 0
 last_move_R = 0
 last_move_L = 0
 slow_R = 1
@@ -84,300 +83,241 @@ normal_R = 2
 fast_R = 3
 slow_L = 1
 normal_L = 2
-fast_L = 3
+fast_L = 3    
+    
+#ステッピングモータを制御する関数
+def straight(waittime,repeat):  #右ステッピングモータを正転させる関数
+    print("straight")
+    for i in range(int(repeat)):
+        if i % 6 == 0:
+            GPIO.output(CWp_R, GPIO.HIGH)
+            GPIO.output(CWm_R, GPIO.LOW)
+        if i % 7 == 0:
+            GPIO.output(CWp_L, GPIO.HIGH)
+            GPIO.output(CWm_L, GPIO.LOW)
+        if i % 6 == 0 or i % 7 == 0:
+            time.sleep(waittime)
+        if i % 6 == 0:
+            GPIO.output(CWp_R, GPIO.LOW)
+            GPIO.output(CWm_R, GPIO.HIGH)
+        if i % 7 == 0:
+            GPIO.output(CWp_L, GPIO.LOW)
+            GPIO.output(CWm_L, GPIO.HIGH)
+        if i % 6 == 0 or i % 7 == 0:
+            time.sleep(waittime)
+  
+def turn_R(waittime,repeat,speedrate):
+    print("turnR")
+    global rotate_R
+    global rotate_L
+    for i in range(repeat):
+        if i % speedrate == 0:
+            GPIO.output(CWp_R, GPIO.HIGH)
+            GPIO.output(CWm_R, GPIO.LOW)
+        GPIO.output(CWp_L, GPIO.HIGH)
+        GPIO.output(CWm_L, GPIO.LOW)
+        time.sleep(waittime)
+        if i % speedrate == 0:
+            GPIO.output(CWp_R, GPIO.LOW)
+            GPIO.output(CWm_R, GPIO.HIGH)
+        GPIO.output(CWp_L, GPIO.LOW)
+        GPIO.output(CWm_L, GPIO.HIGH)
+        time.sleep(waittime)
 
-#HC-SR04で距離を測定する関数
-def read_distance():
-    global a
-    global b
-    global c
-    global d
-    global sig_on_F
-    global sig_off_F
-    global sig_on_L
-    global sig_off_L
-    global duration_F
-    global duration_L
-    global distance_F
-    global distance_L
-    global distance_preF
-    global distance_preL
-    global rimit
-    global turn_number
-    global turn
-    global initial
-    global certainty
-    global update
+    rotate_R += int(repeat/speedrate)
+    rotate_L += repeat
+
+def turn_L(waittime,repeat,speedrate):
+    print("turnL")
+    global rotate_R
+    global rotate_L
+    for i in range(repeat):
+        GPIO.output(CWp_R, GPIO.HIGH)
+        GPIO.output(CWm_R, GPIO.LOW)
+        if i % speedrate == 0:
+            GPIO.output(CWp_L, GPIO.HIGH)
+            GPIO.output(CWm_L, GPIO.LOW)
+        time.sleep(waittime)
+        GPIO.output(CWp_R, GPIO.LOW)
+        GPIO.output(CWm_R, GPIO.HIGH)
+        if i % speedrate == 0:
+            GPIO.output(CWp_L, GPIO.LOW)
+            GPIO.output(CWm_L, GPIO.HIGH)
+        time.sleep(waittime)
+
+    rotate_R += repeat
+    rotate_L += int(repeat/speedrate)
+
+def back(waittime):  #右ステッピングモータを逆転させる関数
+    for i in range(150):
+        GPIO.output(CCWp_R, GPIO.HIGH)
+        GPIO.output(CCWm_R, GPIO.LOW)
+        GPIO.output(CCWp_L, GPIO.HIGH)
+        GPIO.output(CCWm_L, GPIO.LOW) 
+        time.sleep(waittime)
+        GPIO.output(CCWp_R, GPIO.LOW)
+        GPIO.output(CCWm_R, GPIO.HIGH)
+        GPIO.output(CCWp_L, GPIO.LOW)
+        GPIO.output(CCWm_L, GPIO.HIGH)
+        time.sleep(waittime)
+
+def correct_direction(waittime):
+    global rotate_R 
+    global rotate_L
+    rotate_ave = (rotate_R + rotate_L)/2 
+    print(f"correct_direction  rotate_ave＝　{rotate_R - rotate_ave}")
+    if rotate_R - rotate_ave > 0: # 右の方が多く回転している場合
+        for i in range(int(abs(rotate_R - rotate_ave)* 1.2)):
+            # 右逆転
+            GPIO.output(CCWp_R, GPIO.HIGH)
+            GPIO.output(CCWm_R, GPIO.LOW)
+            # 左正転
+            GPIO.output(CWp_L, GPIO.HIGH)
+            GPIO.output(CWm_L, GPIO.LOW)
+
+            time.sleep(waittime)
+
+            # 右逆転
+            GPIO.output(CCWp_R, GPIO.LOW)
+            GPIO.output(CCWm_R, GPIO.HIGH)
+            # 左正転
+            GPIO.output(CWp_L, GPIO.LOW)
+            GPIO.output(CWm_L, GPIO.HIGH)
+            
+            time.sleep(waittime)
+
+
+    elif rotate_L - rotate_ave > 0: # 左の方が多く回転している場合
+        for i in range(int(abs(rotate_R - rotate_ave)* 3.1)):
+            # 右正転
+            GPIO.output(CWp_R, GPIO.HIGH)
+            GPIO.output(CWm_R, GPIO.LOW)
+            # 左逆転
+            GPIO.output(CCWp_L, GPIO.HIGH)  
+            GPIO.output(CCWm_L, GPIO.LOW) 
+            
+            time.sleep(waittime)
+
+            # 右正転
+            GPIO.output(CWp_R, GPIO.LOW)
+            GPIO.output(CWm_R, GPIO.HIGH)
+            # 左逆転
+            GPIO.output(CCWp_L, GPIO.LOW)
+            GPIO.output(CCWm_L, GPIO.HIGH)
+            
+            time.sleep(waittime)
+
+    rotate_R = 0
+    rotate_L = 0
+            
+            
+try:
     while True:
-        if a>300 or b>300 or c>300 or d>300:  #リセット報告
+        #超音波センサで距離を計測
+        reset_F = 0
+        reset_L = 0
+        distance_sumF = 0
+        distance_sumL = 0
+        for i in range(10):
+            if a>=rimit or b>=rimit :
+                print("reset")
+                reset_F += 1
             a=0
             b=0
+            #前方
+            GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
+            time.sleep(0.00001)                     #10μ秒間待つ
+            GPIO.output(Trig_F, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
+
+            while GPIO.input(Echo_F) == GPIO.LOW:     #GPIO18がLowの時間
+                sig_off_F = time.time()
+                a=a+1
+                if a>rimit:
+                    break
+            if a>rimit:
+                continue
+            while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
+                sig_on_F = time.time()
+                b=b+1
+                if b>rimit:
+                    break
+            if b>rimit:
+                continue
+            duration_F = sig_on_F -sig_off_F            #GPIO18がHighしている時間を算術
+            distance_F = duration_F * 34000 / 2         #距離を求める(cm)
+            distance_sumF += distance_F 
+            time.sleep(0.001)
+
+            #左方
+        for i in range(10):
+            if c>=rimit or d>=rimit :
+                print("reset")
+                reset_L += 1
             c=0
             d=0
-            #print("reset")
-        a=0
-        b=0
-        c=0
-        d=0
-        #前方
-        GPIO.output(Trig_F, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
-        time.sleep(0.00001)                     #10μ秒間待つ
-        GPIO.output(Trig_F, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
+            GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
+            time.sleep(0.00001)                     #10μ秒間待つ
+            GPIO.output(Trig_L, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
 
-        while GPIO.input(Echo_F) == GPIO.LOW:     #GPIO18がLowの時間
-            sig_off_F = time.time()
-            a=a+1
-            if a>rimit:
-                break
-        if a>rimit:
-            continue
-        while GPIO.input(Echo_F) == GPIO.HIGH:    #GPIO18がHighの時間
-            sig_on_F = time.time()
-            b=b+1
-            if b>rimit:
-                break
-        if b>rimit:
-            continue
-        duration_F = sig_on_F -sig_off_F            #GPIO18がHighしている時間を算術
-        distance_F = duration_F * 34000 / 2         #距離を求める(cm)
-        if distance_F - distance_preF > 100:
-          distance_F = distance_preF + 20
-        elif distance_F - distance_preF < -100:
-          distance_F = distance_preF - 20
-        time.sleep(0.01)
-
-        #左方
-        GPIO.output(Trig_L, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
-        time.sleep(0.00001)                     #10μ秒間待つ
-        GPIO.output(Trig_L, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
-
-        while GPIO.input(Echo_L) == GPIO.LOW:     #GPIO18がLowの時間
-            sig_off_L = time.time()
-            c=c+1
+            while GPIO.input(Echo_L) == GPIO.LOW:     #GPIO18がLowの時間
+                sig_off_L = time.time()
+                c=c+1
+                if c>rimit:
+                    break
             if c>rimit:
-                break
-        if c>rimit:
-            continue
-        while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
-            sig_on_L = time.time()
-            d=d+1
+                continue
+            while GPIO.input(Echo_L) == GPIO.HIGH:    #GPIO18がHighの時間
+                sig_on_L = time.time()
+                d=d+1
+                if d>rimit:
+                    break
             if d>rimit:
-                break
-        if d>rimit:
-            continue
-        duration_L = sig_on_L - sig_off_L           #GPIO18がHighしている時間を算術
-        distance_L = duration_L * 34000 / 2         #距離を求める(cm)
-        if distance_L - distance_preL > 100:
-          distance_L = distance_preL + 10
-        elif distance_L - distance_preL < -100:
-          distance_L = distance_preL - 10
-        time.sleep(0.01)
+                continue
+            duration_L = sig_on_L - sig_off_L           #GPIO18がHighしている時間を算術
+            distance_L = duration_L * 34000 / 2         #距離を求める(cm)
+            distance_sumL += distance_L
+            time.sleep(0.001)            
+            
+            #print(f"i＝　{i}  前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f}cm")
         
-        update = 1
-        
-        if distance_F < distanceborder_F:
-          certainty = certainty + 1
-        else:
-          certainty = 0
-        
+        distance_F = distance_sumF / (10 - reset_F)
+        distance_L = distance_sumL / (10 - reset_L)
+
         if turn:
-          print(f"前＝ {distance_F:5.1f} cm 左＝ {distance_L:5.1f} cm turn_number= {turn_number}")
+          print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f} cm   turn_number= {turn_number}")
         else:
-          print(f"前＝ {distance_F:5.1f} cm 左＝ {distance_L:5.1f}cm")
-        
-        if initial < 51:
-          initial = initial + 1
-        
-        distance_preF = distance_F
-        distance_preL = distance_L
+          print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f}cm")
 
-#ステッピングモータを制御する関数
-def right_G(waittime):  #右ステッピングモータを正転させる関数
-  GPIO.output(CWp_R, GPIO.HIGH)
-  GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
-  time.sleep(waittime)
-  GPIO.output(CWp_R, GPIO.LOW)
-  GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
-  time.sleep(waittime)
-  
-def right_B(waittime):  #右ステッピングモータを逆転させる関数
-  GPIO.output(CCWp_R, GPIO.HIGH)
-  GPIO.output(CCWm_R, GPIO.LOW)             #CCWをONに
-  time.sleep(waittime)
-  GPIO.output(CCWp_R, GPIO.LOW)
-  GPIO.output(CCWm_R, GPIO.HIGH)            #CCWをOFFに
-  time.sleep(waittime)
-    
-def left_G(waittime):   #左ステッピングモータを正転させる関数
-  GPIO.output(CWp_L, GPIO.HIGH)
-  GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
-  time.sleep(waittime)
-  GPIO.output(CWp_L, GPIO.LOW)
-  GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
-  time.sleep(waittime)
-  
-def left_B(waittime):   #左ステッピングモータを逆転させる関数
-  GPIO.output(CCWp_L, GPIO.HIGH)
-  GPIO.output(CCWm_L, GPIO.LOW)             #CCWをONに
-  time.sleep(waittime)
-  GPIO.output(CCWp_L, GPIO.LOW)
-  GPIO.output(CCWm_L, GPIO.HIGH)            #CCWをOFFに
-  time.sleep(waittime)
+        #モータの制御
+        if distance_F < distanceborder_F:
+            turn_number = turn_number + 1
+            #if turn_number == 11:
+            #    break
 
-def turn_R():
-  global turn_number
-  turn_number = turn_number + 1
-  for i in range(turn_R_range):
-    GPIO.output(CWp_R, GPIO.HIGH)
-    GPIO.output(CWm_R, GPIO.LOW)             #CWをONに
-    time.sleep(turn_R_speed)
-    GPIO.output(CWp_R, GPIO.LOW)
-    GPIO.output(CWm_R, GPIO.HIGH)            #CWをOFFに
-    time.sleep(turn_R_speed)
-    
-
-def turn_L():
-  for i in range(turn_L_range):
-    GPIO.output(CWp_L, GPIO.HIGH)
-    GPIO.output(CWm_L, GPIO.LOW)             #CWをONに
-    time.sleep(turn_L_speed)
-    GPIO.output(CWp_L, GPIO.LOW)
-    GPIO.output(CWm_L, GPIO.HIGH)            #CWをOFFに
-    time.sleep(turn_L_speed)
-    
-    
-def mortor_R():
-    global turn_number
-    global turn
-    global certainty
-    global update
-    global distance_F
-    global distance_L
-    global distanceborder_F
-    global distanceborder_L
-    global slow
-    global normal
-    global fast
-    global slow_R
-    global normal_R
-    global fast_R
-    global last_move_R
-    global initial
-    
-    while True:
-      update = 0
-      if turn_number<11:
-        if distance_F < distanceborder_F and initial > 50:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
-          if last_move_R == slow_R:
-            while update == 0:
-                right_G(slow)
-                right_G(fast)
-          elif last_move_R == normal_R:
-            while update == 0:
-                right_G(normal)
-          if last_move_R == fast_R:
-            while update == 0:
-                right_G(fast)
-                right_G(slow)
-          if certainty > 5:
             turn = True
-            turn_R()
+            time.sleep(1)
+            print("close to wall")
+            turn_R(fast,320,5)
+            time.sleep(1)
             turn = False
+            rotate_R = 0
+            rotate_L = 0
 
-        if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
+        else:
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-              while update == 0:
-                print("Rslow")
-                for i in range(50):
-                  right_G(slow)
-                for i in range(450):
-                  right_G(fast)
-              last_move_L = slow_L
+                turn_R(fast,50,2)
+                straight(fast,400)
 
-            elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
-              while update == 0:
-                print("Rfast")
-                for i in range(450):
-                  right_G(fast)
-                for i in range(50):
-                  right_G(slow)
-              last_move_L = fast_L
+                correct_direction(fast)
+
+            elif distance_L > distanceborder_L + distance:
+                turn_L(fast,50,2)
+                straight(fast,400)
+
+                correct_direction(fast)
 
             else:
-              while update == 0:
-                  right_G(normal)
-              last_move_R = normal_R
-
-
-def mortor_L():
-    global turn_number
-    global turn
-    global certainty
-    global update
-    global distance_F
-    global distance_L
-    global distanceborder_F
-    global distanceborder_L
-    global slow
-    global normal
-    global fast
-    global slow_L
-    global normal_L
-    global fast_L
-    global last_move_L
-    global initial
-    
-    while True:
-        update = 0
-        if turn_number<11:
-          if distance_F < distanceborder_F and initial > 50:             #前壁との距離が規定値未満になったら，旋回回数の値を＋１して右旋回
-            if last_move_L == slow_L:
-                while update == 0:
-                    left_G(slow)
-                    left_G(fast)
-            if last_move_L == normal_L:
-                while update == 0:
-                    left_G(normal)
-            if last_move_L == fast_L:
-                while update == 0:
-                    left_G(fast)
-                    left_G(slow)
-            if certainty > 5:
-                turn_L()
-
-          if distance_F >= distanceborder_F:            #前壁との距離が規定値以上になったら直進
-            if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
-              while update == 0:
-                print("Lfast")
-                for i in range(450):
-                  left_G(fast)
-                for i in range(50):
-                  left_G(slow)
-              last_move_L = fast_L
-
-            elif distance_L >= distanceborder_L+20:    #左壁との距離が規定値以上になったら左に方向修正
-              while update == 0:
-                print("Lslow")
-                for i in range(50):
-                  left_G(slow)
-                for i in range(450):
-                  left_G(fast)
-              last_move_L = slow_L
-
-            else:
-              while update == 0:
-                  left_G(normal)
-              last_move_L = normal_L
-
-try:
-    if __name__ == "__main__":
-        thread_1 = threading.Thread(target=read_distance)
-        thread_2 = threading.Thread(target=mortor_L)
-        thread_3 = threading.Thread(target=mortor_R)
-
-        thread_1.start()
-        thread_2.start()
-        thread_3.start()
+                straight(fast, 400)
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
