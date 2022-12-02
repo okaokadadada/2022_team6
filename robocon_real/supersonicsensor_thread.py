@@ -271,17 +271,17 @@ try:
         if turn:
           print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f} cm   turn_number= {turn_number}")
         else:
-          print(f"前＝ {distance_F - 3:5.1f} cm   左＝ {distance_L:5.1f}cm   difference＝{distance_F - 3 - distance_L:5.1f}")
+          print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_L:5.1f}cm   difference＝{distance_F - distance_L:5.1f}")
 
         #モータの制御
-        difference = distance_F - 3 - distance_L
-        #if abs(distance_F) < 50 and abs(distance_L) < 50:
-        #    if difference >= 1:
-        #        turn_R(fast,int(abs(difference))*2,2)
-        #    elif difference <= -1:
-        #        turn_L(fast,int(abs(difference))*2,2)
-        #    else:
-        #        straight(fast,50)
+        difference = distance_F - distance_L
+        if abs(distance_F) < 50 and abs(distance_L) < 50:
+            if difference >= 3:
+                turn_R(fast,10,2)
+            elif difference <= -3:
+                turn_L(fast,10,2)
+            else:
+                straight(fast,30)
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
