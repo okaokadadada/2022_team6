@@ -70,8 +70,8 @@ slow = 0.007
 normal = 0.005
 fast = 0.006
 
-rate_R = 6
-rate_L = 7
+rate_R = 10
+rate_L = 11
     
 #ステッピングモータを制御する関数
 def straight(waittime,repeat):  #右ステッピングモータを正転させる関数
