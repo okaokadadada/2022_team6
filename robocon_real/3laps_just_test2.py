@@ -158,8 +158,8 @@ try:
         #f = 0
         for i in range(10):
             if a>=rimit or b>=rimit :
-                print("resetAB")
                 reset_F += 1
+                print("reset_F=",reset_F)
             a=0
             b=0
             #前方
@@ -189,8 +189,8 @@ try:
             #左方
         for i in range(10):
             if c>=rimit or d>=rimit :
-                print("resetCD")
                 reset_LF += 1
+                print("reset_LF=",reset_LF)
             c=0
             d=0
             GPIO.output(Trig_LF, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
@@ -218,8 +218,8 @@ try:
             
         for i in range(10):
             if c>=rimit or d>=rimit :
-                print("resetEF")
                 reset_LB += 1
+                print("reset_LB=",reset_LB)
             e=0
             f=0
             GPIO.output(Trig_LB, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
