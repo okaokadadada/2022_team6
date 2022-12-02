@@ -240,7 +240,7 @@ def bmx_setup():
     i2c.write_byte_data(MAG_ADDR, 0x51, 0x04)
     i2c.write_byte_data(MAG_ADDR, 0x52, 0x16)
     time.sleep(0.5)
-
+    
 def mag_value():
     data = [0, 0, 0, 0, 0, 0, 0, 0]
     mag_data = [0.0, 0.0, 0.0]
@@ -287,10 +287,11 @@ def compass():
         time.sleep(0.1)
 
     avX=np.average(x)
-    print('avX='+str(avX))
+#     print('avX='+str(avX))
     avY=np.average(y)
-    print('avY='+str(avY))
+#     print('avY='+str(avY))
     
+#     ベクトル → 角度
     if avX>0 :
             now_direction=(np.rad2deg(math.atan(avY/avX)))%360
     if avX<0 :
@@ -298,14 +299,16 @@ def compass():
     if avX==0 :
             now_direction=0
             
-    difference=(now_direction-id)%360
+    difference=now_direction-id
 
-    print(now_direction)
+#     print(now_direction)
 
-    if difference>20 and difference<180:
-            print("R")
-    if difference<340 and difference>180:
-            print("L")
+    if difference > 180:
+      difference -= 360
+    if difference < -180:
+      difference += 360
+
+    return difference
 
 # ------------------------------------------------------------------------------------------------------
             
@@ -405,6 +408,7 @@ try:
             turn = False
             rotate_R = 0
             rotate_L = 0
+            id  += 90
 
         else:
             if distance_L < distanceborder_L:          #左壁との距離が規定値未満になったら右に方向修正
