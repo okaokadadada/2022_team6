@@ -150,6 +150,7 @@ try:
         distance_sumLF = 0
         reset_LB = 0
         distance_sumLB = 0
+        counter = 0
         #a = 0
         #b = 0
         #c = 0
@@ -246,6 +247,8 @@ try:
             time.sleep(0.001)         
         
         if reset_F == 10 or reset_LF == 10 or reset_LB == 0:
+            counter += 1
+            print(counter)
             continue
         distance_F = distance_sumF / (10 - reset_F)
         distance_LF = distance_sumLF / (10 - reset_LF)
