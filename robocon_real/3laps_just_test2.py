@@ -145,19 +145,16 @@ try:
     while True:
         #超音波センサで距離を計測
         reset_F = 0
-        distance_sumF = 0
+        #distance_sumF = 0
         reset_LF = 0
         distance_sumLF = 0
         reset_LB = 0
         distance_sumLB = 0
         counter = 0
-        #a = 0
-        #b = 0
-        #c = 0
-        #d = 0
-        #e = 0
-        #f = 0
-        for i in range(10):
+        distance_F_list = []
+        distance_LF_list = []
+        
+        while len(distance_F_list) < 10:
             if a>=rimit or b>=rimit :
                 reset_F += 1
                 #print("reset_F=",reset_F)
@@ -184,7 +181,7 @@ try:
                 continue
             duration_F = sig_on_F -sig_off_F            #GPIO18がHighしている時間を算術
             distance_F = duration_F * 34000 / 2         #距離を求める(cm)
-            distance_sumF += distance_F 
+            distance_F_list.append(distance_F)
             time.sleep(0.001)
 
             #左方
@@ -197,7 +194,6 @@ try:
             GPIO.output(Trig_LF, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
             time.sleep(0.00001)                     #10μ秒間待つ
             GPIO.output(Trig_LF, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
-
             while GPIO.input(Echo_LF) == GPIO.LOW:     #GPIO18がLowの時間
                 sig_off_LF = time.time()
                 c=c+1
@@ -214,45 +210,49 @@ try:
                 continue
             duration_LF = sig_on_LF - sig_off_LF           #GPIO18がHighしている時間を算術
             distance_LF = duration_LF * 34000 / 2         #距離を求める(cm)
-            distance_sumLF += distance_LF
+            distance_LF_list.append(distance_LF)
             time.sleep(0.001)
             
-        for i in range(10):
-            if c>=rimit or d>=rimit :
-                reset_LB += 1
-                #print("reset_LB=",reset_LB)
-            e=0
-            f=0
-            GPIO.output(Trig_LB, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
-            time.sleep(0.00001)                     #10μ秒間待つ
-            GPIO.output(Trig_LB, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
-
-            while GPIO.input(Echo_LB) == GPIO.LOW:     #GPIO18がLowの時間
-                sig_off_LB = time.time()
-                e=e+1
-                if e>rimit:
-                    break
-            if e>rimit:
-                continue
-            while GPIO.input(Echo_LB) == GPIO.HIGH:    #GPIO18がHighの時間
-                sig_on_LB = time.time()
-                f=f+1
-                if f>rimit:
-                    break
-            if f>rimit:
-                continue
-            duration_LB = sig_on_LB - sig_off_LB           #GPIO18がHighしている時間を算術
-            distance_LB = duration_LB * 34000 / 2         #距離を求める(cm)
-            distance_sumLB += distance_LB
-            time.sleep(0.001)         
+        #for i in range(10):
+        #    if c>=rimit or d>=rimit :
+        #        reset_LB += 1
+        #        #print("reset_LB=",reset_LB)
+        #    e=0
+        #    f=0
+        #    GPIO.output(Trig_LB, GPIO.HIGH)            #GPIO27の出力をHigh(3.3V)にする
+        #    time.sleep(0.00001)                     #10μ秒間待つ
+        #    GPIO.output(Trig_LB, GPIO.LOW)             #GPIO27の出力をLow(0V)にする
+        #    while GPIO.input(Echo_LB) == GPIO.LOW:     #GPIO18がLowの時間
+        #        sig_off_LB = time.time()
+        #        e=e+1
+        #        if e>rimit:
+        #            break
+        #    if e>rimit:
+        #        continue
+        #    while GPIO.input(Echo_LB) == GPIO.HIGH:    #GPIO18がHighの時間
+        #        sig_on_LB = time.time()
+        #        f=f+1
+        #        if f>rimit:
+        #            break
+        #    if f>rimit:
+        #        continue
+        #    duration_LB = sig_on_LB - sig_off_LB           #GPIO18がHighしている時間を算術
+        #    distance_LB = duration_LB * 34000 / 2         #距離を求める(cm)
+        #    distance_sumLB += distance_LB
+        #    time.sleep(0.001)         
         
         if reset_F == 10 or reset_LF == 10 or reset_LB == 10:
             counter += 1
             print(counter)
             continue
-        distance_F = distance_sumF / (10 - reset_F)
-        distance_LF = distance_sumLF / (10 - reset_LF)
-        distance_LB = distance_sumLB / (10 - reset_LB)
+        
+        for i in range(10):
+            distance_sumF += distance_F_list[i]
+            distance_sumLF += distance_LF_list[i]
+        #distance_LB = distance_sumLB / (10 - reset_LB)
+        
+        distance_F = distance_sumF / 10
+        distance_LF = distance_sumLF / 10
         difference = distance_LF - distance_LB
 
         print(f"前＝ {distance_F:5.1f} cm   左前＝ {distance_LF:5.1f}cm   左後＝ {distance_LB:5.1f} cm   difference＝{difference:5.1f}")
