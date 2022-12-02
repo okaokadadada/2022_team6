@@ -9,8 +9,8 @@ Trig_F = 23
 Echo_F = 24
 Trig_LF = 14
 Echo_LF = 27
-Trig_LF = 17
-Echo_LF = 15
+Trig_LB = 17
+Echo_LB = 15
 
 #モータのGPIO設定
 CWp_R=16
