@@ -441,7 +441,7 @@ try:
         if distance_F < distanceborder_F:
             turn_number +=  1
             print(f"旋回{turn_number}回目")
-            turn_R(fast,300,5)
+            turn_R(fast,310,5)
             #if turn_number == 11:
             #    break
             rotate_R = 0
@@ -482,7 +482,7 @@ try:
                 else:
                     straight(fast, 500)
                     
-                if n > 5:
+                if n > 3:
                     difference = compass()
                     print(f" difference = {difference}")
                     if difference > 0:
