@@ -54,6 +54,7 @@ c = 0
 d = 0
 e = 0
 f = 0
+n = 0
 rimit = 2000
 sig_on_F = 0
 sig_off_F = 0
@@ -68,6 +69,7 @@ sig_off_LB = 0
 duration_LB = 0
 distance_LB = 0
 distanceborder_F = 65
+distanceborder_F_short = 100
 distanceborder_LF = 50
 
 # 左右のモータの回転数を記録
@@ -471,12 +473,27 @@ try:
                 if difference < 0:
                     turn_R(fast,int(abs(difference)),2)
                 
-                difference = compass()
 
 #                 correct_direction(fast)
 
             else:
-                straight(fast, 1000)
+                if distance_F > distanceborder_F_short:
+                    straight(fast, 1000)
+                else:
+                    straight(fast, 500)
+                    
+                if n > 5:
+                    difference = compass()
+                    print(f" difference = {difference}")
+                    if difference > 0:
+                        turn_L(fast,int(abs(difference)),2)
+                    if difference < 0:
+                        turn_R(fast,int(abs(difference)),2)
+                    n = 0
+                else:
+                    n += 1
+                    
+            
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
