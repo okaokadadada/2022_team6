@@ -145,7 +145,7 @@ try:
     while True:
         #超音波センサで距離を計測
         reset_F = 0
-        #distance_sumF = 0
+        distance_sumF = 0
         reset_LF = 0
         distance_sumLF = 0
         reset_LB = 0
