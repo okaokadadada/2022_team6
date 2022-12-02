@@ -24,7 +24,7 @@ for i in range(2):#初期の9.1から3.0まで動かす
  time.sleep(0.5)
 
  for i in range(66):
-   servo.ChangeDutyCycle(8-0.1*66+0.1*i)
+   servo.ChangeDutyCycle(7-0.1*66+0.1*i)
    time.sleep(INTERVAL)
 
  time.sleep(0.5)
