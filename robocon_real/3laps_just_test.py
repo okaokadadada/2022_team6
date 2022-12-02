@@ -433,7 +433,7 @@ try:
         #distance_LB = distance_sumLB / 10
         difference = distance_LF - distance_LB
 
-        print(f"前＝ {distance_F:5.1f} cm   左前＝ {distance_LF:5.1f}cm   左後＝ {distance_LB:5.1f} cm   difference＝{difference:5.1f}")
+        print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_LF:5.1f}cm")#   左後＝ {distance_LB:5.1f} cm   difference＝{difference:5.1f}")
 
         #モータの制御
         if distance_F < distanceborder_F:
@@ -447,13 +447,13 @@ try:
             id  += 90
 
         else:
-            if difference >= 3:         #左壁との距離が規定値未満になったら右に方向修正
+            if distance_L < distanceborder_L:         #左壁との距離が規定値未満になったら右に方向修正
                 turn_R(fast,50,2)
                 straight(fast,400)
 
                 correct_direction(fast)
 
-            elif difference <= -3:
+            elif distance_L > distanceborder_L + distance:
                 turn_L(fast,50,2)
                 straight(fast,400)
 
