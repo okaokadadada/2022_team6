@@ -432,9 +432,8 @@ try:
         distance_F = distance_sumF / 10
         distance_LF = distance_sumLF / 10
         #distance_LB = distance_sumLB / 10
-        difference = distance_LF - distance_LB
 
-        print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_LF:5.1f}cm")#   左後＝ {distance_LB:5.1f} cm   difference＝{difference:5.1f}")
+        print(f"前＝ {distance_F:5.1f} cm   左＝ {distance_LF:5.1f}cm")#   左後＝ {distance_LB:5.1f} cm")
 
         #モータの制御
         if distance_F < distanceborder_F:
