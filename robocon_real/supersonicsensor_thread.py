@@ -283,7 +283,6 @@ try:
                 turn_R(fast,50,2)
             else:
                 straight(fast,600)
-                #back(fast)
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
