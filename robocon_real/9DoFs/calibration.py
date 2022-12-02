@@ -113,6 +113,8 @@ def compass():
    
    
 if __name__ == "__main__":
+    bmx_setup()
+    time.sleep(0.1)
     max_x=None
     min_x=None
     max_y=None
