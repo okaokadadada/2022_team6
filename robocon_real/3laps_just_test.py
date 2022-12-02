@@ -84,7 +84,7 @@ turn = False
 fast = 0.006
 
 rate_R = 10
-rate_L = 10
+rate_L = 8
 
 #9軸センサに用いる変数，定数
 # I2C
