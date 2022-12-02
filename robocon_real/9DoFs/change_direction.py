@@ -24,7 +24,19 @@ MAG_ADDR = 0x13
 MAG_R_ADDR = 0x42
 i2c = SMBus(1)
 
-
+def bmx_setup():
+    # mag_data_setup : 地磁気値をセットアップ
+    data = i2c.read_byte_data(MAG_ADDR, 0x4B)
+    if(data == 0):
+        i2c.write_byte_data(MAG_ADDR, 0x4B, 0x83)
+        time.sleep(0.5)
+    i2c.write_byte_data(MAG_ADDR, 0x4B, 0x01)
+    i2c.write_byte_data(MAG_ADDR, 0x4C, 0x00)
+    i2c.write_byte_data(MAG_ADDR, 0x4E, 0x84)
+    i2c.write_byte_data(MAG_ADDR, 0x51, 0x04)
+    i2c.write_byte_data(MAG_ADDR, 0x52, 0x16)
+    time.sleep(0.5)
+    
 def mag_value():
     data = [0, 0, 0, 0, 0, 0, 0, 0]
     mag_data = [0.0, 0.0, 0.0]
@@ -92,6 +104,8 @@ def compass():
             print("L")
     
 if __name__ == "__main__":
+    bmx_setup()
+    time.sleep(0.1)
     id=initial()
     while True:
         compass() 
