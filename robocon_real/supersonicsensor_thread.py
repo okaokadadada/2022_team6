@@ -74,22 +74,21 @@ fast = 0.006
 def straight(waittime,repeat):  #右ステッピングモータを正転させる関数
     print("straight")
     for i in range(int(repeat)):
-        if i % 6 == 0:
+        if i % 10 == 0:
             GPIO.output(CWp_R, GPIO.HIGH)
             GPIO.output(CWm_R, GPIO.LOW)
-        if i % 7 == 0:
-            print("A")
+        if i % 11 == 0:
             GPIO.output(CWp_L, GPIO.HIGH)
             GPIO.output(CWm_L, GPIO.LOW)
-        if i % 6 == 0 or i % 7 == 0:
+        if i % 10 == 0 or i % 11 == 0:
             time.sleep(waittime)
-        if i % 6 == 0:
+        if i % 10 == 0:
             GPIO.output(CWp_R, GPIO.LOW)
             GPIO.output(CWm_R, GPIO.HIGH)
-        if i % 7 == 0:
+        if i % 11 == 0:
             GPIO.output(CWp_L, GPIO.LOW)
             GPIO.output(CWm_L, GPIO.HIGH)
-        if i % 6 == 0 or i % 7 == 0:
+        if i % 10 == 0 or i % 11 == 0:
             time.sleep(waittime)
   
 def turn_R(waittime,repeat,speedrate):
@@ -279,11 +278,11 @@ try:
         difference = distance_F - distance_L
         if abs(distance_F) < 50 and abs(distance_L) < 50:
             if difference >= 3:
-                turn_L(fast,50,2)
+                turn_L(fast,30,2)
             elif difference <= -3:
-                turn_R(fast,50,2)
+                turn_R(fast,30,2)
             else:
-                straight(fast,600)
+                straight(fast,1000)
 
 except KeyboardInterrupt:       #Ctrl+Cキーが押された
         GPIO.cleanup()              #GPIOをクリーンアップ
