@@ -454,9 +454,9 @@ try:
                 difference = compass()
                 print(f" difference = {difference}")
                 if difference > 0:
-                    turn_L(fast,int(abs(difference)),5)
+                    turn_L(fast,int(abs(difference)),2)
                 if difference < 0:
-                    turn_R(fast,int(abs(difference)),5)
+                    turn_R(fast,int(abs(difference)),2)
                 
 #                 correct_direction(fast)
 
@@ -467,9 +467,9 @@ try:
                 difference = compass()
                 print(f" difference = {difference}")
                 if difference > 0:
-                    turn_L(fast,int(abs(difference)),5)
+                    turn_L(fast,int(abs(difference)),2)
                 if difference < 0:
-                    turn_R(fast,int(abs(difference)),5)
+                    turn_R(fast,int(abs(difference)),2)
                 
                 difference = compass()
 
