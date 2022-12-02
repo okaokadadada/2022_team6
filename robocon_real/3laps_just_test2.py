@@ -185,7 +185,7 @@ try:
             time.sleep(0.001)
 
             #左方
-        for i in range(10):
+        while len(distance_LF_list) < 10:
             if c>=rimit or d>=rimit :
                 reset_LF += 1
                 #print("reset_LF=",reset_LF)
