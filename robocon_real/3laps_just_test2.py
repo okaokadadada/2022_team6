@@ -241,10 +241,10 @@ try:
         #    distance_sumLB += distance_LB
         #    time.sleep(0.001)         
         
-        if reset_F == 10 or reset_LF == 10 or reset_LB == 10:
-            counter += 1
-            print(counter)
-            continue
+        #if reset_F == 10 or reset_LF == 10 or reset_LB == 10:
+        #    counter += 1
+        #    print(counter)
+        #    continue
         
         for i in range(10):
             distance_sumF += distance_F_list[i]
