@@ -473,9 +473,9 @@ try:
                 difference = compass()
                 print(f" difference = {difference}")
                 if difference > 0:
-                    turn_L(fast,int(abs(difference)),2)
+                    turn_L(fast,int(abs(difference))*2,2)
                 if difference < 0:
-                    turn_R(fast,int(abs(difference)),2)
+                    turn_R(fast,int(abs(difference))*2,2)
             print(f"旋回{turn_number}回目")
             #turn_R(fast,320,5)
             if turn_number % 4 == 1:
