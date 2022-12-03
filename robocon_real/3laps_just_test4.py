@@ -484,7 +484,7 @@ try:
                 virtical = 150
             else:
                 virtical = 60
-            while diffrence < virtical
+            while diffrence < virtical:
                 roll(fast,500,12,20)
             if turn_number == 11:
                 print("break")
