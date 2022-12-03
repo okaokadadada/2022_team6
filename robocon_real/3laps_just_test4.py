@@ -488,7 +488,7 @@ try:
                 virtical = 150
             print("start roll")
             while difference < virtical:
-                roll(fast,1440,12,20)
+                roll(fast,700,1,2)
                 difference = compass()
                 print(f" difference = {difference}")
             print("finish roll")
