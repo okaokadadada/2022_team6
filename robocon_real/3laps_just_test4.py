@@ -489,13 +489,9 @@ try:
             
             print("start roll")
             while difference < virtical:
-                roll(fast,(virtical - difference) * 100,12,20)
+                roll(fast,(virtical - difference) * 20,12,20)
                 difference = compass()
                 print(f" difference = {difference}")
-                if difference > 0:
-                    turn_L(fast,int(abs(difference)),2)
-                if difference < 0:
-                    turn_R(fast,int(abs(difference)),2)
             print("finish roll")
             if turn_number == 11:
                 print("break")
