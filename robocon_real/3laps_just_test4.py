@@ -478,13 +478,13 @@ try:
                     turn_R(fast,int(abs(difference)),2)
             print(f"旋回{turn_number}回目")
             #turn_R(fast,320,5)
-            if turn_number == 1 or turn_number == 5 or turn_number == 9:
+            if turn_number % 4 == 1:
                 virtical = 75
-            elif turn_number == 2 or turn_number == 6 or turn_number == 10:
+            elif turn_number % 4 == 2:
                 virtical = 55
-            elif turn_number == 3 or turn_number == 7 or turn_number == 11:
+            elif turn_number % 4 == 3:
                 virtical = 130
-            elif turn_number == 4 or turn_number == 8 or turn_number == 12:
+            elif turn_number % 4 == 0:
                 virtical = 90
             print("start roll")
             while difference < virtical:
