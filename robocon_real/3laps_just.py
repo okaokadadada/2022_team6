@@ -478,7 +478,7 @@ try:
                     turn_R(fast,int(abs(difference)),2)
             print(f"旋回{turn_number}回目")
             #turn_R(fast,320,5)
-            roll(fast,2000,2,5)
+            roll(fast,2000,2,4)
             if turn_number == 11:
                 print("break")
                 break
