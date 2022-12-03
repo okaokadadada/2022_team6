@@ -449,8 +449,9 @@ try:
                     turn_R(fast,int(abs(difference)),2)
             print(f"旋回{turn_number}回目")
             turn_R(fast,320,5)
-            #if turn_number == 11:
-            #    break
+            if turn_number == 11:
+                print("break")
+                break
             rotate_R = 0
             rotate_L = 0
             bmx_setup()
