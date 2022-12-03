@@ -84,7 +84,7 @@ turn = False
 fast = 0.006
 
 rate_R = 10
-rate_L = 8
+rate_L = 10
 
 #9軸センサに用いる変数，定数
 # I2C
@@ -495,9 +495,9 @@ try:
                     difference = compass()
                     print(f" difference = {difference}")
                     if difference > 0:
-                        turn_L(fast,int(abs(difference)),2)
+                        turn_L(fast,int(abs(difference)*1.2),2)
                     if difference < 0:
-                        turn_R(fast,int(abs(difference)),2)
+                        turn_R(fast,int(abs(difference)*1.2),2)
                     n = 0
                 else:
                     n += 1
