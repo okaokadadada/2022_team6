@@ -84,7 +84,7 @@ turn = False
 fast = 0.006
 
 rate_R = 10
-rate_L = 12
+rate_L = 10
 
 #9軸センサに用いる変数，定数
 # I2C
@@ -487,7 +487,7 @@ try:
 
             else:
                 if distance_F > distanceborder_F_short:
-                    straight(fast, 2000)
+                    straight(fast, 1500)
                 else:
                     straight(fast, 500)
                     
