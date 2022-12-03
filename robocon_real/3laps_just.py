@@ -168,7 +168,7 @@ def turn_L(waittime,repeat,speedrate):
     rotate_R += repeat
     rotate_L += int(repeat/speedrate)
 
-def roll(waittime,repeat,rate_rollR,rate_rollR):  #右ステッピングモータを正転させる関数
+def roll(waittime,repeat,rate_rollL,rate_rollR):  #右ステッピングモータを正転させる関数
     print("roll")
     for i in range(int(repeat)):
         if i % rate_rollR == 0 and i % rate_rollL == 0:
