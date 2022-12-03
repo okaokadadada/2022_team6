@@ -479,7 +479,7 @@ try:
             print(f"旋回{turn_number}回目")
             #turn_R(fast,320,5)
             if turn_number == 1 or turn_number == 5 or turn_number == 9:
-                virtical = 75
+                virtical = 70
             elif turn_number == 2 or turn_number == 6 or turn_number == 10:
                 virtical = 150
             elif turn_number == 3 or turn_number == 7 or turn_number == 11:
@@ -488,7 +488,7 @@ try:
                 virtical = 150
             print("start roll")
             while difference < virtical:
-                roll(fast,(virtical - difference) * 20,12,20)
+                roll(fast,(virtical - difference) * 50,12,20)
                 difference = compass()
                 print(f" difference = {difference}")
             print("finish roll")
