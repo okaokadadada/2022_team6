@@ -448,7 +448,7 @@ try:
                 if difference < 0:
                     turn_R(fast,int(abs(difference)),2)
             print(f"旋回{turn_number}回目")
-            turn_R(fast,310,5)
+            turn_R(fast,320,5)
             #if turn_number == 11:
             #    break
             rotate_R = 0
