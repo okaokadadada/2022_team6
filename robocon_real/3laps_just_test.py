@@ -70,7 +70,7 @@ duration_LB = 0
 distance_LB = 0
 distanceborder_F = 65
 distanceborder_F_short = 100
-distanceborder_LF = 50
+distanceborder_LF = 40
 
 # 左右のモータの回転数を記録
 rotate_R = 0
@@ -84,7 +84,7 @@ turn = False
 fast = 0.006
 
 rate_R = 10
-rate_L = 8
+rate_L = 10
 
 #9軸センサに用いる変数，定数
 # I2C
