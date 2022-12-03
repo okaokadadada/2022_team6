@@ -168,6 +168,35 @@ def turn_L(waittime,repeat,speedrate):
     rotate_R += repeat
     rotate_L += int(repeat/speedrate)
 
+def roll(waittime,repeat,rate_rollR,rate_rollR):  #右ステッピングモータを正転させる関数
+    print("roll")
+    for i in range(int(repeat)):
+        if i % rate_rollR == 0 and i % rate_rollL == 0:
+            GPIO.output(CWp_R, GPIO.HIGH)
+            GPIO.output(CWm_R, GPIO.LOW)
+            GPIO.output(CWp_L, GPIO.HIGH)
+            GPIO.output(CWm_L, GPIO.LOW)
+            time.sleep(waittime)
+            GPIO.output(CWp_R, GPIO.LOW)
+            GPIO.output(CWm_R, GPIO.HIGH)
+            GPIO.output(CWp_L, GPIO.LOW)
+            GPIO.output(CWm_L, GPIO.HIGH)
+            time.sleep(waittime)
+        elif i % rate_rollR == 0:
+            GPIO.output(CWp_R, GPIO.HIGH)
+            GPIO.output(CWm_R, GPIO.LOW)
+            time.sleep(waittime)
+            GPIO.output(CWp_R, GPIO.LOW)
+            GPIO.output(CWm_R, GPIO.HIGH)
+            time.sleep(waittime)
+        elif i % rate_rollL == 0:
+            GPIO.output(CWp_L, GPIO.HIGH)
+            GPIO.output(CWm_L, GPIO.LOW)
+            time.sleep(waittime)
+            GPIO.output(CWp_L, GPIO.LOW)
+            GPIO.output(CWm_L, GPIO.HIGH)
+            time.sleep(waittime)
+        
 def back(waittime):  #右ステッピングモータを逆転させる関数
     for i in range(150):
         GPIO.output(CCWp_R, GPIO.HIGH)
@@ -448,7 +477,8 @@ try:
                 if difference < 0:
                     turn_R(fast,int(abs(difference)),2)
             print(f"旋回{turn_number}回目")
-            turn_R(fast,320,5)
+            #turn_R(fast,320,5)
+            
             if turn_number == 11:
                 print("break")
                 break
