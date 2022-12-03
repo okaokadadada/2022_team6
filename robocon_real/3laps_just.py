@@ -440,7 +440,7 @@ try:
         #モータの制御
         if distance_F < distanceborder_F:
             turn_number +=  1
-            for i i range(3):
+            for i in range(3):
                 difference = compass()
                 print(f" difference = {difference}")
                 if difference > 0:
