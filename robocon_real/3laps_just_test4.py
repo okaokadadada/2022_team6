@@ -483,7 +483,7 @@ try:
             elif turn_number % 4 == 2:
                 virtical = 65
             elif turn_number % 4 == 3:
-                virtical = 130
+                virtical = 110
             elif turn_number % 4 == 0:
                 virtical = 90
             print("start roll")
