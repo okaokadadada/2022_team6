@@ -481,7 +481,7 @@ try:
             if turn_number % 4 == 1:
                 virtical = 65
             elif turn_number % 4 == 2:
-                virtical = 80
+                virtical = 65
             elif turn_number % 4 == 3:
                 virtical = 130
             elif turn_number % 4 == 0:
