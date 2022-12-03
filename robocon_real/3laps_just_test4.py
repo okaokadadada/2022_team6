@@ -480,7 +480,7 @@ try:
             #turn_R(fast,320,5)
             if turn_number == 3 or turn_number == 7:
                 virtical = 90
-            elif elif turn_number == 2 or turn_number == 6:
+            elif turn_number == 2 or turn_number == 6:
                 virtical = 150
             else:
                 virtical = 60
