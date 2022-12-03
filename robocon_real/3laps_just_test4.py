@@ -77,7 +77,7 @@ rotate_R = 0
 rotate_L = 0
 
 #旋回回数
-turn_number = 3
+turn_number = 0
 turn = False
 
 #モータの速度
@@ -485,7 +485,7 @@ try:
             elif turn_number % 4 == 3:
                 virtical = 110
             elif turn_number % 4 == 0:
-                virtical = 90
+                virtical = 75
             print("start roll")
             while difference < virtical:
                 roll(fast,70,1,2)
