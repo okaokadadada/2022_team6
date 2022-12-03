@@ -19,14 +19,14 @@ Trig_LB = 23
 Echo_LB = 24
 
 #モータのGPIO設定
-CCWp_R=16
-CCWm_R=19
-CWp_R=20
-CWm_R=21
-CCWp_L=7
-CCWm_L=5
-CWp_L=6
-CWm_L=12
+CWp_R=16
+CWm_R=19
+CCWp_R=20
+CCWm_R=21
+CWp_L=7
+CWm_L=5
+CCWp_L=6
+CCWm_L=12
 
 #モータのGPIO設定
 GPIO.setmode(GPIO.BCM)               #GPIOのモードを"GPIO.BCM"に設定
@@ -68,8 +68,8 @@ sig_on_LB = 0
 sig_off_LB = 0
 duration_LB = 0
 distance_LB = 0
-distanceborder_F = 65
-distanceborder_F_short = 100
+distanceborder_F = 15
+distanceborder_F_short = 200
 distanceborder_LF = 40
 
 # 左右のモータの回転数を記録
@@ -168,6 +168,35 @@ def turn_L(waittime,repeat,speedrate):
     rotate_R += repeat
     rotate_L += int(repeat/speedrate)
 
+def roll(waittime,repeat,rate_rollL,rate_rollR):  #右ステッピングモータを正転させる関数
+    print("roll")
+    for i in range(int(repeat)):
+        if i % rate_rollR == 0 and i % rate_rollL == 0:
+            GPIO.output(CWp_R, GPIO.HIGH)
+            GPIO.output(CWm_R, GPIO.LOW)
+            GPIO.output(CWp_L, GPIO.HIGH)
+            GPIO.output(CWm_L, GPIO.LOW)
+            time.sleep(waittime)
+            GPIO.output(CWp_R, GPIO.LOW)
+            GPIO.output(CWm_R, GPIO.HIGH)
+            GPIO.output(CWp_L, GPIO.LOW)
+            GPIO.output(CWm_L, GPIO.HIGH)
+            time.sleep(waittime)
+        elif i % rate_rollR == 0:
+            GPIO.output(CWp_R, GPIO.HIGH)
+            GPIO.output(CWm_R, GPIO.LOW)
+            time.sleep(waittime)
+            GPIO.output(CWp_R, GPIO.LOW)
+            GPIO.output(CWm_R, GPIO.HIGH)
+            time.sleep(waittime)
+        elif i % rate_rollL == 0:
+            GPIO.output(CWp_L, GPIO.HIGH)
+            GPIO.output(CWm_L, GPIO.LOW)
+            time.sleep(waittime)
+            GPIO.output(CWp_L, GPIO.LOW)
+            GPIO.output(CWm_L, GPIO.HIGH)
+            time.sleep(waittime)
+        
 def back(waittime):  #右ステッピングモータを逆転させる関数
     for i in range(150):
         GPIO.output(CCWp_R, GPIO.HIGH)
@@ -448,7 +477,15 @@ try:
                 if difference < 0:
                     turn_R(fast,int(abs(difference)),2)
             print(f"旋回{turn_number}回目")
-            turn_R(fast,320,5)
+            #turn_R(fast,320,5)
+            if turn_number == 3 or turn_number == 7:
+                virtical = 90
+            elif elif turn_number == 2 or turn_number == 6:
+                virtical = 150
+            else:
+                virtical = 60
+            while diffrence < virtical
+                roll(fast,500,12,20)
             if turn_number == 11:
                 print("break")
                 break
