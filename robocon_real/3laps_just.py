@@ -487,11 +487,11 @@ try:
 
             else:
                 if distance_F > distanceborder_F_short:
-                    straight(fast, 1000)
+                    straight(fast, 2000)
                 else:
                     straight(fast, 500)
                     
-                if n > 3:
+                if n > 2:
                     difference = compass()
                     print(f" difference = {difference}")
                     if difference > 0:
