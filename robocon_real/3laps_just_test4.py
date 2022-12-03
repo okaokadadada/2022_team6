@@ -68,7 +68,7 @@ sig_on_LB = 0
 sig_off_LB = 0
 duration_LB = 0
 distance_LB = 0
-distanceborder_F = 10
+distanceborder_F = 130
 distanceborder_F_short = distanceborder_F + 50
 distanceborder_LF = 40
 
