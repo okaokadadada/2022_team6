@@ -495,7 +495,7 @@ try:
                     roll(fast,210,1,2)
                 else:
                     roll(fast,70,1,2)
-                pre_difference = defference
+                pre_difference = difference
             print("finish roll")
             if turn_number == 11:
                 print("break")
