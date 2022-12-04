@@ -483,7 +483,7 @@ try:
             elif turn_number % 4 == 2:
                 virtical = 65
             elif turn_number % 4 == 3:
-                virtical = 125
+                virtical = 110
             elif turn_number % 4 == 0:
                 virtical = 90
             pre_difference = compass()
@@ -491,7 +491,7 @@ try:
             while difference < virtical:
                 difference = compass()
                 print(f" difference = {difference}")
-                if difference - pre_difference < 5:
+                if difference - pre_difference < 3:
                     roll(fast,210,1,2)
                 else:
                     roll(fast,70,1,2)
