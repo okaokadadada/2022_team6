@@ -485,7 +485,7 @@ try:
             elif turn_number % 4 == 3:
                 virtical = 110
             elif turn_number % 4 == 0:
-                virtical = 75
+                virtical = 90
             print("start roll")
             while difference < virtical:
                 roll(fast,70,1,2)
