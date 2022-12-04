@@ -483,14 +483,19 @@ try:
             elif turn_number % 4 == 2:
                 virtical = 65
             elif turn_number % 4 == 3:
-                virtical = 110
+                virtical = 125
             elif turn_number % 4 == 0:
                 virtical = 90
+            pre_difference = compass()
             print("start roll")
             while difference < virtical:
-                roll(fast,70,1,2)
                 difference = compass()
                 print(f" difference = {difference}")
+                if difference - pre_difference < 5:
+                    roll(fast,210,1,2)
+                else:
+                    roll(fast,70,1,2)
+                pre_difference = defference
             print("finish roll")
             if turn_number == 11:
                 print("break")
