@@ -23,7 +23,7 @@ img3=cv2.medianBlur(img2,55)
 cv2.imwrite(name+"_denoised.jpg",img3)
 
 #円検出
-circles = cv2.HoughCircles(img3, cv2.HOUGH_GRADIENT, dp=1.0, minDist=2000, param1=100, param2=2147483650, minRadius=0, maxRadius=0)
+circles = cv2.HoughCircles(img3, cv2.HOUGH_GRADIENT, dp=1.0, minDist=2000, param1=100, param2=214748365000000000000000000000000000000000000000, minRadius=0, maxRadius=0)
 try :
     circles = np.uint16(np.around(circles))
     for circle in circles[0,:]:
