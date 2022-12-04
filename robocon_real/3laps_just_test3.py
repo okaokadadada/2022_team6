@@ -512,11 +512,15 @@ try:
             rotate_L = 0
             bmx_setup()
             time.sleep(0.1)
-                id_sum = 0
-                for i in range(10):
-                    id_sum += initial()
-                    time.sleep(0.05)
-                id = id_sum/10
+            id_sum = 0
+            i = 0
+            while i < 10:
+                id_tmp = initial()
+                if id_tmp != 0:
+                    id_sum += id_tmp
+                    i += 1
+                time.sleep(0.05)
+            id = id_sum/10
 
         else:
             if distance_LF < distanceborder_LF:         #左壁との距離が規定値未満になったら右に方向修正
