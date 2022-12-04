@@ -488,7 +488,7 @@ try:
                 virtical = 90
             pre_difference = -10
             print("start roll")
-            while abs(difference - virtical > 5):
+            while abs(difference - virtical) > 5:
                 if abs(difference - pre_difference) < 3:
                     roll(fast,150,1,2)
                 else:
