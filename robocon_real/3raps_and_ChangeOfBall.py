@@ -570,7 +570,7 @@ try:
                         continue
                     if r[1]>=500:
                         step==2
-            if turn_number!=3
+            if turn_number!=3:
 
                 turn_number +=  1
                 while abs(difference) > 5:
