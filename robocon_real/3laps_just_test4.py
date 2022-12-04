@@ -348,7 +348,12 @@ try:
     # 9軸のセットアップ
     bmx_setup()
     time.sleep(0.1)
-    id=initial()
+    id_sum = 0
+    for i in range(10):
+        id_sum += initial()
+        time.sleep(0.05)
+    id = id_sum/10
+        
     
     while True:
         #超音波センサで距離を計測
@@ -507,7 +512,11 @@ try:
             rotate_L = 0
             bmx_setup()
             time.sleep(0.1)
-            id=initial()
+                id_sum = 0
+                for i in range(10):
+                    id_sum += initial()
+                    time.sleep(0.05)
+                id = id_sum/10
 
         else:
             if distance_LF < distanceborder_LF:         #左壁との距離が規定値未満になったら右に方向修正
