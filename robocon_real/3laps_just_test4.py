@@ -352,7 +352,7 @@ try:
     id_sum = 0
     while i < 10:
         id_tmp = initial()
-        if id_tmp != 0
+        if id_tmp != 0:
             id_sum += id_temp
             i += 1
         time.sleep(0.05)
@@ -520,7 +520,7 @@ try:
             i = 0
             while i < 10:
                 id_tmp = initial()
-                if id_tmp != 0
+                if id_tmp != 0:
                     id_sum += id_temp
                     i += 1
                 time.sleep(0.05)
