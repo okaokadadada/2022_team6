@@ -492,9 +492,9 @@ try:
                 difference = compass()
                 print(f" difference = {difference}")
                 if difference - pre_difference < 3:
-                    roll(fast,210,1,2)
+                    roll(fast,150,1,2)
                 else:
-                    roll(fast,70,1,2)
+                    roll(fast,50,1,2)
                 pre_difference = difference
             print("finish roll")
             if turn_number == 11:
