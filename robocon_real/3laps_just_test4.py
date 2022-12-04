@@ -499,7 +499,6 @@ try:
                 pre_difference = difference
                 difference = compass()
                 print(f" difference = {difference}")
-            while 
             print("finish roll")
             if turn_number == 11:
                 print("break")
