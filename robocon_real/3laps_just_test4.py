@@ -77,7 +77,7 @@ rotate_R = 0
 rotate_L = 0
 
 #旋回回数
-turn_number = 2
+turn_number = 0
 turn = False
 
 #モータの速度
