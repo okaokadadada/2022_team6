@@ -348,9 +348,13 @@ try:
     # 9軸のセットアップ
     bmx_setup()
     time.sleep(0.1)
+    i = 0
     id_sum = 0
-    for i in range(10):
-        id_sum += initial()
+    while i < 10:
+        id_tmp = initial()
+        if id_tmp != 0
+            id_sum += id_temp
+            i += 1
         time.sleep(0.05)
     id = id_sum/10
         
@@ -513,8 +517,12 @@ try:
             bmx_setup()
             time.sleep(0.1)
             id_sum = 0
-            for i in range(10):
-                id_sum += initial()
+            i = 0
+            while i < 10:
+                id_tmp = initial()
+                if id_tmp != 0
+                    id_sum += id_temp
+                    i += 1
                 time.sleep(0.05)
             id = id_sum/10
 
