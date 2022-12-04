@@ -479,9 +479,9 @@ try:
             print(f"旋回{turn_number}回目")
             #turn_R(fast,320,5)
             if turn_number % 4 == 1:
-                virtical = 55
+                virtical = 60
             elif turn_number % 4 == 2:
-                virtical = 65
+                virtical = 80
             elif turn_number % 4 == 3:
                 virtical = 120
             elif turn_number % 4 == 0:
